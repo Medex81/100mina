@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://b1whxbip2vb3h"]
+
+[node name="help" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="menu" type="ScrollContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="buttons" type="VBoxContainer" parent="MarginContainer/HBoxContainer/menu"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="about" type="Button" parent="MarginContainer/HBoxContainer/menu/buttons"]
+layout_mode = 2
+text = "key_about"
+flat = true
+
+[node name="version" type="Button" parent="MarginContainer/HBoxContainer/menu/buttons"]
+layout_mode = 2
+text = "key_version"
+flat = true
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/menu/buttons"]
+layout_mode = 2
+text = "              VK 100mina"
+underline = 2
+uri = "https://vk.com/public223163538"
+
+[node name="view" type="ScrollContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+
+[node name="texts" type="VBoxContainer" parent="MarginContainer/HBoxContainer/view"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="about" type="Label" parent="MarginContainer/HBoxContainer/view/texts"]
+layout_mode = 2
+text = "key_about_text"
+autowrap_mode = 3
+
+[node name="version" type="Label" parent="MarginContainer/HBoxContainer/view/texts"]
+layout_mode = 2
+text = "0.1"
+autowrap_mode = 3

@@ -1,0 +1,618 @@
+Afar
+Abkhazian
+Achinese
+Acoli
+Adangme
+Adyghe
+Avestan
+Tunisian Arabic
+Afrikaans
+Afrihili
+Aghem
+Ainu
+Aguaruna
+Akan
+Akkadian
+Alabama
+Aleut
+Gheg Albanian
+Southern Altai
+Amharic
+Aragonese
+Old English
+Angika
+Arabic
+Aramaic
+Mapudungun
+Araona
+Arapaho
+Algerian Arabic
+Najdi Arabic
+Arawak
+Moroccan Arabic
+Egyptian Arabic
+Assamese
+Asu
+American Sign Language
+Asturian
+Avaric
+Kotava
+Awadhi
+Southern Aymara
+Aymara
+Azerbaijani
+Bashkir
+Baluchi
+Balinese
+Bavarian
+Bassa
+Bamun
+Batak Toba
+Ghomala
+Belarusian
+Beja
+Bemba
+Berber
+Betawi
+Bena
+Bafut
+Badaga
+Bulgarian
+Bhili
+Western Balochi
+Bhojpuri
+Bislama
+Bikol
+Bini
+Banjar
+Kom
+Siksika
+Bambara
+Bengali
+Tibetan
+Bishnupriya
+Bakhtiari
+Breton
+Brahui
+Bodo
+Bosnian
+Akoose
+Buriat
+Buginese
+Bulu
+Bilin
+Medumba
+Catalan
+Caddo
+Carib
+Cayuga
+Atsam
+Chakma
+Chechen
+Cebuano
+Chiga
+Chamorro
+Chibcha
+Chagatai
+Chuukese
+Mari
+Chinook Jargon
+Choctaw
+Chipewyan
+Cherokee
+Cheyenne
+Chickasaw
+Central Kurdish
+Kashubian
+Mandarin Chinese
+Corsican
+Coptic
+Capiznon
+Cree
+Crimean Tatar
+Seselwa Creole French
+Czech
+Kashubian
+Church Slavic
+Chuvash
+Welsh
+Danish
+Dakota
+Dargwa
+Taita
+German
+Delaware
+Slave
+Dogrib
+Dinka
+Zarma
+Dogri
+Lower Sorbian
+Central Dusun
+Duala
+Middle Dutch
+Dhivehi
+Jola-Fonyi
+Dyula
+Dzongkha
+Dazaga
+Embu
+Ewe
+Efik
+Emilian
+Ancient Egyptian
+Ekajuk
+Greek
+Elamite
+English
+Middle English
+Esperanto
+Spanish
+Central Yupik
+Estonian
+Basque
+Ewondo
+Extremaduran
+Persian
+Fang
+Fanti
+Fulah
+Finnish
+Filipino
+Tornedalen Finnish
+Fijian
+Faroese
+Fon
+French
+Cajun French
+Middle French
+Old French
+Arpitan
+Northern Frisian
+Eastern Frisian
+Friulian
+Western Frisian
+Irish
+Ga
+Gagauz
+Gan Chinese
+Gayo
+Gbaya
+Zoroastrian Dari
+Scottish Gaelic
+Geez
+Gilbertese
+Galician
+Gilaki
+Middle High German
+Guarani
+Old High German
+Goan Konkani
+Gondi
+Gorontalo
+Gothic
+Grebo
+Ancient Greek
+Swiss German
+Gujarati
+Wayuu
+Frafra
+Gusii
+Manx
+Gwichʼin
+Hausa
+Haida
+Hakka Chinese
+Hawaiian
+Hebrew
+Hindi
+Fiji Hindi
+Hiligaynon
+Hittite
+Hmong
+Hiri Motu
+Chhattisgarhi
+Croatian
+Upper Sorbian
+Xiang Chinese
+Haitian
+Hungarian
+Hupa
+Huastec
+Armenian
+Herero
+Interlingua
+Iban
+Ibibio
+Indonesian
+Interlingue
+Igbo
+Sichuan Yi
+Inupiaq
+Iloko
+Ingush
+Ido
+Icelandic
+Italian
+Inuktitut
+Ingrian
+Japanese
+Jamaican Creole English
+Lojban
+Ngomba
+Machame
+Judeo-Persian
+Judeo-Arabic
+Jutish
+Javanese
+Georgian
+Kara-Kalpak
+Kabyle
+Kachin
+Jju
+Kamba
+Kawi
+Kabardian
+Kanembu
+Tyap
+Makonde
+Kabuverdianu
+Kenyang
+Koro
+Kongo
+Kaingang
+Khasi
+Khotanese
+Koyra Chiini
+Khowar
+Kikuyu
+Kirmanjki
+Kuanyama
+Kazakh
+Kako
+Kalaallisut
+Kalenjin
+Central Khmer
+Kimbundu
+Kannada
+Korean
+Komi-Permyak
+Konkani
+Kosraean
+Kpelle
+Kanuri
+Karachay-Balkar
+Krio
+Kinaray-a
+Karelian
+Kurukh
+Kashmiri
+Shambala
+Bafia
+Colognian
+Kurdish
+Kumyk
+Kutenai
+Komi
+Cornish
+Kirghiz
+Langi
+Latin
+Ladino
+Langi
+Lahnda
+Lamba
+Luxembourgish
+Lezghian
+Lingua Franca Nova
+Ganda
+Limburgan
+Ligurian
+Livonian
+Lakota
+Lombard
+Lingala
+Lao
+Mongo
+Louisiana Creole
+Lozi
+Northern Luri
+Lithuanian
+Latgalian
+Luba-Katanga
+Luba-Lulua
+Luiseno
+Lunda
+Luo
+Mizo
+Luyia
+Latvian
+Literary Chinese
+Laz
+Madurese
+Mafa
+Magahi
+Maithili
+Makasar
+Mandingo
+Masai
+Maba
+Moksha
+Mandar
+Mende
+Meru
+Morisyen
+Malagasy
+Middle Irish
+Makhuwa-Meetto
+Metaʼ
+Marshallese
+Eastern Mari
+Māori
+Mi'kmaq
+Minangkabau
+Mískito
+Karbi
+Macedonian
+Malayalam
+Mongolian
+Manchu
+Manipuri
+Mon
+Mossi
+Mohawk
+Marathi
+Western Mari
+Malay
+Maltese
+Mundang
+Muscogee
+Mirandese
+Marwari
+Mentawai
+Burmese
+Myene
+Erzya
+Mazanderani
+Nauru
+Nahuatl
+Min Nan Chinese
+Neapolitan
+Nama
+Min Nan Chinese
+Norwegian Bokmål
+North Ndebele
+Low German
+Nepali
+Newari
+Central Nahuatl
+Ndonga
+Nias
+Niuean
+Ao Naga
+Dutch
+Kwasio
+Norwegian Nynorsk
+Ngiemboon
+Nogai
+Old Norse
+Novial
+N'ko
+South Ndebele
+Pedi
+Nuer
+Navajo
+Classical Newari
+Nyanja
+Nyamwezi
+Nyankole
+Nyoro
+Nzima
+Occitan
+Ojibwa
+Oromo
+Odia
+Ossetic
+Osage
+Ottoman Turkish
+Panjabi
+Pangasinan
+Pahlavi
+Pampanga
+Papiamento
+Palauan
+Picard
+Nigerian Pidgin
+Pennsylvania German
+Plautdietsch
+Old Persian
+Palatine German
+Phoenician
+Pali
+Polish
+Piedmontese
+Pontic
+Pohnpeian
+Pirate
+Prussian
+Old Provençal
+Dari
+Pushto
+Portuguese
+Quechua
+K'iche
+Chimborazo Highland Quichua
+Ayacucho Quechua
+Cusco Quechua
+Rajasthani
+Rapanui
+Rarotongan
+Romagnol
+Riffian
+Romansh
+Rundi
+Romanian
+Rombo
+Romany
+Rotuman
+Russian
+Rusyn
+Roviana
+Aromanian
+Kinyarwanda
+Rwa
+Sanskrit
+Sandawe
+Sakha
+Samaritan Aramaic
+Samburu
+Sasak
+Santali
+Saurashtra
+Ngambay
+Sangu
+Sardinian
+Sicilian
+Scots
+Sindhi
+Sassarese Sardinian
+Southern Kurdish
+Northern Sami
+Seneca
+Sena
+Seri
+Selkup
+Koyraboro Senni
+Sango
+Old Irish
+Samogitian
+Serbo-Croatian
+Tachelhit
+Shan
+Shuswap
+Chadian Arabic
+Sinhala
+Sidamo
+Slovak
+Slovenian
+Lower Silesian
+Selayar
+Samoan
+Southern Sami
+Lule Sami
+Inari Sami
+Skolt Sami
+Shona
+Soninke
+Somali
+Sogdien
+Songhai
+Albanian
+Serbian
+Sranan Tongo
+Serer
+Swati
+Saho
+Southern Sotho
+Saterland Frisian
+Sundanese
+Sukuma
+Susu
+Sumerian
+Swedish
+Swahili
+Comorian
+Congo Swahili
+Classical Syriac
+Syriac
+Silesian
+Tamil
+Tulu
+Telugu
+Timne
+Teso
+Tereno
+Tetum
+Tajik
+Thai
+Chitwania Tharu
+Tigrinya
+Tigre
+Tiv
+Turkmen
+Tokelau
+Tsakhur
+Tagalog
+Klingon
+Tlingit
+Talysh
+Tamashek
+Tswana
+Tongan
+Nyasa Tonga
+Tok Pisin
+Turkish
+Turoyo
+Taroko
+Tsonga
+Tsakonian
+Tsimshian
+Tatar
+Muslim Tat
+Tumbuka
+Tuvalu
+Twi
+Tasawaq
+Tahitian
+Tuvinian
+Central Atlas Tamazight
+Udmurt
+Uyghur
+Ugaritic
+Ukrainian
+Umbundu
+Unami
+Urdu
+Uzbek
+Vai
+Venda
+Venetian
+Veps
+Vietnamese
+West Flemish
+Main-Franconian
+Volapük
+Votic
+Võro
+Vunjo
+Walloon
+Walser
+Wolaytta
+Waray
+Washo
+Warlpiri
+Wolof
+Wu Chinese
+Kalmyk
+Xhosa
+Mingrelian
+Soga
+Yao
+Yapese
+Yangben
+Yemba
+Yiddish
+Yoruba
+Nheengatu
+Yue Chinese
+Papua New Guinea
+Zhuang
+Zapotec
+Blissymbols
+Zeelandic
+Zenaga
+Standard Moroccan Tamazight
+Chinese
+Zulu
+Zuni
+Zaza

@@ -1,0 +1,43 @@
+key/len,ru,en
+key_error,Ошибка!,Error!
+key_already_exists,Значение кнопки {0} уже существует! Значения не должны дублироваться.,Key set {0} already exists! The values should not be duplicated.
+key_add,Добавить,Add
+key_remove,Удалить,Remove
+key_save,Сохранить,Save
+key_empty_simple,Для ключа {0} должно быть указано значение!,For the key {0} must be specified a value!
+key_one_func_set,Укажите только одну функциональную кнопку(с пустым значением).,Specify only one function button (with an empty value).
+key_only_one_type,Кнопка не может быть символьной и функциональной одновременно.,The button cannot be symbolic and functional at the same time.
+key_only_keyset,Виджеты кнопок должны быть производными от класса KeySet.,Button widgets must be derived from the KeySet class.
+key_need_key_opt,Путь к виджету полей кнопок неизвестен.,The button fields widget path is unknown.
+key_select_key,Сначала выберите кнопку.,First select a button.
+key_opt_dublicate,Значение {0} в кнопке дублируется.,Value {0} in a button is duplicated.
+key_one_value,Передавать в кнопку разрешается только одно состояние.,Only one state is allowed to be passed to a button.
+key_lang,Язык,language
+key_find,Найти,Find
+key_new,Новый,New
+key_remove_dir_error,Невозможно удалить директорию {0},Unable to delete directory {0}
+key_lessons,Уроки,Lessons
+key_parts,Части,Parts
+key_part,Раздел,Сhapter
+key_symbols_area,Добавьте символы для части,Add characters for the part
+key_keyboards,Клавиатуры,Keyboards
+key_options,Что делаем?,Options
+key_kb_from_list,Клавиатура из списка, Keyboard from list
+key_kb_not_exists,Для языка {0} урока {1} отсутствует клавиатура. Нажмите Е и добавьте клавиатуру,There is no keyboard for this lesson {1} language {0}.Press E and add the keyboard
+key_kb_new,Создать клавиатуру,Create new keyboard
+key_find_lang,Выберите язык,Select a language
+key_author,Автор,Author
+key_title,Название,Title
+key_add_author,Укажите автора,Add an author
+key_add_title,Укажите название,Add a title
+key_select_part_or_lesson,Выберите часть или урок,Choose a part or lesson
+key_no_parts_in_lesson,Для урока {0} нет частей, No parts for the lesson {0}
+key_change_in_lesson,Урок {0} был изменён. Выберите вручную следующую часть {1}.,Lesson {0} has been changed. Manually select the following part {1}.
+key_congratulations,Поздравляю!,Congratulations!
+key_lesson_done,Вы прошли урок!,You have passed the lesson!
+key_part_done,Вы прошли часть!,You have passed the part!
+key_part_saved,Часть успешно сохранена,Part saved successfully
+key_dir_save_kb_lesson,Выберите директорию для экспорта клавиатуры и урока,Select the directory to export the keyboard and the lesson
+key_about,О программе,About
+key_about_text,Программа предназначена для освоения десятипальцевого слепого метода набора символов на клавиатуре. Имеет встроенный редактор клавиатур и уроков. Позволяет экспортировать и импортировать файлы клавиатур и уроков которые можно распространять.,The program is designed to master the ten-finger blind method of typing characters on the keyboard. It has a built-in keyboard lessons editor. Allows you to export and import keyboard and lesson files that can be distributed.
+key_version,Версия,Version

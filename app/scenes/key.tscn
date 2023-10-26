@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://r7qt23g4a2s1"]
+
+[ext_resource type="Script" path="res://app/scenes/key.gd" id="1_50m2f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1gqj"]
+bg_color = Color(0.921569, 0.921569, 0.921569, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wcf1"]
+bg_color = Color(0.921569, 0.921569, 0.921569, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qtai"]
+bg_color = Color(0.921569, 0.921569, 0.921569, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 1, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(54, 54)
+anchors_preset = -1
+anchor_right = 0.047
+anchor_bottom = 0.083
+offset_right = -54.144
+offset_bottom = -53.784
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_n1gqj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5wcf1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1qtai")
+toggle_mode = true
+text_overrun_behavior = 3
+script = ExtResource("1_50m2f")

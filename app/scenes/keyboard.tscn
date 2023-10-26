@@ -1,0 +1,417 @@
+[gd_scene load_steps=8 format=3 uid="uid://bymrmlve5oeyo"]
+
+[ext_resource type="Script" path="res://app/scenes/keyboard.gd" id="1_r5dri"]
+[ext_resource type="ButtonGroup" uid="uid://5qnxf2ay61yh" path="res://app/misc/symbols.tres" id="3_21ast"]
+[ext_resource type="PackedScene" uid="uid://r7qt23g4a2s1" path="res://app/scenes/key.tscn" id="3_n2nyq"]
+[ext_resource type="Script" path="res://app/scenes/editor.gd" id="3_waxx4"]
+[ext_resource type="ButtonGroup" uid="uid://def37f6x6e5fc" path="res://app/misc/specials.tres" id="4_83hjl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7lhn"]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5omk"]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="keyboard" type="Panel"]
+layout_direction = 1
+anchors_preset = -1
+anchor_right = 0.781
+anchor_bottom = 0.463
+offset_right = 0.287964
+offset_bottom = -0.0240173
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a7lhn")
+script = ExtResource("1_r5dri")
+symbols_button_path = "res://app/misc/symbols.tres"
+specials_button_path = "res://app/misc/specials.tres"
+metadata/_edit_use_anchors_ = true
+
+[node name="qwerty" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="rows" type="VBoxContainer" parent="qwerty"]
+layout_mode = 2
+theme_override_constants/separation = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="digits" type="HBoxContainer" parent="qwerty/rows"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="quoteleft" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="1" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="2" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="3" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="4" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="5" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="6" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="7" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="8" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="9" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="0" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="minus" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="equal" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="backspace" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+custom_minimum_size = Vector2(108, 54)
+layout_mode = 2
+button_group = ExtResource("4_83hjl")
+
+[node name="qwerty" type="HBoxContainer" parent="qwerty/rows"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="tab" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+custom_minimum_size = Vector2(85, 54)
+layout_mode = 2
+button_group = ExtResource("4_83hjl")
+
+[node name="q" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="w" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="e" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="r" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="t" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="y" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="u" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="i" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="o" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="p" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="bracketleft" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="bracketright" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="center" type="HBoxContainer" parent="qwerty/rows"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="capslock" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+custom_minimum_size = Vector2(105, 54)
+layout_mode = 2
+button_group = ExtResource("4_83hjl")
+
+[node name="a" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="s" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="d" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="f" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="g" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="h" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="j" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="k" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="l" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="semicolon" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="apostrophe" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="backslash" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="shifts" type="HBoxContainer" parent="qwerty/rows"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="shiftleft" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+custom_minimum_size = Vector2(85, 54)
+layout_mode = 2
+button_group = ExtResource("4_83hjl")
+
+[node name="less" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="z" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="x" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="c" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="v" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="b" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="n" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="m" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="comma" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="period" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="slash" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="shiftright" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+custom_minimum_size = Vector2(137, 54)
+layout_mode = 2
+button_group = ExtResource("4_83hjl")
+
+[node name="specials" type="HBoxContainer" parent="qwerty/rows"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ctrlleft" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+custom_minimum_size = Vector2(95, 54)
+layout_mode = 2
+button_group = ExtResource("4_83hjl")
+
+[node name="winleft" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+custom_minimum_size = Vector2(72, 54)
+layout_mode = 2
+button_group = ExtResource("4_83hjl")
+
+[node name="altleft" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+custom_minimum_size = Vector2(72, 54)
+layout_mode = 2
+button_group = ExtResource("4_83hjl")
+
+[node name="space" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+custom_minimum_size = Vector2(350, 54)
+layout_mode = 2
+button_group = ExtResource("3_21ast")
+
+[node name="altright" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+custom_minimum_size = Vector2(72, 54)
+layout_mode = 2
+button_group = ExtResource("4_83hjl")
+
+[node name="winright" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+custom_minimum_size = Vector2(72, 54)
+layout_mode = 2
+button_group = ExtResource("4_83hjl")
+
+[node name="menu" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+custom_minimum_size = Vector2(60, 54)
+layout_mode = 2
+button_group = ExtResource("4_83hjl")
+
+[node name="ctrlright" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+button_group = ExtResource("4_83hjl")
+
+[node name="enter" parent="." instance=ExtResource("3_n2nyq")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.961
+anchor_top = 0.4
+anchor_right = 0.961
+anchor_bottom = 0.4
+offset_left = -28.9
+offset_top = -56.0
+offset_right = 28.1
+offset_bottom = 56.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+button_group = ExtResource("4_83hjl")
+
+[node name="edit_panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 3.05176e-05
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b5omk")
+
+[node name="margin" type="MarginContainer" parent="edit_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="editor" type="HBoxContainer" parent="edit_panel/margin"]
+layout_mode = 2
+script = ExtResource("3_waxx4")
+key_opt = "res://app/scenes/key_set.tscn"
+
+[node name="key_sets" type="HBoxContainer" parent="edit_panel/margin/editor"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="manage" type="VBoxContainer" parent="edit_panel/margin/editor"]
+layout_mode = 2
+alignment = 1
+
+[node name="add" type="Button" parent="edit_panel/margin/editor/manage"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "key_add"
+
+[node name="remove" type="Button" parent="edit_panel/margin/editor/manage"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "key_remove"
+
+[node name="save" type="Button" parent="edit_panel/margin/editor/manage"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "key_save"
+
+[connection signal="send_key_set" from="edit_panel/margin/editor" to="." method="_on_editor_send_key_set"]
+[connection signal="pressed" from="edit_panel/margin/editor/manage/add" to="edit_panel/margin/editor" method="_on_add_pressed"]
+[connection signal="pressed" from="edit_panel/margin/editor/manage/remove" to="edit_panel/margin/editor" method="_on_remove_pressed"]
+[connection signal="pressed" from="edit_panel/margin/editor/manage/save" to="edit_panel/margin/editor" method="_on_save_pressed"]

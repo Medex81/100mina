@@ -1,0 +1,5 @@
+[gd_resource type="ButtonGroup" format=3 uid="uid://5qnxf2ay61yh"]
+
+[resource]
+resource_name = "symbols"
+allow_unpress = true
