@@ -16,7 +16,7 @@ func set_opt(key_sets:Dictionary):
 func on_symbol_group(dict:Dictionary):
 	if not dict.is_empty():
 		var state = dict[dict.keys()[0]] as Dictionary
-		if state.value.is_empty():
+		if state.value.is_empty() and not _key_sets.is_empty():
 			if state.modification == TypeEngine.key_simple:
 				text = _key_sets[TypeEngine.key_simple].value
 			else:

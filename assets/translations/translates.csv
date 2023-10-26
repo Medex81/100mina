@@ -41,3 +41,9 @@ key_dir_save_kb_lesson,Выберите директорию для экспор
 key_about,О программе,About
 key_about_text,Программа предназначена для освоения десятипальцевого слепого метода набора символов на клавиатуре. Имеет встроенный редактор клавиатур и уроков. Позволяет экспортировать и импортировать файлы клавиатур и уроков которые можно распространять.,The program is designed to master the ten-finger blind method of typing characters on the keyboard. It has a built-in keyboard lessons editor. Allows you to export and import keyboard and lesson files that can be distributed.
 key_version,Версия,Version
+key_create_lesson,Создать урок,Create a lesson
+key_create_keyboard,Создать клавиатуру,Create a keyboard
+key_export,Экспорт,Export
+key_import,Импорт,Import
+key_E,Нажмите Е для перехода в режим редактирования.,Press E to switch to edit mode.
+key_help,Помощь,Help

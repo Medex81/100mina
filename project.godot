@@ -11,12 +11,17 @@ config_version=5
 [application]
 
 config/name="100mina"
+run/main_scene="res://app/scenes/lessons.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 TypeEngine="*res://app/scripts/engine.gd"
+
+[display]
+
+window/subwindows/embed_subwindows=false
 
 [internationalization]
 

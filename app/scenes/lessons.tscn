@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b00pp8ivlmu7k"]
+[gd_scene load_steps=17 format=3 uid="uid://b00pp8ivlmu7k"]
 
 [ext_resource type="Texture2D" uid="uid://dwcfax51auv5q" path="res://assets/textures/plus.png" id="1_fv4n4"]
 [ext_resource type="Script" path="res://app/scenes/mediator.gd" id="1_nh655"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bg1fbcwyvq5kx" path="res://assets/textures/export.png" id="10_c3242"]
 [ext_resource type="Texture2D" uid="uid://c7kkypxdoal2c" path="res://assets/textures/return.png" id="10_s2mqd"]
 [ext_resource type="Texture2D" uid="uid://cgndiv8f0a71j" path="res://assets/textures/import.png" id="11_0t1ba"]
+[ext_resource type="PackedScene" uid="uid://b1whxbip2vb3h" path="res://app/scenes/help.tscn" id="13_p2asw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wned2"]
 border_width_left = 2
@@ -202,17 +203,28 @@ stretch_mode = 5
 
 [node name="file_export" type="FileDialog" parent="main/mediator/toolbox"]
 title = "Open a Directory"
+initial_position = 2
+size = Vector2i(682, 300)
 ok_button_text = "Select Current Folder"
 file_mode = 2
 access = 2
 
 [node name="file_import" type="FileDialog" parent="main/mediator/toolbox"]
 title = "Open File(s)"
-size = Vector2i(312, 157)
+initial_position = 2
+size = Vector2i(565, 300)
 ok_button_text = "Open"
 file_mode = 1
 access = 2
 filters = PackedStringArray("*.lsn", "*.kbd")
+
+[node name="help_window" type="Window" parent="main/mediator/toolbox"]
+title = "key_help"
+initial_position = 1
+size = Vector2i(700, 700)
+visible = false
+
+[node name="help" parent="main/mediator/toolbox/help_window" instance=ExtResource("13_p2asw")]
 
 [node name="lesson_options" type="Panel" parent="main"]
 visible = false
@@ -292,10 +304,12 @@ stretch_mode = 5
 [connection signal="pressed" from="main/mediator/parts/manage/remove" to="main/mediator/chapter" method="_on_remove_pressed"]
 [connection signal="send_chapter_save" from="main/mediator/chapter" to="main/mediator" method="_on_chapter_send_chapter_save"]
 [connection signal="pressed" from="main/mediator/chapter/save" to="main/mediator/chapter" method="_on_save_pressed"]
+[connection signal="pressed" from="main/mediator/toolbox/help" to="main/mediator/toolbox" method="_on_help_pressed"]
 [connection signal="pressed" from="main/mediator/toolbox/export" to="main/mediator/toolbox" method="_on_export_pressed"]
 [connection signal="pressed" from="main/mediator/toolbox/import" to="main/mediator/toolbox" method="_on_import_pressed"]
 [connection signal="dir_selected" from="main/mediator/toolbox/file_export" to="main/mediator/lessons" method="_on_file_export_dir_selected"]
 [connection signal="files_selected" from="main/mediator/toolbox/file_import" to="main/mediator/lessons" method="_on_file_import_files_selected"]
+[connection signal="close_requested" from="main/mediator/toolbox/help_window" to="main/mediator/toolbox" method="_on_help_window_close_requested"]
 [connection signal="send_need_update" from="main/lesson_options" to="main/mediator/lessons" method="_on_lesson_options_send_need_update"]
 [connection signal="text_submitted" from="main/lesson_options/margin/VBoxContainer/lang" to="main/lesson_options" method="_on_lang_text_submitted"]
 [connection signal="pressed" from="main/lesson_options/margin/VBoxContainer/HBoxContainer/save" to="main/lesson_options" method="_on_save_pressed"]

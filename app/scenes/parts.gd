@@ -11,7 +11,7 @@ func _on_find_text_submitted(new_text):
 
 func _on_add_pressed():
 	if not $manage/new_part.text.is_empty() and not _lesson.is_empty():
-		var new_part = "0" if _parts.size() < 10 else "" 
+		var new_part = "0" if _parts.size() + 1 < 10 else "" 
 		new_part += "{0}_{1}".format([_parts.size() + 1, $manage/new_part.text.to_snake_case()])
 		if new_part not in _parts:
 			_parts[new_part] = ""
