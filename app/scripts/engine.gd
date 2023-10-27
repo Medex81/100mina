@@ -56,15 +56,13 @@ func _ready():
 	# copy the built-in lessons and keyboards to the user's data
 	var assets_path = get_assets_path()
 	if not DirAccess.dir_exists_absolute(assets_path + _keyboards):
-		make_dir(assets_path + _keyboards)
-		copy_dir_recursive(get_app_assets_path() + _keyboards, assets_path + _keyboards)
+		copy_res_json_files(get_app_assets_path() + _keyboards, assets_path + _keyboards)
 	if not DirAccess.dir_exists_absolute(assets_path + _lessons):
-		make_dir(assets_path + _lessons)
-		copy_dir_recursive(get_app_assets_path() + _lessons, assets_path + _lessons)
+		copy_res_json_files(get_app_assets_path() + _lessons, assets_path + _lessons)
 		
 func export_kb_lesson(lesson:String, to_dir:String):
 	var from = get_assets_path() + _lessons + lesson + _lesson_extension
-	var to = to_dir + "/" +lesson + _lesson_extension
+	var to = to_dir + "/" + lesson + _lesson_extension
 	var state = DirAccess.copy_absolute(from, to)
 	if state != OK:
 		OS.alert(error_string(state) + " " + from + "->" + to, tr("key_error"))
@@ -88,21 +86,12 @@ func import_kb_lesson(paths:PackedStringArray):
 			if state != OK:
 				OS.alert(error_string(state) + " " + from + "->" + to, tr("key_error"))
 	
-func copy_dir_recursive(from_dir:String, to_dir:String):
-	var dir = DirAccess.open(from_dir)
-	if dir:
-		dir.list_dir_begin()
-		while true:
-			var next_item = dir.get_next()
-			if next_item.is_empty():
-				break
-			if dir.current_is_dir() && next_item != "." && next_item != "..":
-				DirAccess.make_dir_absolute(to_dir + "/" + next_item)
-				copy_dir_recursive(dir.get_current_dir() + "/" + next_item + "/", to_dir + "/" + next_item)
-			else:
-				if not FileAccess.file_exists(to_dir + "/" + next_item):
-					DirAccess.copy_absolute(dir.get_current_dir() + "/" + next_item, to_dir + "/" + next_item)
-		dir.list_dir_end()
+func copy_res_json_files(from_dir:String, to_dir:String):
+	make_dir(to_dir)
+	var file_list = DirAccess.get_files_at(from_dir)
+	for file in file_list:
+		var dict = _load_dict_from_cfg_file(from_dir + file)
+		_save_dict_to_cfg_file(to_dir + file, dict)
 
 func _save_dict_to_cfg_file(path:String, dict:Dictionary):
 	make_dir(path.get_base_dir())
