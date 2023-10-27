@@ -47,3 +47,4 @@ key_export,Экспорт,Export
 key_import,Импорт,Import
 key_E,Нажмите Е для перехода в режим редактирования.,Press E to switch to edit mode.
 key_help,Помощь,Help
+key_double_hint,Сделайте двойной клик по уроку или части для старта,Double-click on the lesson or part to start

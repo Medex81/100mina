@@ -22,6 +22,8 @@ const key_part_symbols = "part_symbols"
 const key_lang = "lang"
 const key_parts = "parts"
 const key_curent_lesson = "curent_lesson"
+const key_hide_hint = "hide_hint"
+
 
 var state:Dictionary
 var scene_mediator:Dictionary
@@ -39,6 +41,13 @@ func get_part_from_state(lesson:String)->String:
 	
 func get_curent_lesson_from_state()->String:
 	return state.get(key_curent_lesson, "")
+
+func set_hide_hint_to_state():
+	state[key_hide_hint] = true
+	save_state()
+	
+func get_hide_hint_to_state()->bool:
+	return state.get(key_hide_hint, false)
 
 func _ready():
 	state = _load_dict_from_cfg_file(get_state_path())

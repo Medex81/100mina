@@ -10,15 +10,10 @@ func _unhandled_input(event):
 				edit_state(_state)
 
 func edit_state(state:bool):
-	#$keyboards.visible = state
 	$chapter.visible = state
 	$lessons/manage.visible = state
 	$parts/manage.visible = state
 
-#func _on_lang_send_lang_clicked(lang:String):
-#	$lessons.set_lang(lang)
-#	$keyboards.set_lang(lang)
-#
 func _on_lessons_send_lesson_clicked(lesson:String):
 	$parts.set_parts(lesson)
 

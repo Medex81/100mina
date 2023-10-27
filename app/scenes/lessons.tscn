@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b00pp8ivlmu7k"]
+[gd_scene load_steps=19 format=3 uid="uid://b00pp8ivlmu7k"]
 
 [ext_resource type="Texture2D" uid="uid://dwcfax51auv5q" path="res://assets/textures/plus.png" id="1_fv4n4"]
 [ext_resource type="Script" path="res://app/scenes/mediator.gd" id="1_nh655"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c7kkypxdoal2c" path="res://assets/textures/return.png" id="10_s2mqd"]
 [ext_resource type="Texture2D" uid="uid://cgndiv8f0a71j" path="res://assets/textures/import.png" id="11_0t1ba"]
 [ext_resource type="PackedScene" uid="uid://b1whxbip2vb3h" path="res://app/scenes/help.tscn" id="13_p2asw"]
+[ext_resource type="Script" path="res://app/scenes/popup_hint.gd" id="16_5rcl2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wned2"]
 border_width_left = 2
@@ -26,6 +27,12 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cb32"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="lessons" type="Control"]
 layout_mode = 3
@@ -288,6 +295,41 @@ texture_normal = ExtResource("10_s2mqd")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="popup_hint" type="Panel" parent="."]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+offset_left = 34.0
+offset_top = 112.0
+offset_right = 234.0
+offset_bottom = 212.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4cb32")
+script = ExtResource("16_5rcl2")
+metadata/_edit_group_ = true
+
+[node name="margin" type="MarginContainer" parent="popup_hint"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="hint" type="Label" parent="popup_hint/margin"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 17
+text = "key_double_hint"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [connection signal="send_lesson_clicked" from="main/mediator/lessons" to="main/mediator" method="_on_lessons_send_lesson_clicked"]
 [connection signal="text_submitted" from="main/mediator/lessons/find" to="main/mediator/lessons" method="_on_find_text_submitted"]
 [connection signal="item_activated" from="main/mediator/lessons/list" to="main/mediator/lessons" method="_on_list_item_activated"]
@@ -314,3 +356,4 @@ stretch_mode = 5
 [connection signal="text_submitted" from="main/lesson_options/margin/VBoxContainer/lang" to="main/lesson_options" method="_on_lang_text_submitted"]
 [connection signal="pressed" from="main/lesson_options/margin/VBoxContainer/HBoxContainer/save" to="main/lesson_options" method="_on_save_pressed"]
 [connection signal="pressed" from="main/lesson_options/margin/VBoxContainer/HBoxContainer/reject" to="main/lesson_options" method="_on_reject_pressed"]
+[connection signal="gui_input" from="popup_hint" to="popup_hint" method="_on_gui_input"]
