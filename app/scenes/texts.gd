@@ -1,5 +1,6 @@
-extends VBoxContainer
+# Help data display node. Switches data by menu items.
 
+extends VBoxContainer
 
 func on_press_button(button_name:String):
 	for child in get_children():

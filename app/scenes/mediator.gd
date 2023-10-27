@@ -1,7 +1,10 @@
+# Mediator for lesson nodes, parts and symbols
+
 extends HBoxContainer
 
 var _state = false
 
+# edit mode switch
 func _unhandled_input(event):
 	if event is InputEventKey and event.is_pressed():
 		match event.keycode:

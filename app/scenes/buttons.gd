@@ -1,7 +1,9 @@
+# Help menu. The button state toggles the hint display.
+
 extends VBoxContainer
 
+# Notifying the display of a hint about the need to switch by the name of the button.
 signal send_click_help_button(button_name:String)
-
 
 func _on_about_pressed():
 	emit_signal("send_click_help_button", $about.name)

@@ -1,10 +1,9 @@
+# Displaying the fingers with which you need to press the key by zones
+
 extends Control
 
-var _scene_data:KeyboardDataResource
-
-func _ready():
-	_scene_data = TypeEngine.scene_mediator.get(TypeEngine.keyboard_scene, null) as KeyboardDataResource
-
+# Index from enum to engine.gd corresponds to the node index. The index is taken from the keyboard data specified when it was created.
+# -1 deselect.
 func _on_keyboard_send_select_finger(index):
 	if index == -1:
 		for finger in $Control.get_children():

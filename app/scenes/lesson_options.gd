@@ -1,10 +1,14 @@
+# Form with fields for creating a lesson 
+
 extends Panel
 
+# signal to update the list of lessons
 signal send_need_update()
 
 func _ready():
 	add_items_filtered()
 		
+# display a supported list of languages (from a file in resources)
 func add_items_filtered(filter:String = ""):
 	$margin/VBoxContainer/lang_list.clear()
 	for lang in TypeEngine.get_supported_lang_list():
@@ -45,7 +49,6 @@ func _on_save_pressed():
 	visible = false
 	
 	emit_signal("send_need_update")
-
 
 func _on_add_pressed():
 	visible = true

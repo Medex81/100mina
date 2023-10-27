@@ -1,3 +1,5 @@
+# Singleton for working with resources.
+
 extends Node
 
 enum EFingers{l1, l2, l3 , l4, l5, r1, r2, r3, r4, r5}
@@ -24,10 +26,10 @@ const key_parts = "parts"
 const key_curent_lesson = "curent_lesson"
 const key_hide_hint = "hide_hint"
 
-
+# the status of passing lessons is saved between sessions.
 var state:Dictionary
+# mediator for transferring data between scenes, the key is the name of the current scene
 var scene_mediator:Dictionary
-
 var _supported_lang_list:PackedStringArray
 
 func set_part_to_state(lesson:String, part:String):
@@ -51,6 +53,7 @@ func get_hide_hint_to_state()->bool:
 
 func _ready():
 	state = _load_dict_from_cfg_file(get_state_path())
+	# copy the built-in lessons and keyboards to the user's data
 	var assets_path = get_assets_path()
 	if not DirAccess.dir_exists_absolute(assets_path + _keyboards):
 		make_dir(assets_path + _keyboards)
