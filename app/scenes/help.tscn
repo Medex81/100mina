@@ -89,7 +89,7 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_eaqi0")
 text = "                      VK"
 underline = 2
-uri = "https://vk.com/public223163538"
+uri = "https://vk.com/s100mina"
 
 [node name="github" type="LinkButton" parent="margin/main/menu/buttons"]
 layout_mode = 2
@@ -97,6 +97,20 @@ toggle_mode = true
 text = "                  GitHub"
 underline = 2
 uri = "https://github.com/Medex81/100mina"
+
+[node name="telegram" type="LinkButton" parent="margin/main/menu/buttons"]
+layout_mode = 2
+toggle_mode = true
+text = "                Telegram"
+underline = 2
+uri = "https://t.me/s100mina"
+
+[node name="igrovoy_club" type="LinkButton" parent="margin/main/menu/buttons"]
+layout_mode = 2
+toggle_mode = true
+text = "             Igrovoy club"
+underline = 2
+uri = "https://vk.com/igrovoy.club"
 
 [node name="create_lesson" type="Button" parent="margin/main/menu/buttons"]
 layout_mode = 2
@@ -364,6 +378,8 @@ stretch_mode = 5
 [connection signal="pressed" from="margin/main/menu/buttons/version" to="margin/main/menu/buttons" method="_on_version_pressed"]
 [connection signal="pressed" from="margin/main/menu/buttons/vk" to="margin/main/menu/buttons" method="_on_vk_pressed"]
 [connection signal="pressed" from="margin/main/menu/buttons/github" to="margin/main/menu/buttons" method="_on_vk_pressed"]
+[connection signal="pressed" from="margin/main/menu/buttons/telegram" to="margin/main/menu/buttons" method="_on_vk_pressed"]
+[connection signal="pressed" from="margin/main/menu/buttons/igrovoy_club" to="margin/main/menu/buttons" method="_on_vk_pressed"]
 [connection signal="pressed" from="margin/main/menu/buttons/create_lesson" to="margin/main/menu/buttons" method="_on_create_lesson_pressed"]
 [connection signal="pressed" from="margin/main/menu/buttons/create_keyboard" to="margin/main/menu/buttons" method="_on_create_keyboard_pressed"]
 [connection signal="pressed" from="margin/main/menu/buttons/export" to="margin/main/menu/buttons" method="_on_export_pressed"]
