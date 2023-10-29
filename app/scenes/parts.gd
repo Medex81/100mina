@@ -16,8 +16,7 @@ func _on_add_pressed():
 	if not $manage/new_part.text.is_empty() and not _lesson.is_empty():
 		# the list is contained in the dictionary, the dictionary is a map that sorts keys by hash. To avoid breaking the order
 		# we add an ordinal number to the beginning of each name
-		var new_part = "0" if _parts.size() + 1 < 10 else "" 
-		new_part += "{0}_{1}".format([_parts.size() + 1, $manage/new_part.text.to_snake_case()])
+		var new_part = "%03d" % _parts.size() + "_" + $manage/new_part.text.to_snake_case()
 		if new_part not in _parts:
 			_parts[new_part] = ""
 			$list.add_item(new_part)
@@ -46,6 +45,7 @@ func set_parts(lesson:String):
 		_lang = ""
 		$list.clear()
 		return
+	emit_signal("send_part_clicked", "")
 	_lesson = lesson
 	_parts = TypeEngine.get_lesson_parts(lesson)
 	_lang = TypeEngine.get_lesson_lang(lesson)
