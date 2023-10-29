@@ -22,9 +22,9 @@ func _on_find_text_submitted(new_text):
 	add_items_filtered(new_text)
 
 func _on_remove_pressed():
-	var select_id = $list.get_selected_items()
-	if select_id.size() > 0:
-		TypeEngine.remove_lesson($list.get_item_text(select_id[0]))
+	var select_id = $list.get_selected_items() as Array
+	if not select_id.is_empty():
+		TypeEngine.remove_lesson($list.get_item_text(select_id.front()))
 		_lessons = TypeEngine.get_lessons()
 		add_items_filtered()
 		emit_signal("send_lesson_clicked", "")
@@ -52,7 +52,7 @@ func start_lesson(lesson:String):
 		return
 	var part = TypeEngine.get_part_from_state(lesson) as String
 	if part.is_empty():
-		part = parts.keys()[0]
+		part = parts.keys().front()
 	else:
 		var ind_part = parts.keys().find(part)
 		if ind_part == -1:
@@ -97,9 +97,9 @@ func _on_edit_kb_pressed():
 
 # export the lesson and keyboard file to the specified directory
 func _on_file_export_dir_selected(dir):
-	var select_id = $list.get_selected_items()
-	if select_id.size() > 0:
-		TypeEngine.export_kb_lesson($list.get_item_text(select_id[0]), dir) 
+	var select_id = $list.get_selected_items() as Array
+	if not select_id.is_empty():
+		TypeEngine.export_kb_lesson($list.get_item_text(select_id.front()), dir) 
 
 # import the specified files into the user's data and display them in the list
 func _on_file_import_files_selected(paths:PackedStringArray):

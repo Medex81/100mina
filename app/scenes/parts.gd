@@ -31,9 +31,9 @@ func make_lesson_dict()->Dictionary:
 	return dict
 			
 func _on_remove_pressed():
-	var select_id = $list.get_selected_items()
-	if select_id.size() > 0:
-		_parts.erase($list.get_item_text(select_id[0]))
+	var select_id = $list.get_selected_items() as Array
+	if not select_id.is_empty():
+		_parts.erase($list.get_item_text(select_id.front()))
 		TypeEngine.save_parts(_lesson, make_lesson_dict())
 		add_items_filtered()
 	
@@ -62,9 +62,9 @@ func _on_list_item_clicked(index, at_position, mouse_button_index):
 	emit_signal("send_part_clicked", _parts.get($list.get_item_text(index), ""))
 
 func save_part(symbols:String):
-	var select_id = $list.get_selected_items()
-	if select_id.size() > 0 and not _lesson.is_empty():
-		_parts[$list.get_item_text(select_id[0])] = symbols
+	var select_id = $list.get_selected_items() as Array
+	if not select_id.is_empty() and not _lesson.is_empty():
+		_parts[$list.get_item_text(select_id.front())] = symbols
 		TypeEngine.save_parts(_lesson, make_lesson_dict())
 		OS.alert(tr("key_part_saved"), "")
 	else:

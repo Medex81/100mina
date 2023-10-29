@@ -25,9 +25,9 @@ func _on_save_pressed():
 	var lang:String
 	var author:String
 	var title:String
-	var select_id = $margin/VBoxContainer/lang_list.get_selected_items()
-	if select_id.size() > 0:
-		lang = $margin/VBoxContainer/lang_list.get_item_text(select_id[0]).to_snake_case()
+	var select_id = $margin/VBoxContainer/lang_list.get_selected_items() as Array
+	if not select_id.is_empty():
+		lang = $margin/VBoxContainer/lang_list.get_item_text(select_id.front()).to_snake_case()
 	else:
 		OS.alert(tr("key_find_lang"), tr("key_error"))
 		return

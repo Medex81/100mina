@@ -16,13 +16,13 @@ func set_opt(key_sets:Dictionary):
 	else:
 		# a special button with a modifier
 		if not _key_sets.is_empty():
-			text = _key_sets[_key_sets.keys()[0]].modification
+			text = _key_sets[_key_sets.keys().front()].modification
 			# we reduce the font so that the name of the modifier fits on the button
 			add_theme_font_size_override("font_size", 20)
 # data for a group of symbol buttons
 func on_symbol_group(dict:Dictionary):
 	if not dict.is_empty():
-		var state = dict[dict.keys()[0]] as Dictionary
+		var state = dict[dict.keys().front()] as Dictionary
 		# a special button on the keyboard is pressed
 		if state.value.is_empty() and not _key_sets.is_empty():
 			# changing the display of the symbol on the button to the usual one
