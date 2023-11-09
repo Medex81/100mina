@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://2bbuh627jrv1"]
+
+[ext_resource type="PackedScene" uid="uid://c3uh5l4llpvki" path="res://app/scenes/tutor/step.tscn" id="1_j32m0"]
+[ext_resource type="PackedScene" uid="uid://rxuw273q8tli" path="res://app/scenes/tutor/step_goal.tscn" id="2_gjmrp"]
+
+[node name="tutor_start_lesson" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="step_lesson_click" parent="." instance=ExtResource("1_j32m0")]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 123.0
+offset_right = 235.0
+offset_bottom = 223.0
+_hint = "key_tutor_lesson_single_click"
+is_paused = true
+
+[node name="step_goal" parent="step_lesson_click" instance=ExtResource("2_gjmrp")]
+layout_mode = 0
+offset_left = -9.0
+offset_top = -52.0
+offset_right = 236.0
+offset_bottom = -18.0
+
+[node name="step_lesson_part_list" parent="." instance=ExtResource("1_j32m0")]
+visible = false
+layout_mode = 0
+offset_left = 274.0
+offset_top = 288.0
+offset_right = 493.0
+offset_bottom = 388.0
+_hint = "key_tutor_lesson_part_list"
+
+[node name="step_goal" parent="step_lesson_part_list" instance=ExtResource("2_gjmrp")]
+layout_mode = 0
+offset_left = -13.0
+offset_top = -217.0
+offset_right = 228.0
+offset_bottom = -5.0
+
+[node name="step_lesson_find" parent="." instance=ExtResource("1_j32m0")]
+visible = false
+layout_mode = 0
+offset_left = 138.0
+offset_top = 93.0
+offset_right = 357.0
+offset_bottom = 193.0
+_hint = "key_tutor_lesson_find"
+
+[node name="step_goal" parent="step_lesson_find" instance=ExtResource("2_gjmrp")]
+layout_mode = 0
+offset_left = -132.0
+offset_top = -62.0
+offset_right = 373.0
+offset_bottom = -24.0
+
+[node name="step_lesson_dclick" parent="." instance=ExtResource("1_j32m0")]
+visible = false
+layout_mode = 0
+offset_left = 111.0
+offset_top = 266.0
+offset_right = 394.0
+offset_bottom = 373.0
+_hint = "key_tutor_lesson_double_start"
+
+[node name="step_goal" parent="step_lesson_dclick" instance=ExtResource("2_gjmrp")]
+layout_mode = 0
+offset_left = -102.0
+offset_top = -193.0
+offset_right = 389.0
+offset_bottom = -4.0

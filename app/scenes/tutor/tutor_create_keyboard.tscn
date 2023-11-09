@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://btjyflqw2ku5e"]
+
+[ext_resource type="PackedScene" uid="uid://c3uh5l4llpvki" path="res://app/scenes/tutor/step.tscn" id="1_122b0"]
+[ext_resource type="PackedScene" uid="uid://rxuw273q8tli" path="res://app/scenes/tutor/step_goal.tscn" id="2_f0r4m"]
+
+[node name="tutor_create_keyboard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="step_e" parent="." instance=ExtResource("1_122b0")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.5
+offset_top = -53.5
+offset_right = 141.5
+offset_bottom = 53.5
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_E"
+is_paused = true
+
+[node name="step_goal" parent="step_e" instance=ExtResource("2_f0r4m")]
+layout_mode = 0
+border_width = 0.0
+is_handle_key = true
+
+[node name="step_select_lesson" parent="." instance=ExtResource("1_122b0")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -571.0
+offset_top = -165.0
+offset_right = -288.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_lesson_sel_new"
+is_paused = true
+
+[node name="step_goal" parent="step_select_lesson" instance=ExtResource("2_f0r4m")]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -88.0
+offset_right = 249.0
+offset_bottom = -58.0
+
+[node name="step_key_kb_edit" parent="." instance=ExtResource("1_122b0")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -573.0
+offset_top = 151.0
+offset_right = -290.0
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_create_keyboard"
+
+[node name="step_goal" parent="step_key_kb_edit" instance=ExtResource("2_f0r4m")]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 137.0
+offset_right = 103.0
+offset_bottom = 167.0

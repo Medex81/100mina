@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://b00pp8ivlmu7k"]
+[gd_scene load_steps=18 format=3 uid="uid://b00pp8ivlmu7k"]
 
 [ext_resource type="Texture2D" uid="uid://dwcfax51auv5q" path="res://assets/textures/plus.png" id="1_fv4n4"]
 [ext_resource type="Script" path="res://app/scenes/mediator.gd" id="1_nh655"]
+[ext_resource type="Script" path="res://app/scenes/lesson.gd" id="1_qcm54"]
 [ext_resource type="Texture2D" uid="uid://bxcyu8a6ibnrt" path="res://assets/textures/minus.png" id="3_bnq68"]
 [ext_resource type="Script" path="res://app/scenes/lessons.gd" id="4_ynjh8"]
 [ext_resource type="Texture2D" uid="uid://dwinu8h4ioqb6" path="res://assets/textures/menuGrid.png" id="5_g0ves"]
@@ -12,10 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://bexxkiqlauwl6" path="res://assets/textures/question.png" id="9_kacer"]
 [ext_resource type="Script" path="res://app/scenes/toolbox.gd" id="9_r515v"]
 [ext_resource type="Texture2D" uid="uid://bg1fbcwyvq5kx" path="res://assets/textures/export.png" id="10_c3242"]
-[ext_resource type="Texture2D" uid="uid://c7kkypxdoal2c" path="res://assets/textures/return.png" id="10_s2mqd"]
 [ext_resource type="Texture2D" uid="uid://cgndiv8f0a71j" path="res://assets/textures/import.png" id="11_0t1ba"]
 [ext_resource type="PackedScene" uid="uid://b1whxbip2vb3h" path="res://app/scenes/help.tscn" id="13_p2asw"]
-[ext_resource type="Script" path="res://app/scenes/popup_hint.gd" id="16_5rcl2"]
+[ext_resource type="Texture2D" uid="uid://rahcufnvm2pt" path="res://assets/textures/cross.png" id="15_4kbkd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wned2"]
 border_width_left = 2
@@ -28,19 +28,15 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cb32"]
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[node name="lessons" type="Control"]
+[node name="lesson" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qcm54")
+start_tutor = "res://app/scenes/tutor/tutor_start_lesson.tscn"
 metadata/_edit_use_anchors_ = true
 
 [node name="main" type="MarginContainer" parent="."]
@@ -67,14 +63,14 @@ script = ExtResource("4_ynjh8")
 
 [node name="title" type="Label" parent="main/mediator/lessons"]
 layout_mode = 2
-text = "key_lessons"
+text = "key_title_lessons"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="find" type="LineEdit" parent="main/mediator/lessons"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-placeholder_text = "key_find"
+placeholder_text = "key_title_find"
 
 [node name="list" type="ItemList" parent="main/mediator/lessons"]
 layout_mode = 2
@@ -88,6 +84,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
+tooltip_text = "key_hint_create_lesson"
 texture_normal = ExtResource("1_fv4n4")
 ignore_texture_size = true
 stretch_mode = 6
@@ -96,6 +93,7 @@ stretch_mode = 6
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
+tooltip_text = "key_hint_remove_lesson"
 texture_normal = ExtResource("3_bnq68")
 ignore_texture_size = true
 stretch_mode = 6
@@ -104,6 +102,7 @@ stretch_mode = 6
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
+tooltip_text = "key_hint_edit_keyboard"
 texture_normal = ExtResource("5_g0ves")
 ignore_texture_size = true
 stretch_mode = 6
@@ -114,14 +113,14 @@ script = ExtResource("6_bmqa6")
 
 [node name="title" type="Label" parent="main/mediator/parts"]
 layout_mode = 2
-text = "key_parts"
+text = "key_title_parts"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="find" type="LineEdit" parent="main/mediator/parts"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-placeholder_text = "key_find"
+placeholder_text = "key_title_find"
 
 [node name="list" type="ItemList" parent="main/mediator/parts"]
 layout_mode = 2
@@ -135,6 +134,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
+tooltip_text = "key_hint_add_part"
 texture_normal = ExtResource("1_fv4n4")
 ignore_texture_size = true
 stretch_mode = 6
@@ -143,6 +143,7 @@ stretch_mode = 6
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
+tooltip_text = "key_hint_remove_part"
 texture_normal = ExtResource("3_bnq68")
 ignore_texture_size = true
 stretch_mode = 6
@@ -150,6 +151,7 @@ stretch_mode = 6
 [node name="new_part" type="LineEdit" parent="main/mediator/parts/manage"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "key_name_add_part"
 placeholder_text = "key_new"
 
 [node name="chapter" type="VBoxContainer" parent="main/mediator"]
@@ -160,7 +162,7 @@ script = ExtResource("7_n7btn")
 
 [node name="Label" type="Label" parent="main/mediator/chapter"]
 layout_mode = 2
-text = "key_symbols_area"
+text = "key_title_symbols"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -174,6 +176,7 @@ wrap_mode = 1
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
+tooltip_text = "key_hint_save_symbols"
 texture_normal = ExtResource("7_db4le")
 ignore_texture_size = true
 stretch_mode = 6
@@ -188,6 +191,7 @@ script = ExtResource("9_r515v")
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "key_title_help"
 texture_normal = ExtResource("9_kacer")
 ignore_texture_size = true
 stretch_mode = 5
@@ -196,6 +200,7 @@ stretch_mode = 5
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "key_tutor_export"
 texture_normal = ExtResource("10_c3242")
 ignore_texture_size = true
 stretch_mode = 5
@@ -204,6 +209,7 @@ stretch_mode = 5
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "key_tutor_import"
 texture_normal = ExtResource("11_0t1ba")
 ignore_texture_size = true
 stretch_mode = 5
@@ -224,14 +230,6 @@ ok_button_text = "Open"
 file_mode = 1
 access = 2
 filters = PackedStringArray("*.lsn", "*.kbd")
-
-[node name="help_window" type="Window" parent="main/mediator/toolbox"]
-title = "key_help"
-initial_position = 1
-size = Vector2i(700, 700)
-visible = false
-
-[node name="help" parent="main/mediator/toolbox/help_window" instance=ExtResource("13_p2asw")]
 
 [node name="lesson_options" type="Panel" parent="main"]
 visible = false
@@ -260,20 +258,24 @@ layout_mode = 2
 [node name="lang" type="LineEdit" parent="main/lesson_options/margin/VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+tooltip_text = "key_title_find"
 placeholder_text = "key_find_lang"
 
 [node name="lang_list" type="ItemList" parent="main/lesson_options/margin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+tooltip_text = "key_lang_list"
 
 [node name="author" type="LineEdit" parent="main/lesson_options/margin/VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+tooltip_text = "key_title_author"
 placeholder_text = "key_author"
 
 [node name="title" type="LineEdit" parent="main/lesson_options/margin/VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+tooltip_text = "key_title_title"
 placeholder_text = "key_title"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="main/lesson_options/margin/VBoxContainer"]
@@ -283,6 +285,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "key_title_save"
 texture_normal = ExtResource("7_db4le")
 ignore_texture_size = true
 stretch_mode = 5
@@ -291,44 +294,26 @@ stretch_mode = 5
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("10_s2mqd")
+tooltip_text = "key_title_close"
+texture_normal = ExtResource("15_4kbkd")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="popup_hint" type="Panel" parent="."]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-offset_left = 34.0
-offset_top = 112.0
-offset_right = 234.0
-offset_bottom = 212.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_4cb32")
-script = ExtResource("16_5rcl2")
-metadata/_edit_group_ = true
-
-[node name="margin" type="MarginContainer" parent="popup_hint"]
+[node name="help" parent="." instance=ExtResource("13_p2asw")]
+visible = false
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="hint" type="Label" parent="popup_hint/margin"]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 17
-text = "key_double_hint"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -250.0
+offset_right = 200.0
+offset_bottom = 250.0
+create_lesson = "res://app/scenes/tutor/tutor_create_lesson.tscn"
+create_keyboard = "res://app/scenes/tutor/tutor_create_keyboard.tscn"
 
 [connection signal="send_lesson_clicked" from="main/mediator/lessons" to="main/mediator" method="_on_lessons_send_lesson_clicked"]
 [connection signal="text_submitted" from="main/mediator/lessons/find" to="main/mediator/lessons" method="_on_find_text_submitted"]
@@ -346,14 +331,12 @@ autowrap_mode = 2
 [connection signal="pressed" from="main/mediator/parts/manage/remove" to="main/mediator/chapter" method="_on_remove_pressed"]
 [connection signal="send_chapter_save" from="main/mediator/chapter" to="main/mediator" method="_on_chapter_send_chapter_save"]
 [connection signal="pressed" from="main/mediator/chapter/save" to="main/mediator/chapter" method="_on_save_pressed"]
-[connection signal="pressed" from="main/mediator/toolbox/help" to="main/mediator/toolbox" method="_on_help_pressed"]
+[connection signal="pressed" from="main/mediator/toolbox/help" to="help" method="_on_help_pressed"]
 [connection signal="pressed" from="main/mediator/toolbox/export" to="main/mediator/toolbox" method="_on_export_pressed"]
 [connection signal="pressed" from="main/mediator/toolbox/import" to="main/mediator/toolbox" method="_on_import_pressed"]
 [connection signal="dir_selected" from="main/mediator/toolbox/file_export" to="main/mediator/lessons" method="_on_file_export_dir_selected"]
 [connection signal="files_selected" from="main/mediator/toolbox/file_import" to="main/mediator/lessons" method="_on_file_import_files_selected"]
-[connection signal="close_requested" from="main/mediator/toolbox/help_window" to="main/mediator/toolbox" method="_on_help_window_close_requested"]
 [connection signal="send_need_update" from="main/lesson_options" to="main/mediator/lessons" method="_on_lesson_options_send_need_update"]
 [connection signal="text_submitted" from="main/lesson_options/margin/VBoxContainer/lang" to="main/lesson_options" method="_on_lang_text_submitted"]
 [connection signal="pressed" from="main/lesson_options/margin/VBoxContainer/HBoxContainer/save" to="main/lesson_options" method="_on_save_pressed"]
 [connection signal="pressed" from="main/lesson_options/margin/VBoxContainer/HBoxContainer/reject" to="main/lesson_options" method="_on_reject_pressed"]
-[connection signal="gui_input" from="popup_hint" to="popup_hint" method="_on_gui_input"]

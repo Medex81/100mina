@@ -37,9 +37,10 @@ func add_items_filtered(filter:String = ""):
 			$list.add_item(lesson)
 
 # when you click on the name of the lesson, display a list of its parts
-func _on_list_item_clicked(index, at_position, mouse_button_index):
+func _on_list_item_clicked(index, _at_position, _mouse_button_index):
 	_lang = TypeEngine.get_lesson_lang($list.get_item_text(index))
 	emit_signal("send_lesson_clicked", $list.get_item_text(index))
+	get_tree().call_group(TutorStep.group_name, TutorStep.group_method)
 
 func start_lesson(lesson:String):
 	var parts = TypeEngine.get_lesson_parts(lesson)
@@ -93,7 +94,7 @@ func _on_edit_kb_pressed():
 		TypeEngine.scene_mediator[TypeEngine.keyboard_scene] = data
 		get_tree().change_scene_to_file(TypeEngine.keyboard_scene)
 	else:
-		OS.alert(tr("key_select_part_or_lesson"), tr("key_error"))
+		OS.alert(tr("key_error_select_lesson"), tr("key_error"))
 
 # export the lesson and keyboard file to the specified directory
 func _on_file_export_dir_selected(dir):

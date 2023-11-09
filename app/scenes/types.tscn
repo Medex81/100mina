@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dun3oc4785id8"]
+[gd_scene load_steps=7 format=3 uid="uid://dun3oc4785id8"]
 
 [ext_resource type="PackedScene" uid="uid://bymrmlve5oeyo" path="res://app/scenes/keyboard.tscn" id="1_4u2va"]
 [ext_resource type="Script" path="res://app/scenes/type_area.gd" id="1_16nid"]
-[ext_resource type="Texture2D" uid="uid://c7kkypxdoal2c" path="res://assets/textures/return.png" id="4_u6aam"]
 [ext_resource type="Script" path="res://app/scenes/fingers.gd" id="4_wkajq"]
+[ext_resource type="Texture2D" uid="uid://bndxr7n4buf7q" path="res://assets/textures/arrowLeft.png" id="4_xm4gn"]
+[ext_resource type="PackedScene" uid="uid://c3uh5l4llpvki" path="res://app/scenes/tutor/step.tscn" id="6_snl5p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vyuw"]
 bg_color = Color(0.862745, 0.862745, 0.862745, 1)
@@ -49,7 +50,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 size_flags_vertical = 10
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 1.04
 theme_override_styles/panel = SubResource("StyleBoxFlat_6vyuw")
 script = ExtResource("1_16nid")
 _sound_error = "res://assets/sounds/error.wav"
@@ -102,7 +103,7 @@ one_shot = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
-size_flags_stretch_ratio = 1.49
+size_flags_stretch_ratio = 3.45
 
 [node name="keyboard" parent="margin/vbox/keyboards" instance=ExtResource("1_4u2va")]
 layout_mode = 1
@@ -121,6 +122,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
+mouse_filter = 2
 script = ExtResource("4_wkajq")
 
 [node name="Control" type="Control" parent="margin/vbox/fingers"]
@@ -211,11 +213,40 @@ begin_cap_mode = 2
 [node name="exit" type="TextureButton" parent="margin"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 0
 size_flags_vertical = 8
-texture_normal = ExtResource("4_u6aam")
+tooltip_text = "key_back"
+texture_normal = ExtResource("4_xm4gn")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="step_input" parent="." instance=ExtResource("6_snl5p")]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 160.0
+offset_right = 285.0
+offset_bottom = 267.0
+
+[node name="step_kb" parent="." instance=ExtResource("6_snl5p")]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 180.0
+offset_right = 680.0
+offset_bottom = 287.0
+
+[node name="step_finger" parent="." instance=ExtResource("6_snl5p")]
+layout_mode = 0
+offset_left = 415.0
+offset_top = 416.0
+offset_right = 698.0
+offset_bottom = 523.0
+
+[node name="step_back" parent="." instance=ExtResource("6_snl5p")]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 426.0
+offset_right = 290.0
+offset_bottom = 533.0
 
 [connection signal="send_next_symbol" from="margin/vbox/type_area" to="margin/vbox/keyboards/keyboard" method="_on_type_area_send_next_symbol"]
 [connection signal="text_changed" from="margin/vbox/type_area/HBoxContainer/accept" to="margin/vbox/type_area" method="_on_accept_text_changed"]

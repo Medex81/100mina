@@ -4,6 +4,7 @@ extends Node
 
 enum EFingers{l1, l2, l3 , l4, l5, r1, r2, r3, r4, r5}
 
+const version = "0.2"
 const _keyboard_extension = ".kbd"
 const _lesson_extension = ".lsn"
 const _cfg_extension = ".json"
@@ -24,7 +25,8 @@ const key_part_symbols = "part_symbols"
 const key_lang = "lang"
 const key_parts = "parts"
 const key_curent_lesson = "curent_lesson"
-const key_hide_hint = "hide_hint"
+const key_tutors_done = "tutors_done"
+
 
 # the status of passing lessons is saved between sessions.
 var state:Dictionary
@@ -44,13 +46,28 @@ func get_part_from_state(lesson:String)->String:
 func get_curent_lesson_from_state()->String:
 	return state.get(key_curent_lesson, "")
 
-func set_hide_hint_to_state():
-	state[key_hide_hint] = true
+func set_tutor_done(tutor:String):
+	var tutors_done = state.get(key_tutors_done, []) as Array
+	tutors_done.append(tutor)
+	state[key_tutors_done] = tutors_done
 	save_state()
-	
-func get_hide_hint_to_state()->bool:
-	return state.get(key_hide_hint, false)
 
+func is_tutor_done(tutor:String)->bool:
+	var tutors_done = state.get(key_tutors_done, []) as Array
+	return tutors_done.has(tutor)
+	
+func add_tutor(tutor_path:String, parent:Node):
+	if parent:
+		var tutor_name = tutor_path.get_file().get_basename()
+		for node in parent.get_children():
+			if node.name == tutor_name:
+				return
+		var tutor = load(tutor_path).instantiate()
+		if tutor:
+			tutor.show()
+			parent.add_child(tutor)
+			pass
+	
 func _ready():
 	state = _load_dict_from_cfg_file(get_state_path())
 	# copy the built-in lessons and keyboards to the user's data
@@ -63,28 +80,28 @@ func _ready():
 func export_kb_lesson(lesson:String, to_dir:String):
 	var from = get_assets_path() + _lessons + lesson + _lesson_extension
 	var to = to_dir + "/" + lesson + _lesson_extension
-	var state = DirAccess.copy_absolute(from, to)
-	if state != OK:
-		OS.alert(error_string(state) + " " + from + "->" + to, tr("key_error"))
+	var status = DirAccess.copy_absolute(from, to)
+	if status != OK:
+		OS.alert(error_string(status) + " " + from + "->" + to, tr("key_error"))
 	var lang = get_lesson_lang(lesson)
 	from = get_assets_path() + _keyboards + lang + _keyboard_extension
 	to = to_dir + "/" + lang + _keyboard_extension
-	state = DirAccess.copy_absolute(from, to)
-	if state != OK:
-		OS.alert(error_string(state) + " " + from + "->" + to, tr("key_error"))
+	status = DirAccess.copy_absolute(from, to)
+	if status != OK:
+		OS.alert(error_string(status) + " " + from + "->" + to, tr("key_error"))
 		
 func import_kb_lesson(paths:PackedStringArray):
 	for from in paths:
 		if _keyboard_extension in from:
 			var to = get_assets_path() + _keyboards + from.get_file()
-			var state = DirAccess.copy_absolute(from, to)
-			if state != OK:
-				OS.alert(error_string(state) + " " + from + "->" + to, tr("key_error"))
+			var status = DirAccess.copy_absolute(from, to)
+			if status != OK:
+				OS.alert(error_string(status) + " " + from + "->" + to, tr("key_error"))
 		if _lesson_extension in from:
 			var to = get_assets_path() + _lessons + from.get_file()
-			var state = DirAccess.copy_absolute(from, to)
-			if state != OK:
-				OS.alert(error_string(state) + " " + from + "->" + to, tr("key_error"))
+			var status = DirAccess.copy_absolute(from, to)
+			if status != OK:
+				OS.alert(error_string(status) + " " + from + "->" + to, tr("key_error"))
 	
 func copy_res_json_files(from_dir:String, to_dir:String):
 	make_dir(to_dir)
@@ -98,14 +115,15 @@ func _save_dict_to_cfg_file(path:String, dict:Dictionary):
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
 		file.store_line(JSON.stringify(dict))
+		file.flush()
 		
 func _load_dict_from_cfg_file(path:String)->Dictionary:
 	if FileAccess.file_exists(path):
 		var file = FileAccess.open(path, FileAccess.READ)
 		if file:
 			var json = JSON.new()
-			var state = json.parse(file.get_as_text(true))
-			if state == OK:
+			var status = json.parse(file.get_as_text(true))
+			if status == OK:
 				return json.data
 	return {}
 	

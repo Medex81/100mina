@@ -1,0 +1,318 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3y5swaemla3t"]
+
+[ext_resource type="PackedScene" uid="uid://c3uh5l4llpvki" path="res://app/scenes/tutor/step.tscn" id="1_fdts2"]
+[ext_resource type="PackedScene" uid="uid://rxuw273q8tli" path="res://app/scenes/tutor/step_goal.tscn" id="2_47ui4"]
+
+[node name="tutor_create_lesson" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="step_E" parent="." instance=ExtResource("1_fdts2")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.5
+offset_top = -53.5
+offset_right = 141.5
+offset_bottom = 53.5
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_E"
+is_paused = true
+
+[node name="step_goal" parent="step_E" instance=ExtResource("2_47ui4")]
+layout_mode = 0
+offset_right = 0.0
+offset_bottom = 0.0
+border_width = 0.0
+is_handle_key = true
+
+[node name="step_lesson_create" parent="." instance=ExtResource("1_fdts2")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -516.0
+offset_top = 124.0
+offset_right = -233.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_create_lesson_btn"
+is_paused = true
+
+[node name="step_goal" parent="step_lesson_create" instance=ExtResource("2_47ui4")]
+layout_mode = 0
+offset_left = -58.0
+offset_top = 163.0
+offset_right = -20.0
+offset_bottom = 199.0
+
+[node name="step_find_lang" parent="." instance=ExtResource("1_fdts2")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -459.0
+offset_top = -277.0
+offset_right = -205.0
+offset_bottom = -173.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_find_lang"
+
+[node name="step_goal" parent="step_find_lang" instance=ExtResource("2_47ui4")]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 129.0
+offset_right = 605.0
+offset_bottom = 164.0
+
+[node name="step_sel_lang" parent="." instance=ExtResource("1_fdts2")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.0
+offset_top = -236.0
+offset_right = 140.0
+offset_bottom = -129.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_lang_list"
+
+[node name="step_goal" parent="step_sel_lang" instance=ExtResource("2_47ui4")]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 125.0
+offset_right = 289.0
+offset_bottom = 281.0
+
+[node name="step_add_autor" parent="." instance=ExtResource("1_fdts2")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.0
+offset_top = -82.0
+offset_right = 140.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_author"
+
+[node name="step_goal" parent="step_add_autor" instance=ExtResource("2_47ui4")]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 126.0
+offset_right = 292.0
+offset_bottom = 160.0
+
+[node name="step_add_title" parent="." instance=ExtResource("1_fdts2")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.0
+offset_top = -48.0
+offset_right = 142.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_lesson_name"
+
+[node name="step_goal" parent="step_add_title" instance=ExtResource("2_47ui4")]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 125.0
+offset_right = 285.0
+offset_bottom = 159.0
+
+[node name="step_lesson_save" parent="." instance=ExtResource("1_fdts2")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -19.0
+offset_right = 138.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_lesson_save"
+is_paused = true
+
+[node name="step_goal" parent="step_lesson_save" instance=ExtResource("2_47ui4")]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 132.0
+offset_right = 105.0
+offset_bottom = 170.0
+
+[node name="step_lesson_sel_new" parent="." instance=ExtResource("1_fdts2")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -567.0
+offset_top = -75.0
+offset_right = -284.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_lesson_sel_new"
+is_paused = true
+
+[node name="step_goal" parent="step_lesson_sel_new" instance=ExtResource("2_47ui4")]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -112.0
+offset_right = 242.0
+offset_bottom = -67.0
+
+[node name="step_part_name" parent="." instance=ExtResource("1_fdts2")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -318.0
+offset_top = 142.0
+offset_right = -35.0
+offset_bottom = 249.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_name_add_part"
+
+[node name="step_goal" parent="step_part_name" instance=ExtResource("2_47ui4")]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 144.0
+offset_right = 251.0
+offset_bottom = 181.0
+
+[node name="step_add_part" parent="." instance=ExtResource("1_fdts2")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -318.0
+offset_top = 142.0
+offset_right = -35.0
+offset_bottom = 249.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_add_part"
+is_paused = true
+
+[node name="step_goal" parent="step_add_part" instance=ExtResource("2_47ui4")]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 144.0
+offset_right = 38.0
+offset_bottom = 181.0
+
+[node name="step_sel_new_part" parent="." instance=ExtResource("1_fdts2")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -321.0
+offset_top = -191.0
+offset_right = -38.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_part_sel_new"
+is_paused = true
+
+[node name="step_goal" parent="step_sel_new_part" instance=ExtResource("2_47ui4")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -65.0
+offset_right = 257.0
+offset_bottom = -28.0
+
+[node name="step_add_symbols" parent="." instance=ExtResource("1_fdts2")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 33.0
+offset_top = -122.0
+offset_right = 316.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_add_symbols"
+
+[node name="step_goal" parent="step_add_symbols" instance=ExtResource("2_47ui4")]
+layout_mode = 0
+offset_left = -96.0
+offset_top = -165.0
+offset_right = 437.0
+offset_bottom = -23.0
+
+[node name="step_save_symbols" parent="." instance=ExtResource("1_fdts2")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = 121.0
+offset_right = 297.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+_hint = "key_tutor_save_symbols"
+
+[node name="step_goal" parent="step_save_symbols" instance=ExtResource("2_47ui4")]
+layout_mode = 0
+offset_left = -83.0
+offset_top = 163.0
+offset_right = -38.0
+offset_bottom = 202.0
