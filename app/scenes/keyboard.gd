@@ -33,6 +33,7 @@ func _ready():
 	if _scene_data:
 		# start the keyboard in character editing mode
 		$edit_panel.visible = _scene_data.edit_mode
+		$stop_type.visible = !_scene_data.edit_mode
 		_key_binds = TypeEngine.load_keyboard(_scene_data.lang)
 	symbols_button_group = ResourceLoader.load(symbols_button_path)
 	specials_button_group = ResourceLoader.load(specials_button_path)

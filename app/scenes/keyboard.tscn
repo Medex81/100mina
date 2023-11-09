@@ -379,6 +379,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 script = ExtResource("3_waxx4")
 key_opt = "res://app/scenes/key_set.tscn"
+metadata/_edit_group_ = true
 
 [node name="key_sets" type="HBoxContainer" parent="edit_panel/margin/editor"]
 layout_mode = 2
@@ -410,6 +411,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "key_save"
+
+[node name="stop_type" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+metadata/_edit_use_anchors_ = true
 
 [connection signal="send_key_set" from="edit_panel/margin/editor" to="." method="_on_editor_send_key_set"]
 [connection signal="pressed" from="edit_panel/margin/editor/manage/add" to="edit_panel/margin/editor" method="_on_add_pressed"]
