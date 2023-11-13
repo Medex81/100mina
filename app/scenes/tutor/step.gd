@@ -1,7 +1,7 @@
-# Шаг обучения.
-# При завершении очередного шага активируется и запускается следующий шаг.
-# Если шаг помечен как пауза, активируем но не запускаем следующий шаг.
-# Снять шаг с паузы можно через вызов обработчика через группу. 
+# Learning step.
+# When the next step is completed, the next step is activated and started.
+# If a step is marked as a pause, we activate but do not start the next step.
+# You can remove the step from the pause by calling the handler through the group.
 extends Panel
 
 class_name TutorStep
@@ -10,7 +10,7 @@ const group_name = "tutor_next_step"
 const group_method = "show_step"
 
 @export var _hint:String
-# после этого элемента будет пауза, следующий элемент только активировать
+# after this element there will be a pause, the next element will only activate
 @export var is_paused:bool = false
 
 var is_active_step:bool = false
@@ -20,13 +20,13 @@ func _ready():
 	add_to_group(group_name)
 	hide()
 	
-	# проверяем свою позицию в родителе
+	# check your position in the parent
 	var children_array = get_parent().get_children() as Array
 	var index = children_array.find(self)
-	# если первые, то активируемся
+	# if the first ones, then we activate
 	if index == 0:
 		is_active_step = true
-	# находим следующий элемент и сохраняем его
+	# find the next element and save it
 	if index + 1 < children_array.size():
 		_next_step = children_array[index + 1]
 
@@ -46,10 +46,10 @@ func hide_step():
 		TypeEngine.set_tutor_done(get_parent().name)
 		get_parent().queue_free()
 		return
-	# Скрываем себя и родителя
+	# Hiding ourselves and the parent
 	get_parent().hide()
 	hide()
-	# Активируем следующий шаг
+	# Activate the next step
 	_next_step.is_active_step = true
 	if is_paused == false:
 		_next_step.show_step()
