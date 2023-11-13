@@ -53,6 +53,7 @@ func on_button_click(button:KeyButton):
 	$key_value.set_values(button.key_sets)
 	if $key_value.visible:
 		$key_value.grab_focus()
+		get_tree().call_group(TutorStep.group_name, TutorStep.group_method)
 
 # select the button by the next character that the user must enter
 func _on_type_area_send_next_symbol(symbol):

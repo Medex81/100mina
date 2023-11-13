@@ -72,19 +72,9 @@ key_tutor_add_symbols,Добавьте символы для части урок
 key_tutor_save_symbols,Сохранить введенные символы в выделенной части.,Save the entered characters in the selected part.
 
 key_tutor_create_keyboard,Создать клавиатуру,Create a keyboard
-key_tutor_add_symbol_value,Укажите символ для выделенной кнопки.,Specify the symbol for the selected. button
-key_tutor_select_hint,Нажмите кнопку для ввода значения.,Press the button to enter the value.
-key_tutor_input,Это символы которые вам нужно вводить с клавиатуры.,These are the characters that you need to enter from the keyboard.
-key_tutor_kb,Зелёным будет выделена клавиша которую нужно нажать.,The key that needs to be pressed will be highlighted in green.
-key_tutor_finger,Зелёным будет выделен палец руки которым нужно нажимать клавишу клавиатуры.,The finger of the hand that needs to press the keyboard key will be highlighted in green.
+key_tutor_kb_first,Нажмите на кнопку и она будет выделена зелёным цветом.,Click on the button and it will be highlighted in green.
+key_tutor_kb_lineedit,"После выбора кнопки будет подсвечено поле ввода символов с клавиатуры. Найдите аналог этой кнопки на вашей клавиатуре и нажмите символ без модификатора и затем с модификатором (Например - а и А+Shift). Значение будет сохранено на диск. Убедитесь, что специальная клавиша с модификатором нажата до клавиши с символом. Если вы введёте одинаковые символы для одной кнопки или одинаковые модификаторы появится сообщение об ошибке. Очистить значение на кнопке можно удалив символы в строке ввода. Добавьте значения для нескольких кнопок.","After selecting the button, the keyboard character input field will be highlighted. Find an analogue of this button on your keyboard and press the character without a modifier and then with a modifier (For example - a and A +Shift). The value will be saved to disk. Make sure that the special modifier key is pressed before the symbol key. If you enter the same characters for one button or the same modifiers, an error message will appear. You can clear the value on the button by deleting the characters in the input line. Add values for multiple buttons."
 key_tutor_back,Нажмите чтобы вернуться назад.,Click to go back.
-key_tutor_add_symbol_value,Добавить символ для выделенной кнопки,Add a symbol for the selected button
-key_tutor_remove_symbol_value,Удалить последний символ для выделенной кнопки,Remove the last symbol for the selected button
-key_tutor_save_symbol_value,Сохранить символ для выделенной кнопки,Save a symbol for the selected button
-key_tutor_mod,Символ на кнопке нажат с Shift/Ctrl/Alt или без,The symbol on the button is pressed with Shift/Ctrl/Alt or without
-key_tutor_key_value,Введите символ который будет на выделенной кнопке,Write the symbol who will displayed on the selected button
-key_tutor_lr_switch,Выберите сторону клавиатуры на которой располагается клавиша(левая\правая),Select the side of the keyboard on which the key is located (left\right)
-key_tutor_finger,Выберите палец который нужно отобразить для символа(слева направо от 1 до 5),Select the finger you want to display for the symbol (from left to right from 1 to 5)
 
 key_tutor_export,Экспорт урока и клавиатуры,Exporting lesson and keyboard
 key_tutor_import,Импорт урока и клавиатуры,Importing lesson and keyboard

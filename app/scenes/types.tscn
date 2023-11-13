@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dun3oc4785id8"]
+[gd_scene load_steps=8 format=3 uid="uid://dun3oc4785id8"]
 
 [ext_resource type="PackedScene" uid="uid://bymrmlve5oeyo" path="res://app/scenes/keyboard.tscn" id="1_4u2va"]
 [ext_resource type="Script" path="res://app/scenes/type_area.gd" id="1_16nid"]
+[ext_resource type="Script" path="res://app/scenes/types.gd" id="1_com5d"]
 [ext_resource type="Script" path="res://app/scenes/fingers.gd" id="4_wkajq"]
 [ext_resource type="Texture2D" uid="uid://bndxr7n4buf7q" path="res://assets/textures/arrowLeft.png" id="4_xm4gn"]
+[ext_resource type="Texture2D" uid="uid://bexxkiqlauwl6" path="res://assets/textures/question.png" id="6_qscni"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vyuw"]
 bg_color = Color(0.862745, 0.862745, 0.862745, 1)
@@ -27,6 +29,8 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
+script = ExtResource("1_com5d")
+new_kb_tutor = "res://app/scenes/tutor/tutor_new_keyboard.tscn"
 metadata/_edit_use_anchors_ = true
 
 [node name="margin" type="MarginContainer" parent="."]
@@ -220,8 +224,19 @@ texture_normal = ExtResource("4_xm4gn")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="help" type="TextureButton" parent="margin"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+tooltip_text = "key_back"
+texture_normal = ExtResource("6_qscni")
+ignore_texture_size = true
+stretch_mode = 5
+
 [connection signal="send_next_symbol" from="margin/vbox/type_area" to="margin/vbox/keyboards/keyboard" method="_on_type_area_send_next_symbol"]
 [connection signal="text_changed" from="margin/vbox/type_area/HBoxContainer/accept" to="margin/vbox/type_area" method="_on_accept_text_changed"]
 [connection signal="timeout" from="margin/vbox/type_area/Timer" to="margin/vbox/type_area" method="_on_timer_timeout"]
 [connection signal="send_select_finger" from="margin/vbox/keyboards/keyboard" to="margin/vbox/fingers" method="_on_keyboard_send_select_finger"]
 [connection signal="pressed" from="margin/exit" to="margin/vbox/type_area" method="_on_exit_pressed"]
+[connection signal="pressed" from="margin/help" to="." method="help_tutor"]
