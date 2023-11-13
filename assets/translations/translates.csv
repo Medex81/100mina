@@ -22,12 +22,11 @@ key_title_version,Версия {0},Version {0}
 
 key_error_already_exists,Значение кнопки {0} уже существует! Значения не должны дублироваться.,Key set {0} already exists! The values should not be duplicated.
 key_error_empty_simple,Для ключа {0} должно быть указано значение!,For the key {0} must be specified a value!
-key_error_one_func_set,Укажите только одну функциональную кнопку(с пустым значением).,Specify only one function button (with an empty value).
-key_error_only_one_type,Кнопка не может быть символьной и функциональной одновременно.,The button cannot be symbolic and functional at the same time.
 key_error_only_keyset,Виджеты кнопок должны быть производными от класса KeySet.,Button widgets must be derived from the KeySet class.
 key_error_need_key_opt,Путь к виджету полей кнопок неизвестен.,The button fields widget path is unknown.
 key_error_select_key,Сначала выберите кнопку.,First select a button.
-key_error_opt_dublicate,Значение {0} в кнопке дублируется.,Value {0} in a button is duplicated.
+key_error_val_dublicate,Значение [{0}] в кнопке дублируется.,Value [{0}] in a button is duplicated.
+key_error_mod_dublicate,Модификатор [{0}] в кнопке дублируется.,Modifier {0} in a button is duplicated.
 key_error_one_value,Передавать в кнопку разрешается только одно состояние.,Only one state is allowed to be passed to a button.
 key_error_remove_dir,Невозможно удалить директорию {0}.,Unable to delete directory {0}.
 key_error_kb_not_exists,Для языка {0} урока {1} отсутствует клавиатура. Нажмите Е и добавьте клавиатуру,There is no keyboard for this lesson {1} language {0}.Press E and add the keyboard.
