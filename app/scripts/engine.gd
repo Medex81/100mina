@@ -48,9 +48,10 @@ func get_curent_lesson_from_state()->String:
 
 func set_tutor_done(tutor:String):
 	var tutors_done = state.get(key_tutors_done, []) as Array
-	tutors_done.append(tutor)
-	state[key_tutors_done] = tutors_done
-	save_state()
+	if tutor not in tutors_done:
+		tutors_done.append(tutor)
+		state[key_tutors_done] = tutors_done
+		save_state()
 
 func is_tutor_done(tutor:String)->bool:
 	var tutors_done = state.get(key_tutors_done, []) as Array
@@ -66,7 +67,6 @@ func add_tutor(tutor_path:String, parent:Node):
 		if tutor:
 			tutor.show()
 			parent.add_child(tutor)
-			pass
 	
 func _ready():
 	state = _load_dict_from_cfg_file(get_state_path())
