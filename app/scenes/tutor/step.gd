@@ -31,16 +31,18 @@ func _ready():
 		_next_step = children_array[index + 1]
 
 	if is_active_step:
-		show_step()
+		show_step(name)
 	
-func show_step():
-	if is_active_step:
+func show_step(step_name:String):
+	if is_active_step and step_name == name:
 		get_parent().show()
 		show()
 		if not _hint.is_empty():
 			$margin/hint.text = tr(_hint)
 			
 func hide_step():
+	if is_active_step == false:
+		return
 	is_active_step = false
 	if _next_step == null:
 		TypeEngine.set_tutor_done(get_parent().name)
@@ -52,6 +54,6 @@ func hide_step():
 	# Activate the next step
 	_next_step.is_active_step = true
 	if is_paused == false:
-		_next_step.show_step()
+		_next_step.show_step(_next_step.name)
 
 

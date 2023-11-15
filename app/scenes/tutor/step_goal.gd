@@ -7,7 +7,7 @@ func _on_gui_input(event):
 		hide_step()
 			
 func _unhandled_input(event):
-	if event is InputEventKey and event.is_pressed()  and is_handle_key == true:
+	if event is InputEventKey and event.is_pressed() and is_handle_key == true and visible == true:
 		hide_step()
 
 func hide_step():

@@ -34,11 +34,11 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="hint" type="Label" parent="margin"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = -6
 theme_override_constants/line_spacing = -8
@@ -46,4 +46,5 @@ theme_override_font_sizes/font_size = 17
 text = "key_hint"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
+autowrap_mode = 2
+text_overrun_behavior = 3
