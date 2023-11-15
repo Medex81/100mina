@@ -44,7 +44,7 @@ func _ready():
 	if not _first_symbol.is_empty():
 		_on_type_area_send_next_symbol(_first_symbol)
 		
-	if _scene_data.edit_mode:
+	if _scene_data and _scene_data.edit_mode:
 		for button in specials_button_group.get_buttons():
 			button.disabled = true
 
@@ -53,7 +53,7 @@ func on_button_click(button:KeyButton):
 	$key_value.set_values(button.key_sets)
 	if $key_value.visible:
 		$key_value.grab_focus()
-		get_tree().call_group(TutorStep.group_name, TutorStep.group_method)
+		get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "lineedit")
 
 # select the button by the next character that the user must enter
 func _on_type_area_send_next_symbol(symbol):

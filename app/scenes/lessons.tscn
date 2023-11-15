@@ -151,7 +151,7 @@ stretch_mode = 6
 [node name="new_part" type="LineEdit" parent="main/mediator/parts/manage"]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "key_name_add_part"
+tooltip_text = "key_hint_part_name"
 placeholder_text = "key_new"
 
 [node name="chapter" type="VBoxContainer" parent="main/mediator"]
@@ -235,7 +235,7 @@ filters = PackedStringArray("*.lsn", "*.kbd")
 visible = false
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_wned2")
 script = ExtResource("9_6x0vf")
@@ -251,6 +251,7 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="main/lesson_options/margin"]
 layout_mode = 2
@@ -259,7 +260,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "key_title_find"
-placeholder_text = "key_find_lang"
+placeholder_text = "key_title_find"
 
 [node name="lang_list" type="ItemList" parent="main/lesson_options/margin/VBoxContainer"]
 layout_mode = 2
@@ -270,13 +271,13 @@ tooltip_text = "key_lang_list"
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "key_title_author"
-placeholder_text = "key_author"
+placeholder_text = "key_title_author"
 
 [node name="title" type="LineEdit" parent="main/lesson_options/margin/VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 tooltip_text = "key_title_title"
-placeholder_text = "key_title"
+placeholder_text = "key_title_title"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="main/lesson_options/margin/VBoxContainer"]
 layout_mode = 2
@@ -314,8 +315,11 @@ offset_right = 200.0
 offset_bottom = 250.0
 create_lesson = "res://app/scenes/tutor/tutor_create_lesson.tscn"
 create_keyboard = "res://app/scenes/tutor/tutor_create_keyboard.tscn"
+export = "res://app/scenes/tutor/tutor_export.tscn"
+import = "res://app/scenes/tutor/tutor_import.tscn"
 
 [connection signal="send_lesson_clicked" from="main/mediator/lessons" to="main/mediator" method="_on_lessons_send_lesson_clicked"]
+[connection signal="send_lesson_clicked" from="main/mediator/lessons" to="main/mediator/toolbox" method="_on_lessons_send_lesson_clicked"]
 [connection signal="text_submitted" from="main/mediator/lessons/find" to="main/mediator/lessons" method="_on_find_text_submitted"]
 [connection signal="item_activated" from="main/mediator/lessons/list" to="main/mediator/lessons" method="_on_list_item_activated"]
 [connection signal="item_clicked" from="main/mediator/lessons/list" to="main/mediator/lessons" method="_on_list_item_clicked"]

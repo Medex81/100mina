@@ -40,16 +40,19 @@ func add_items_filtered(filter:String = ""):
 func _on_list_item_clicked(index, _at_position, _mouse_button_index):
 	_lang = TypeEngine.get_lesson_lang($list.get_item_text(index))
 	emit_signal("send_lesson_clicked", $list.get_item_text(index))
-	get_tree().call_group(TutorStep.group_name, TutorStep.group_method)
+	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_lesson_part_list")
+	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_part_name")
+	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_key_kb_edit")
+	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_dialog")
 
 func start_lesson(lesson:String):
 	var parts = TypeEngine.get_lesson_parts(lesson)
 	_lang = TypeEngine.get_lesson_lang(lesson)
 	if not TypeEngine.is_keyboard_exists(_lang):
-		OS.alert(tr("key_kb_not_exists").format([_lang, lesson]), tr("key_error"))
+		OS.alert(tr("key_error_kb_not_exists").format([_lang, lesson]), tr("key_title_error"))
 		return
 	if parts.is_empty():
-		OS.alert(tr("key_no_parts_in_lesson").format([lesson]), tr("key_error"))
+		OS.alert(tr("key_error_no_parts_in_lesson").format([lesson]), tr("key_title_error"))
 		return
 	var part = TypeEngine.get_part_from_state(lesson) as String
 	if part.is_empty():
@@ -57,12 +60,12 @@ func start_lesson(lesson:String):
 	else:
 		var ind_part = parts.keys().find(part)
 		if ind_part == -1:
-			OS.alert(tr("key_change_in_lesson").format([lesson, part]), tr("key_error"))
+			OS.alert(tr("key_error_change_in_lesson").format([lesson, part]), tr("key_title_error"))
 			return
 		if ind_part < parts.keys().size() - 1:
 			part = parts.keys()[ind_part + 1]
 		else:
-			OS.alert(tr("key_lesson_done"), tr("key_congratulations"))
+			OS.alert(tr("key_done_lesson"), tr("key_title_congratulations"))
 			TypeEngine.set_part_to_state(lesson, "")
 			return
 	
@@ -94,7 +97,7 @@ func _on_edit_kb_pressed():
 		TypeEngine.scene_mediator[TypeEngine.keyboard_scene] = data
 		get_tree().change_scene_to_file(TypeEngine.keyboard_scene)
 	else:
-		OS.alert(tr("key_error_select_lesson"), tr("key_error"))
+		OS.alert(tr("key_error_select_lesson"), tr("key_title_error"))
 
 # export the lesson and keyboard file to the specified directory
 func _on_file_export_dir_selected(dir):

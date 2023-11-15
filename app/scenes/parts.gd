@@ -21,9 +21,9 @@ func _on_add_pressed():
 			_parts[new_part] = ""
 			$list.add_item(new_part)
 			TypeEngine.save_parts(_lesson, make_lesson_dict())
-			get_tree().call_group(TutorStep.group_name, TutorStep.group_method)
+			get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_sel_new_part")
 	else:
-		OS.alert(tr("key_error_empty_part_name"), tr("key_error"))
+		OS.alert(tr("key_error_empty_part_name"), tr("key_title_error"))
 		
 func make_lesson_dict()->Dictionary:
 	var dict:Dictionary
@@ -61,7 +61,7 @@ func add_items_filtered(filter:String = ""):
 # a signal to the character editor with the string it needs to display
 func _on_list_item_clicked(index, _at_position, _mouse_button_index):
 	emit_signal("send_part_clicked", _parts.get($list.get_item_text(index), ""))
-	get_tree().call_group(TutorStep.group_name, TutorStep.group_method)
+	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_add_symbols")
 
 func save_part(symbols:String):
 	var select_id = $list.get_selected_items() as Array
@@ -70,7 +70,7 @@ func save_part(symbols:String):
 		TypeEngine.save_parts(_lesson, make_lesson_dict())
 		OS.alert(tr("key_done_part_saved"), "")
 	else:
-		OS.alert(tr("key_error_not_selected_part"), tr("key_error"))
+		OS.alert(tr("key_error_not_selected_part"), tr("key_title_error"))
 
 # we start the lesson from the selected part even if we finished earlier on another one
 func _on_list_item_activated(index):
@@ -83,5 +83,5 @@ func _on_list_item_activated(index):
 		TypeEngine.scene_mediator[TypeEngine.keyboard_scene] = data
 		get_tree().change_scene_to_file(TypeEngine.keyboard_scene)
 	else:
-		OS.alert(tr("key_kb_not_exists").format([_lang]), tr("key_error"))
+		OS.alert(tr("key_error_kb_not_exists").format([_lang]), tr("key_title_error"))
 

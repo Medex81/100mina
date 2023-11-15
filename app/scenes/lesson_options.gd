@@ -29,17 +29,17 @@ func _on_save_pressed():
 	if not select_id.is_empty():
 		lang = $margin/VBoxContainer/lang_list.get_item_text(select_id.front()).to_snake_case()
 	else:
-		OS.alert(tr("key_tutor_find_lang"), tr("key_error"))
+		OS.alert(tr("key_tutor_lang_list"), tr("key_title_error"))
 		return
 		
 	if $margin/VBoxContainer/author.text.is_empty():
-		OS.alert(tr("key_tutor_author"), tr("key_error"))
+		OS.alert(tr("key_tutor_author"), tr("key_title_error"))
 		return
 	else:
 		author = $margin/VBoxContainer/author.text.to_snake_case()
 	
 	if $margin/VBoxContainer/title.text.is_empty():
-		OS.alert(tr("key_tutor_lesson_name"), tr("key_error"))
+		OS.alert(tr("key_tutor_lesson_name"), tr("key_title_error"))
 		return
 	else:
 		title = $margin/VBoxContainer/title.text.to_snake_case()
@@ -49,8 +49,8 @@ func _on_save_pressed():
 	visible = false
 	
 	emit_signal("send_need_update")
-	get_tree().call_group(TutorStep.group_name, TutorStep.group_method)
+	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_lesson_sel_new")
 
 func _on_add_pressed():
 	visible = true
-	get_tree().call_group(TutorStep.group_name, TutorStep.group_method)
+	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_find_lang")

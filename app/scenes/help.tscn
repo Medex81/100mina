@@ -4,6 +4,14 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yehli"]
 bg_color = Color(0.14902, 0.137255, 0.137255, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="help" type="Panel"]
 custom_minimum_size = Vector2(400, 500)
@@ -30,15 +38,17 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="margin"]
 layout_mode = 2
 
 [node name="about" type="Label" parent="margin/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/line_spacing = -4
 text = "key_help_about_text"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="version" type="Label" parent="margin/VBoxContainer"]
@@ -105,12 +115,12 @@ flat = true
 
 [node name="export" type="Button" parent="margin/VBoxContainer"]
 layout_mode = 2
-text = "key_tutor_export"
+text = "key_tutor_export_lesson"
 flat = true
 
 [node name="import" type="Button" parent="margin/VBoxContainer"]
 layout_mode = 2
-text = "key_tutor_import"
+text = "key_tutor_import_lesson"
 flat = true
 
 [connection signal="pressed" from="margin/VBoxContainer/vk" to="." method="_on_pressed"]
