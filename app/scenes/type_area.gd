@@ -16,6 +16,8 @@ func _ready():
 	if _scene_data:
 		$HBoxContainer/input.text = _scene_data.symbols
 		emit_signal("send_next_symbol", $HBoxContainer/input.text.left(1))
+		if _scene_data.edit_mode:
+			hide()
 	$HBoxContainer/accept.grab_focus()
 	
 func _on_accept_text_changed(new_text:String):
@@ -40,7 +42,7 @@ func _on_accept_text_changed(new_text:String):
 # pass the flag of the successful completion of the part to the lesson scene, with it the next part automatically starts.
 func _on_timer_timeout():
 	TypeEngine.set_part_to_state(_scene_data.lesson, _scene_data.part)
-	OS.alert(tr("key_part_done"), tr("key_congratulations"))
+	OS.alert(tr("key_done_part"), tr("key_title_congratulations"))
 	TypeEngine.scene_mediator[TypeEngine.lessons_scene] = true
 	get_tree().change_scene_to_file(TypeEngine.lessons_scene)
 

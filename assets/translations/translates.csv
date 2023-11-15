@@ -47,6 +47,7 @@ key_hint_remove_lesson,Удалить выделенный урок,Remove the s
 key_hint_edit_keyboard,Редактор клавиатуры для языка урока,Editor for a lesson language keyboard
 key_hint_add_part,Добавить часть урока,Add a lesson part
 key_hint_remove_part,Удалить выделенную часть урока,Remove the selected lesson part
+key_hint_part_name,Имя добавляемой части урока,Name of the lesson part to be added
 key_hint_save_symbols,Сохранить введенные символы в выделенной части,Save the entered characters in the selected part
 
 
@@ -76,7 +77,9 @@ key_tutor_kb_first,Нажмите на кнопку и она будет выд�
 key_tutor_kb_lineedit,"После выбора кнопки будет подсвечено поле ввода символов с клавиатуры. Найдите аналог этой кнопки на вашей клавиатуре и нажмите символ без модификатора и затем с модификатором (Например - а и А+Shift). Значение будет сохранено на диск. Убедитесь, что специальная клавиша с модификатором нажата до клавиши с символом. Если вы введёте одинаковые символы для одной кнопки или одинаковые модификаторы появится сообщение об ошибке. Очистить значение на кнопке можно удалив символы в строке ввода. Добавьте значения для нескольких кнопок.","After selecting the button, the keyboard character input field will be highlighted. Find an analogue of this button on your keyboard and press the character without a modifier and then with a modifier (For example - a and A +Shift). The value will be saved to disk. Make sure that the special modifier key is pressed before the symbol key. If you enter the same characters for one button or the same modifiers, an error message will appear. You can clear the value on the button by deleting the characters in the input line. Add values for multiple buttons."
 key_tutor_back,Нажмите чтобы вернуться назад.,Click to go back.
 
-key_tutor_export,Экспорт урока и клавиатуры,Exporting lesson and keyboard
-key_tutor_import,Импорт урока и клавиатуры,Importing lesson and keyboard
-key_tutor_dir_save_kb_lesson,Выберите директорию для экспорта клавиатуры и урока,Select the directory to export the keyboard and the lesson
+key_tutor_export_lesson,Экспорт урока,Exporting a lesson
+key_tutor_select_lesson,Выделите урок,Select the lesson
+key_tutor_export,"Выберите директорию в файловой системе, куда будут скопированы файлы, содержащие описание выделенного урока и клавиатуры с нужным языком. Этими файлами вы можете обмениваться с другими пользователями удобным вам способом.",Select the directory in the file system where the files containing the description of the selected lesson and the keyboard with the desired language will be copied. You can share these files with other users in a way that is convenient for you.
+key_tutor_import_lesson,Импорт урока,Importing a lesson
+key_tutor_import,Выберите файлы содержащие описание урока и клавиатуры с нужным языком. Этими уроками вы сможете пользоваться как встроенными.,Select the files containing the description of the lesson and the keyboard with the desired language. You can use these lessons as built-in.
 
