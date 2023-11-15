@@ -62,7 +62,8 @@ func add_tutor(tutor_path:String, parent:Node):
 		var tutor_name = tutor_path.get_file().get_basename()
 		for node in parent.get_children():
 			if node.name == tutor_name:
-				return
+				parent.remove_child(node)
+				break
 		var tutor = load(tutor_path).instantiate()
 		if tutor:
 			tutor.show()
@@ -82,13 +83,13 @@ func export_kb_lesson(lesson:String, to_dir:String):
 	var to = to_dir + "/" + lesson + _lesson_extension
 	var status = DirAccess.copy_absolute(from, to)
 	if status != OK:
-		OS.alert(error_string(status) + " " + from + "->" + to, tr("key_error"))
+		OS.alert(error_string(status) + " " + from + "->" + to, tr("key_title_error"))
 	var lang = get_lesson_lang(lesson)
 	from = get_assets_path() + _keyboards + lang + _keyboard_extension
 	to = to_dir + "/" + lang + _keyboard_extension
 	status = DirAccess.copy_absolute(from, to)
 	if status != OK:
-		OS.alert(error_string(status) + " " + from + "->" + to, tr("key_error"))
+		OS.alert(error_string(status) + " " + from + "->" + to, tr("key_title_error"))
 		
 func import_kb_lesson(paths:PackedStringArray):
 	for from in paths:
@@ -96,12 +97,12 @@ func import_kb_lesson(paths:PackedStringArray):
 			var to = get_assets_path() + _keyboards + from.get_file()
 			var status = DirAccess.copy_absolute(from, to)
 			if status != OK:
-				OS.alert(error_string(status) + " " + from + "->" + to, tr("key_error"))
+				OS.alert(error_string(status) + " " + from + "->" + to, tr("key_title_error"))
 		if _lesson_extension in from:
 			var to = get_assets_path() + _lessons + from.get_file()
 			var status = DirAccess.copy_absolute(from, to)
 			if status != OK:
-				OS.alert(error_string(status) + " " + from + "->" + to, tr("key_error"))
+				OS.alert(error_string(status) + " " + from + "->" + to, tr("key_title_error"))
 	
 func copy_res_json_files(from_dir:String, to_dir:String):
 	make_dir(to_dir)
