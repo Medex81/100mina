@@ -4,7 +4,7 @@ extends Node
 
 enum EFingers{l1, l2, l3 , l4, l5, r1, r2, r3, r4, r5}
 
-const version = "0.2"
+const app_version = "0.2"
 const _keyboard_extension = ".kbd"
 const _lesson_extension = ".lsn"
 const _cfg_extension = ".json"
@@ -14,7 +14,7 @@ const _assets_path = "assets/"
 const _game_path = "app/"
 const _keyboards = "keyboards/"
 const _lessons = "lessons/"
-const _state = "state"
+const _state = "state_v1"
 const _lang_list_path = "res://app/misc/godot_lang_list.txt"
 const _key_done = "done"
 
