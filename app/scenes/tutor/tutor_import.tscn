@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjskj8qkmrs4m"]
+
+[ext_resource type="PackedScene" uid="uid://c3uh5l4llpvki" path="res://app/scenes/tutor/step.tscn" id="1_1y2nr"]
+[ext_resource type="PackedScene" uid="uid://rxuw273q8tli" path="res://app/scenes/tutor/step_goal.tscn" id="2_0lis4"]
+
+[node name="tutor_import" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="step_import" parent="." instance=ExtResource("1_1y2nr")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -437.0
+offset_top = 215.0
+offset_right = -125.0
+offset_bottom = 373.0
+grow_horizontal = 0
+_hint = "key_tutor_import"
+
+[node name="step_goal" parent="step_import" instance=ExtResource("2_0lis4")]
+layout_mode = 0
+offset_left = 343.0
+offset_top = 5.0
+offset_right = 432.0
+offset_bottom = 90.0

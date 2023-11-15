@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://df5r8gf6wxscj"]
+
+[ext_resource type="PackedScene" uid="uid://c3uh5l4llpvki" path="res://app/scenes/tutor/step.tscn" id="1_81hg5"]
+[ext_resource type="PackedScene" uid="uid://rxuw273q8tli" path="res://app/scenes/tutor/step_goal.tscn" id="2_pg31y"]
+
+[node name="tutor_export" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="step_select" parent="." instance=ExtResource("1_81hg5")]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 120.0
+offset_right = 249.0
+offset_bottom = 182.0
+_hint = "key_tutor_select_lesson"
+is_paused = true
+
+[node name="step_goal" parent="step_select" instance=ExtResource("2_pg31y")]
+layout_mode = 0
+offset_left = -25.0
+offset_top = -55.0
+offset_right = 218.0
+offset_bottom = -24.0
+
+[node name="step_dialog" parent="." instance=ExtResource("1_81hg5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -466.0
+offset_top = 73.0
+offset_right = -113.0
+offset_bottom = 236.0
+_hint = "key_tutor_export"
+
+[node name="step_goal" parent="step_dialog" instance=ExtResource("2_pg31y")]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 43.0
+offset_right = 461.0
+offset_bottom = 127.0
