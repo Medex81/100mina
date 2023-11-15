@@ -13,16 +13,13 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="step_e" parent="." instance=ExtResource("1_122b0")]
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -141.5
-offset_top = -53.5
-offset_right = 141.5
-offset_bottom = 53.5
+anchors_preset = -1
+offset_left = 434.5
+offset_top = 270.5
+offset_right = 717.5
+offset_bottom = 377.5
 grow_horizontal = 2
 grow_vertical = 2
 _hint = "key_tutor_E"
@@ -35,45 +32,45 @@ is_handle_key = true
 
 [node name="step_select_lesson" parent="." instance=ExtResource("1_122b0")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -571.0
-offset_top = -165.0
-offset_right = -288.0
-offset_bottom = -58.0
+anchors_preset = -1
+anchor_left = 0.00486806
+anchor_right = 0.005
+offset_left = 0.392
+offset_top = 129.0
+offset_right = 283.24
+offset_bottom = 179.0
 grow_horizontal = 2
 grow_vertical = 2
 _hint = "key_tutor_lesson_sel_new"
 is_paused = true
+metadata/_edit_use_anchors_ = true
 
 [node name="step_goal" parent="step_select_lesson" instance=ExtResource("2_f0r4m")]
 layout_mode = 0
-offset_left = 1.0
-offset_top = -88.0
-offset_right = 249.0
-offset_bottom = -58.0
+offset_left = -9.0
+offset_top = -63.0
+offset_right = 239.0
+offset_bottom = -33.0
 
 [node name="step_key_kb_edit" parent="." instance=ExtResource("1_122b0")]
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -573.0
-offset_top = 151.0
-offset_right = -290.0
-offset_bottom = 258.0
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -112.0
+offset_right = 229.0
+offset_bottom = -41.0
 grow_horizontal = 2
 grow_vertical = 2
 _hint = "key_tutor_create_keyboard"
+metadata/_edit_use_anchors_ = true
 
 [node name="step_goal" parent="step_key_kb_edit" instance=ExtResource("2_f0r4m")]
-layout_mode = 0
-offset_left = 66.0
-offset_top = 137.0
-offset_right = 103.0
-offset_bottom = 167.0
+layout_mode = 1
+anchors_preset = -1
+offset_left = 50.0
+offset_top = 81.0
+offset_right = 93.0
+offset_bottom = 115.0
