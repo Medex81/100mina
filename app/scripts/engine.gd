@@ -4,28 +4,38 @@ extends Node
 
 enum EFingers{l1, l2, l3 , l4, l5, r1, r2, r3, r4, r5}
 
-const app_version = "0.2"
-const _keyboard_extension = ".kbd"
-const _lesson_extension = ".lsn"
-const _cfg_extension = ".json"
 const _res_path = "res://"
 const _user_path = "user://"
 const _assets_path = "assets/"
 const _game_path = "app/"
 const _keyboards = "keyboards/"
 const _lessons = "lessons/"
-const _state = "state_v1"
 const _lang_list_path = "res://app/misc/godot_lang_list.txt"
-const _key_done = "done"
-
-const key_simple = "Simple"
 const keyboard_scene = "res://app/scenes/types.tscn"
 const lessons_scene = "res://app/scenes/lessons.tscn"
+
+const _keyboard_extension = ".kbd"
+const _lesson_extension = ".lsn"
+const _cfg_extension = ".json"
+const _txt_extension = ".txt"
+
+const app_version = 0.2
+const keyboard_version = 1
+const lesson_version = 1
+
+const _state = "state"
+const _changelog = "changelog"
+const _key_done = "done"
+const key_simple = "Simple"
 const key_part_symbols = "part_symbols"
 const key_lang = "lang"
 const key_parts = "parts"
 const key_curent_lesson = "curent_lesson"
 const key_tutors_done = "tutors_done"
+const key_keyboard_version = "keyboard_version"
+const key_lesson_version = "lesson_version"
+const key_keys = "keys"
+const key_app_version = "app_version"
 
 
 # the status of passing lessons is saved between sessions.
@@ -71,12 +81,13 @@ func add_tutor(tutor_path:String, parent:Node):
 	
 func _ready():
 	state = _load_dict_from_cfg_file(get_state_path())
-	# copy the built-in lessons and keyboards to the user's data
-	var assets_path = get_assets_path()
-	if not DirAccess.dir_exists_absolute(assets_path + _keyboards):
-		copy_res_json_files(get_app_assets_path() + _keyboards, assets_path + _keyboards)
-	if not DirAccess.dir_exists_absolute(assets_path + _lessons):
-		copy_res_json_files(get_app_assets_path() + _lessons, assets_path + _lessons)
+	var version = state.get(key_app_version, 0)
+	if version < app_version:
+		state[key_app_version] = app_version
+		# copy the built-in lessons and keyboards to the user's data
+		copy_res_json_files(get_app_assets_path() + _keyboards, get_assets_path() + _keyboards)
+		copy_res_json_files(get_app_assets_path() + _lessons, get_assets_path() + _lessons)
+		copy_res_txt_file(_res_path + _changelog + _txt_extension, _user_path)
 		
 func export_kb_lesson(lesson:String, to_dir:String):
 	var from = get_assets_path() + _lessons + lesson + _lesson_extension
@@ -110,12 +121,24 @@ func copy_res_json_files(from_dir:String, to_dir:String):
 	for file in file_list:
 		var dict = _load_dict_from_cfg_file(from_dir + file)
 		_save_dict_to_cfg_file(to_dir + file, dict)
+		
+func copy_res_txt_file(path:String, to_dir:String):
+	make_dir(to_dir)
+	var text = _load_txt_file(path)
+	_save_txt_file(to_dir + path.get_file(), text)
 
 func _save_dict_to_cfg_file(path:String, dict:Dictionary):
 	make_dir(path.get_base_dir())
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
 		file.store_line(JSON.stringify(dict))
+		file.flush()
+		
+func _save_txt_file(path:String, text:String):
+	make_dir(path.get_base_dir())
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	if file:
+		file.store_line(text)
 		file.flush()
 		
 func _load_dict_from_cfg_file(path:String)->Dictionary:
@@ -128,19 +151,43 @@ func _load_dict_from_cfg_file(path:String)->Dictionary:
 				return json.data
 	return {}
 	
+func _load_txt_file(path:String)->String:
+	if FileAccess.file_exists(path):
+		var file = FileAccess.open(path, FileAccess.READ)
+		if file:
+			return file.get_as_text(true)
+	return ""
+	
 func save_keyboard(lang:String, dict:Dictionary):
 	var path = get_assets_path() + _keyboards + lang + _keyboard_extension
 	_save_dict_to_cfg_file(path, dict)
 
 func load_keyboard(lang:String)->Dictionary:
-	return _load_dict_from_cfg_file(get_assets_path() + _keyboards + lang + _keyboard_extension)
+	var dict = _load_dict_from_cfg_file(get_assets_path() + _keyboards + lang + _keyboard_extension)
+	var version = dict.get(key_keyboard_version, 0)
+	if version != keyboard_version:
+		OS.alert(tr("key_error_keyboard_version").format([lang + _keyboard_extension]), tr("key_title_error"))
+		return {}
+	else:
+		return dict.get(key_keys, {})
 	
 func is_keyboard_exists(lang:String)->bool:
 	return FileAccess.file_exists(get_assets_path() + _keyboards + lang + _keyboard_extension)
 
-func save_parts(lesson:String, dict:Dictionary):
+func save_lesson(lesson:String, dict:Dictionary):
 	var path = get_assets_path() + _lessons + lesson + _lesson_extension
 	_save_dict_to_cfg_file(path, dict)
+
+func load_lesson(lesson:String)->Dictionary:
+	var path = get_assets_path() + _lessons + lesson + _lesson_extension
+	var dict = _load_dict_from_cfg_file(path) as Dictionary
+	
+	var version = dict.get(key_lesson_version, 0)
+	if version != lesson_version:
+		OS.alert(tr("key_error_lesson_version").format([lesson + _lesson_extension]), tr("key_title_error"))
+		return {}
+	
+	return dict.get(key_parts, {})
 
 func save_state():
 	_save_dict_to_cfg_file(get_state_path(), state)
@@ -191,11 +238,14 @@ func remove_lesson(lesson:String):
 	
 func make_lesson(lesson:String, dict:Dictionary):
 	var path = get_assets_path() + _lessons + lesson + _lesson_extension
+	dict[key_lesson_version] = lesson_version
 	_save_dict_to_cfg_file(path, dict)
 	
 func make_keyboard(lang:String):
 	var path = get_assets_path() + _keyboards + lang + _keyboard_extension
-	_save_dict_to_cfg_file(path, {})
+	var dict:Dictionary
+	dict[key_keyboard_version] = keyboard_version
+	_save_dict_to_cfg_file(path, dict)
 
 func remove_keyboard(lang:String):
 	var path = get_assets_path() + _keyboards + lang + _keyboard_extension
@@ -212,7 +262,5 @@ func get_lesson_lang(lesson:String)->String:
 	var dict = _load_dict_from_cfg_file(path) as Dictionary
 	return dict.get(key_lang, "")
 	
-func get_lesson_parts(lesson:String)->Dictionary:
-	var path = get_assets_path() + _lessons + lesson + _lesson_extension
-	var dict = _load_dict_from_cfg_file(path) as Dictionary
-	return dict.get(key_parts, {})
+func get_changelog_path()->String:
+	return OS.get_user_data_dir().path_join(_changelog + _txt_extension)
