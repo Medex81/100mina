@@ -20,7 +20,7 @@ func _on_add_pressed():
 		if new_part not in _parts:
 			_parts[new_part] = ""
 			$list.add_item(new_part)
-			TypeEngine.save_parts(_lesson, make_lesson_dict())
+			TypeEngine.save_lesson(_lesson, make_lesson_dict())
 			get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_sel_new_part")
 	else:
 		OS.alert(tr("key_error_empty_part_name"), tr("key_title_error"))
@@ -35,7 +35,7 @@ func _on_remove_pressed():
 	var select_id = $list.get_selected_items() as Array
 	if not select_id.is_empty():
 		_parts.erase($list.get_item_text(select_id.front()))
-		TypeEngine.save_parts(_lesson, make_lesson_dict())
+		TypeEngine.save_lesson(_lesson, make_lesson_dict())
 		add_items_filtered()
 	
 # fill in the list of parts from the lesson data
@@ -48,7 +48,7 @@ func set_parts(lesson:String):
 		return
 	emit_signal("send_part_clicked", "")
 	_lesson = lesson
-	_parts = TypeEngine.get_lesson_parts(lesson)
+	_parts = TypeEngine.load_lesson(lesson)
 	_lang = TypeEngine.get_lesson_lang(lesson)
 	add_items_filtered()
 	
@@ -67,7 +67,7 @@ func save_part(symbols:String):
 	var select_id = $list.get_selected_items() as Array
 	if not select_id.is_empty() and not _lesson.is_empty():
 		_parts[$list.get_item_text(select_id.front())] = symbols
-		TypeEngine.save_parts(_lesson, make_lesson_dict())
+		TypeEngine.save_lesson(_lesson, make_lesson_dict())
 		OS.alert(tr("key_done_part_saved"), "")
 	else:
 		OS.alert(tr("key_error_not_selected_part"), tr("key_title_error"))

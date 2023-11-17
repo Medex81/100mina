@@ -46,7 +46,7 @@ func _on_list_item_clicked(index, _at_position, _mouse_button_index):
 	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_dialog")
 
 func start_lesson(lesson:String):
-	var parts = TypeEngine.get_lesson_parts(lesson)
+	var parts = TypeEngine.load_lesson(lesson)
 	_lang = TypeEngine.get_lesson_lang(lesson)
 	if not TypeEngine.is_keyboard_exists(_lang):
 		OS.alert(tr("key_error_kb_not_exists").format([_lang, lesson]), tr("key_title_error"))

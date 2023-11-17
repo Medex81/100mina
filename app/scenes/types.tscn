@@ -31,35 +31,30 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 script = ExtResource("1_com5d")
 new_kb_tutor = "res://app/scenes/tutor/tutor_new_keyboard.tscn"
+keyboard_start_tutor = "res://app/scenes/tutor/tutor_start_type.tscn"
 metadata/_edit_use_anchors_ = true
 
-[node name="margin" type="MarginContainer" parent="."]
+[node name="type_area" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -188.0
+offset_right = -5.0
+offset_bottom = -118.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-metadata/_edit_use_anchors_ = true
-
-[node name="vbox" type="VBoxContainer" parent="margin"]
-layout_mode = 2
-
-[node name="type_area" type="Panel" parent="margin/vbox"]
-custom_minimum_size = Vector2(0, 70)
-layout_mode = 2
-size_flags_vertical = 10
-size_flags_stretch_ratio = 1.04
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_6vyuw")
 script = ExtResource("1_16nid")
 _sound_error = "res://assets/sounds/error.wav"
 _sound_success = "res://assets/sounds/success.wav"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="margin/vbox/type_area"]
+[node name="HBoxContainer" type="HBoxContainer" parent="type_area"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,7 +65,7 @@ theme_override_constants/separation = 5
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="accept" type="LineEdit" parent="margin/vbox/type_area/HBoxContainer"]
+[node name="accept" type="LineEdit" parent="type_area/HBoxContainer"]
 clip_contents = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 7
@@ -84,7 +79,7 @@ deselect_on_focus_loss_enabled = false
 flat = true
 caret_mid_grapheme = false
 
-[node name="input" type="Label" parent="margin/vbox/type_area/HBoxContainer"]
+[node name="input" type="Label" parent="type_area/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -97,19 +92,26 @@ vertical_alignment = 1
 autowrap_mode = 1
 clip_text = true
 
-[node name="Timer" type="Timer" parent="margin/vbox/type_area"]
+[node name="Timer" type="Timer" parent="type_area"]
 wait_time = 0.5
 one_shot = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="margin/vbox/type_area"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="type_area"]
 
-[node name="keyboards" type="Control" parent="margin/vbox"]
+[node name="keyboards" type="Control" parent="."]
 layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.5
+anchor_top = 0.573
+anchor_right = 0.5
+anchor_bottom = 0.573
+offset_top = -0.304016
+offset_bottom = -0.304016
 size_flags_horizontal = 4
-size_flags_vertical = 3
+size_flags_vertical = 4
 size_flags_stretch_ratio = 3.45
 
-[node name="keyboard" parent="margin/vbox/keyboards" instance=ExtResource("1_4u2va")]
+[node name="keyboard" parent="keyboards" instance=ExtResource("1_4u2va")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -121,15 +123,21 @@ offset_top = -142.5
 offset_right = 443.0
 offset_bottom = 157.5
 
-[node name="fingers" type="Control" parent="margin/vbox"]
+[node name="fingers" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_vertical = 3
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
 size_flags_stretch_ratio = 0.0
 mouse_filter = 2
 script = ExtResource("4_wkajq")
 
-[node name="Control" type="Control" parent="margin/vbox/fingers"]
+[node name="Control" type="Control" parent="fingers"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 8
@@ -144,79 +152,85 @@ offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="l1" type="Line2D" parent="margin/vbox/fingers/Control"]
+[node name="l1" type="Line2D" parent="fingers/Control"]
 position = Vector2(-133, 8)
 points = PackedVector2Array(150, 70, 161, 109)
 width = 40.0
 joint_mode = 2
 begin_cap_mode = 2
 
-[node name="l2" type="Line2D" parent="margin/vbox/fingers/Control"]
+[node name="l2" type="Line2D" parent="fingers/Control"]
 position = Vector2(-83, 9)
 points = PackedVector2Array(151, 28, 159, 105)
 width = 40.0
 joint_mode = 2
 begin_cap_mode = 2
 
-[node name="l3" type="Line2D" parent="margin/vbox/fingers/Control"]
+[node name="l3" type="Line2D" parent="fingers/Control"]
 position = Vector2(-35, 10)
 points = PackedVector2Array(161, 17, 157, 104)
 width = 40.0
 joint_mode = 2
 begin_cap_mode = 2
 
-[node name="l4" type="Line2D" parent="margin/vbox/fingers/Control"]
+[node name="l4" type="Line2D" parent="fingers/Control"]
 position = Vector2(19, 10)
 points = PackedVector2Array(158, 32, 149, 111)
 width = 40.0
 joint_mode = 2
 begin_cap_mode = 2
 
-[node name="l5" type="Line2D" parent="margin/vbox/fingers/Control"]
+[node name="l5" type="Line2D" parent="fingers/Control"]
 position = Vector2(65, 12)
 points = PackedVector2Array(171, 81, 144, 114)
 width = 40.0
 joint_mode = 2
 begin_cap_mode = 2
 
-[node name="r1" type="Line2D" parent="margin/vbox/fingers/Control"]
+[node name="r1" type="Line2D" parent="fingers/Control"]
 position = Vector2(231, 13)
 points = PackedVector2Array(114, 80, 144, 114)
 width = 40.0
 joint_mode = 2
 begin_cap_mode = 2
 
-[node name="r2" type="Line2D" parent="margin/vbox/fingers/Control"]
+[node name="r2" type="Line2D" parent="fingers/Control"]
 position = Vector2(258, 9)
 points = PackedVector2Array(151, 28, 159, 105)
 width = 40.0
 joint_mode = 2
 begin_cap_mode = 2
 
-[node name="r3" type="Line2D" parent="margin/vbox/fingers/Control"]
+[node name="r3" type="Line2D" parent="fingers/Control"]
 position = Vector2(306, 10)
 points = PackedVector2Array(161, 17, 157, 104)
 width = 40.0
 joint_mode = 2
 begin_cap_mode = 2
 
-[node name="r4" type="Line2D" parent="margin/vbox/fingers/Control"]
+[node name="r4" type="Line2D" parent="fingers/Control"]
 position = Vector2(360, 10)
 points = PackedVector2Array(158, 32, 149, 111)
 width = 40.0
 joint_mode = 2
 begin_cap_mode = 2
 
-[node name="r5" type="Line2D" parent="margin/vbox/fingers/Control"]
+[node name="r5" type="Line2D" parent="fingers/Control"]
 position = Vector2(399, 10)
 points = PackedVector2Array(170, 71, 159, 113)
 width = 40.0
 joint_mode = 2
 begin_cap_mode = 2
 
-[node name="exit" type="TextureButton" parent="margin"]
+[node name="exit" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 100.0
+grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 tooltip_text = "key_title_back"
@@ -224,9 +238,18 @@ texture_normal = ExtResource("4_xm4gn")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="help" type="TextureButton" parent="margin"]
+[node name="help" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 tooltip_text = "key_title_hint"
@@ -234,9 +257,9 @@ texture_normal = ExtResource("6_qscni")
 ignore_texture_size = true
 stretch_mode = 5
 
-[connection signal="send_next_symbol" from="margin/vbox/type_area" to="margin/vbox/keyboards/keyboard" method="_on_type_area_send_next_symbol"]
-[connection signal="text_changed" from="margin/vbox/type_area/HBoxContainer/accept" to="margin/vbox/type_area" method="_on_accept_text_changed"]
-[connection signal="timeout" from="margin/vbox/type_area/Timer" to="margin/vbox/type_area" method="_on_timer_timeout"]
-[connection signal="send_select_finger" from="margin/vbox/keyboards/keyboard" to="margin/vbox/fingers" method="_on_keyboard_send_select_finger"]
-[connection signal="pressed" from="margin/exit" to="margin/vbox/type_area" method="_on_exit_pressed"]
-[connection signal="pressed" from="margin/help" to="." method="help_tutor"]
+[connection signal="send_next_symbol" from="type_area" to="keyboards/keyboard" method="_on_type_area_send_next_symbol"]
+[connection signal="text_changed" from="type_area/HBoxContainer/accept" to="type_area" method="_on_accept_text_changed"]
+[connection signal="timeout" from="type_area/Timer" to="type_area" method="_on_timer_timeout"]
+[connection signal="send_select_finger" from="keyboards/keyboard" to="fingers" method="_on_keyboard_send_select_finger"]
+[connection signal="pressed" from="exit" to="type_area" method="_on_exit_pressed"]
+[connection signal="pressed" from="help" to="." method="help_tutor"]

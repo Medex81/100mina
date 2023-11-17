@@ -10,36 +10,45 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="first" parent="." instance=ExtResource("1_1mdre")]
-visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.107
-anchor_top = 0.301
-anchor_right = 0.157
-anchor_bottom = 0.379
-offset_left = -91.3
-offset_top = -14.8
-offset_right = 134.1
-offset_bottom = 41.656
+anchor_left = 0.5
+anchor_top = 0.573
+anchor_right = 0.5
+anchor_bottom = 0.573
+offset_left = -409.0
+offset_top = -53.304
+offset_right = -126.0
+offset_bottom = 53.696
 _hint = "key_tutor_kb_first"
 is_paused = true
 
 [node name="step_goal" parent="first" instance=ExtResource("2_4kmvb")]
-layout_mode = 0
-offset_left = -4.0
-offset_top = -74.0
-offset_right = 59.0
-offset_bottom = -10.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.58
+anchor_top = 3.068
+anchor_right = 1.58
+anchor_bottom = 3.068
+offset_left = -494.14
+offset_top = -413.276
+offset_right = -431.14
+offset_bottom = -358.276
 
 [node name="lineedit" parent="." instance=ExtResource("1_1mdre")]
-visible = false
-layout_mode = 0
-offset_left = 253.0
-offset_top = 10.5
-offset_right = 639.0
-offset_bottom = 278.5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.572
+anchor_right = 0.5
+anchor_bottom = 0.572
+offset_left = -203.0
+offset_top = -130.656
+offset_right = 183.0
+offset_bottom = 137.344
 _hint = "key_tutor_kb_lineedit"
 
 [node name="step_goal" parent="lineedit" instance=ExtResource("2_4kmvb")]
