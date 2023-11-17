@@ -35,12 +35,15 @@ key_error_change_in_lesson,Урок {0} был изменён. Выберите 
 key_error_empty_part_name,Укажите название для новой части.,Specify a name for the new part.
 key_error_not_selected_part,Выберите часть в которую нужно сохранить символы.,Select the part where you want to save the characters.
 key_error_select_lesson,Выберите урок.,Choose a lesson
+key_error_keyboard_version,Версия файла клавиатуры {0} отличается от используемой в текущей версии приложения и не может быть применена.,The version of the keyboard file {0} differs from the one used in the current version of the application and cannot be applied.
+key_error_lesson_version,Версия файла урока {0} отличается от используемой в текущей версии приложения и не может быть применена.,The version of the lesson file {0} differs from the one used in the current version of the application and cannot be applied.
 
 key_done_lesson,Вы прошли урок!,You have passed the lesson!
 key_done_part,Вы прошли часть!,You have passed the part!
 key_done_part_saved,Часть успешно сохранена!,Part saved successfully!
 
 key_help_about_text,Программа предназначена для освоения десятипальцевого слепого метода набора символов на клавиатуре. Имеет встроенный редактор клавиатур и уроков. Позволяет экспортировать и импортировать файлы клавиатур и уроков.,The program is designed to master the ten-finger blind method of typing characters on the keyboard. It has a built-in keyboard lessons editor. Allows you to export and import keyboard and lesson files that can be distributed.
+key_help_changelog,История изменений,Changelog
 
 key_hint_create_lesson,Создать урок,Create a lesson
 key_hint_remove_lesson,Удалить выделенный урок,Remove the selected lesson
@@ -55,6 +58,11 @@ key_tutor_lesson_single_click,Кликните мышью по имени уро
 key_tutor_lesson_part_list,Появится список частей урока.,A list of lesson parts will appear.
 key_tutor_lesson_find,Для поиска в списке введите часть названия и нажмите Enter.,To search in the list - enter part of the name and press Enter.
 key_tutor_lesson_double_start,Сделайте двойной клик по уроку или части для старта.,Double-click on the lesson or a part to start.
+
+key_tutor_keyboard_type_field,"Эти символы вам нужно вводить с клавиатуры. Убедитесь, что вы переключились на нужную раскладку клавиатуры.",You need to enter these characters from the keyboard. Make sure that you have switched to the desired keyboard layout.
+key_tutor_keyboard_key_green,"Следующий символ и модификатор, которые нужно нажать на клавиатуре, будут подсвечиваться зелёными рамками.",The next character and modifier to be pressed on the keyboard will be highlighted with green frames.
+key_tutor_finger,"Палец, которым нужно нажимать кнопку на клавиатуре.",The finger with which to press the button on the keyboard.
+key_tutor_back,Нажмите эту кнопку если захотите вернуться к списку уроков.,Click this button if you want to return to the list of lessons.
 
 key_tutor_E,Нажмите Е для переключения в режим редактирования.,Press E to switch to edit mode.
 
