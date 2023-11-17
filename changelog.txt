@@ -5,3 +5,13 @@ date	: 24.10.2023
 	- Continuation of the lesson after restarting from the last completed part.
 	- Creating and editing a lesson.
 	- Creating and editing a keyboard.
+
+version	: 0.2
+date	: 17.11.2023
+	- Simplified keyboard editor.
+	- Replacing helper screenshots with tutoring.
+	- Now you can't start exporting without highlighting the lesson.
+	- In the editing mode, we hide the field with the symbols of the lesson.
+	- Replacement of some translation keys.
+	- Added versions support for lessons and keyboards.
+
