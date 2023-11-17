@@ -123,6 +123,11 @@ layout_mode = 2
 text = "key_tutor_import_lesson"
 flat = true
 
+[node name="changelog" type="Button" parent="margin/VBoxContainer"]
+layout_mode = 2
+text = "key_help_changelog"
+flat = true
+
 [connection signal="pressed" from="margin/VBoxContainer/vk" to="." method="_on_pressed"]
 [connection signal="pressed" from="margin/VBoxContainer/github" to="." method="_on_pressed"]
 [connection signal="pressed" from="margin/VBoxContainer/telegram" to="." method="_on_pressed"]
@@ -131,3 +136,4 @@ flat = true
 [connection signal="pressed" from="margin/VBoxContainer/create_keyboard" to="." method="_on_create_keyboard_pressed"]
 [connection signal="pressed" from="margin/VBoxContainer/export" to="." method="_on_export_pressed"]
 [connection signal="pressed" from="margin/VBoxContainer/import" to="." method="_on_import_pressed"]
+[connection signal="pressed" from="margin/VBoxContainer/changelog" to="." method="_on_changelog_pressed"]

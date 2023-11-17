@@ -34,3 +34,7 @@ func _on_import_pressed():
 func _on_help_pressed():
 	visible = !visible
 	
+
+func _on_changelog_pressed():
+	_on_pressed()
+	OS.shell_open(TypeEngine.get_changelog_path())
