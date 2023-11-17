@@ -84,6 +84,7 @@ func _ready():
 	var version = state.get(key_app_version, 0)
 	if version < app_version:
 		state[key_app_version] = app_version
+		save_state()
 		# copy the built-in lessons and keyboards to the user's data
 		copy_res_json_files(get_app_assets_path() + _keyboards, get_assets_path() + _keyboards)
 		copy_res_json_files(get_app_assets_path() + _lessons, get_assets_path() + _lessons)
