@@ -12,10 +12,13 @@ const _special = "specials"
 
 # at the start, we set the data to the button
 func set_opt(_key_sets:Dictionary):
-	if _special not in button_group.resource_name and not _key_sets.is_empty():
-		key_sets = _key_sets
-		var value = key_sets.find_key(TypeEngine.key_simple)
-		text = value if value else ""
+	if _special not in button_group.resource_name:
+		if not _key_sets.is_empty():
+			key_sets = _key_sets
+			var value = key_sets.find_key(TypeEngine.key_simple)
+			text = value if value else ""
+		else:
+			text = ""
 
 # data for a group of symbol buttons
 func on_send_group(data:String, is_right:bool = false)->bool:

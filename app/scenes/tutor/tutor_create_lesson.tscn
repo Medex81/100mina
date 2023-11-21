@@ -205,6 +205,7 @@ offset_right = 232.0
 offset_bottom = 139.0
 
 [node name="step_add_part" parent="." instance=ExtResource("1_fdts2")]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -262,7 +263,7 @@ layout_mode = 1
 anchors_preset = -1
 offset_left = -96.0
 offset_top = -165.0
-offset_right = 437.0
+offset_right = 274.0
 offset_bottom = -23.0
 
 [node name="step_save_symbols" parent="." instance=ExtResource("1_fdts2")]

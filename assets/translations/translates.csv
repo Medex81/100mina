@@ -19,6 +19,7 @@ key_title_hint,Подсказка,Hint
 key_title_congratulations,Поздравляю!,Congratulations!
 key_title_close,Закрыть,Close
 key_title_version,Версия {0},Version {0}
+key_title_user_name,Имя пользователя,Username
 
 key_error_already_exists,Значение кнопки {0} уже существует! Значения не должны дублироваться.,Key set {0} already exists! The values should not be duplicated.
 key_error_empty_simple,Для ключа {0} должно быть указано значение!,For the key {0} must be specified a value!
@@ -37,6 +38,9 @@ key_error_not_selected_part,Выберите часть в которую нуж
 key_error_select_lesson,Выберите урок.,Choose a lesson
 key_error_keyboard_version,Версия файла клавиатуры {0} отличается от используемой в текущей версии приложения и не может быть применена.,The version of the keyboard file {0} differs from the one used in the current version of the application and cannot be applied.
 key_error_lesson_version,Версия файла урока {0} отличается от используемой в текущей версии приложения и не может быть применена.,The version of the lesson file {0} differs from the one used in the current version of the application and cannot be applied.
+key_error_username,В имени пользователя старайтесь использовать только буквы и цифры.,Try to use only letters and numbers in the username.
+key_error_user_select,Сначала выберите пользователя.,First select the user.
+key_error_copy_file,Ошибка копирования файла {0} {1}.,Error copying file {0} {1}.
 
 key_done_lesson,Вы прошли урок!,You have passed the lesson!
 key_done_part,Вы прошли часть!,You have passed the part!
@@ -51,7 +55,15 @@ key_hint_edit_keyboard,Редактор клавиатуры для языка �
 key_hint_add_part,Добавить часть урока,Add a lesson part
 key_hint_remove_part,Удалить выделенную часть урока,Remove the selected lesson part
 key_hint_part_name,Имя добавляемой части урока,Name of the lesson part to be added
+key_hint_part_name_holder,Название части,Part name
 key_hint_save_symbols,Сохранить введенные символы в выделенной части,Save the entered characters in the selected part
+key_hint_rename_user,Изменить имя пользователя,Change User Name
+key_hint_add_user,Добавить пользователя,Add a user
+key_hint_remove_user,Удалить пользователя,Delete a user
+key_hint_users,Пользователи,Users
+key_hint_type_speed,{0} с/м,{0} spm
+key_hint_type_speed_session,{0} с/м урока,{0} spm lesson
+key_hint_type_speed_norm, норма 220 с/м, norm 220 spm
 
 
 key_tutor_lesson_single_click,Кликните мышью по имени урока.,Click on the lesson name.

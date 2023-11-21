@@ -27,6 +27,7 @@ func _on_accept_text_changed(new_text:String):
 	# the character entered is expected = delete the character and highlight the next one
 	if new_text == $HBoxContainer/input.text.left(1):
 		$HBoxContainer/input.text = $HBoxContainer/input.text.erase(0)
+		$HBoxContainer/output.text += new_text
 		emit_signal("send_next_symbol", $HBoxContainer/input.text.left(1))
 	else:
 		play_sound(_sound_error)

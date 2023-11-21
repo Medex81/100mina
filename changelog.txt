@@ -14,4 +14,15 @@ date	: 17.11.2023
 	- In the editing mode, we hide the field with the symbols of the lesson.
 	- Replacement of some translation keys.
 	- Added versions support for lessons and keyboards.
-
+	
+version	: 0.3
+date	: 22.11.2023
+	- Added multi-user mode.
+	- Added output of character set speed statistics.
+	- Added output of accepted characters.
+	- Added support for saving the window size between app launches.
+	- Fixed the error of synchronously changing the state of the user window and the button on the lesson panel.
+	- Fixed the error of launching the tutorial of filling a new keyboard at the start.
+	- Fixed the error of setting an empty value to a virtual button.
+	- Fixed the error of resetting the keyboard file version.
+	- Fixed the error of resetting the version of the lesson file.

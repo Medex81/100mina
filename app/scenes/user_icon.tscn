@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://8gfdgse005io"]
+
+[ext_resource type="Script" path="res://app/scenes/user_icon.gd" id="1_yw8sl"]
+[ext_resource type="Texture2D" uid="uid://bsg1xbcdmu5oh" path="res://assets/textures/gear.png" id="2_74tam"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t322s"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="user_icon" type="Panel"]
+clip_contents = true
+custom_minimum_size = Vector2(40, 40)
+offset_right = 57.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t322s")
+script = ExtResource("1_yw8sl")
+
+[node name="label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0701754
+anchor_top = 0.103448
+anchor_right = 0.912281
+anchor_bottom = 0.931035
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="edit_icon" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("2_74tam")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="user_image_dlg" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(565, 300)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png", "*.jpeg", "*.jpg")
+
+[connection signal="pressed" from="edit_icon" to="." method="_on_edit_icon_pressed"]
+[connection signal="file_selected" from="user_image_dlg" to="." method="_on_user_image_dlg_file_selected"]

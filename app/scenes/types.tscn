@@ -68,6 +68,7 @@ metadata/_edit_use_anchors_ = true
 [node name="accept" type="LineEdit" parent="type_area/HBoxContainer"]
 clip_contents = true
 layout_mode = 2
+size_flags_stretch_ratio = 0.11
 theme_override_font_sizes/font_size = 7
 alignment = 2
 max_length = 1
@@ -78,6 +79,17 @@ selecting_enabled = false
 deselect_on_focus_loss_enabled = false
 flat = true
 caret_mid_grapheme = false
+
+[node name="output" type="Label" parent="type_area/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 10.18
+theme_override_colors/font_color = Color(0.486275, 0.486275, 0.47451, 1)
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
 
 [node name="input" type="Label" parent="type_area/HBoxContainer"]
 layout_mode = 2
@@ -257,6 +269,40 @@ texture_normal = ExtResource("6_qscni")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="results" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="spm" type="Label" parent="results"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.780392, 0.815686, 1)
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sp_session" type="Label" parent="results"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.780392, 0.32549, 1)
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sp_norm" type="Label" parent="results"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.968627, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "key_hint_type_speed_norm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="send_next_symbol" from="type_area" to="." method="_on_type_area_send_next_symbol"]
 [connection signal="send_next_symbol" from="type_area" to="keyboards/keyboard" method="_on_type_area_send_next_symbol"]
 [connection signal="text_changed" from="type_area/HBoxContainer/accept" to="type_area" method="_on_accept_text_changed"]
 [connection signal="timeout" from="type_area/Timer" to="type_area" method="_on_timer_timeout"]
