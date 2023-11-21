@@ -30,6 +30,7 @@ window/subwindows/embed_subwindows=false
 [internationalization]
 
 locale/translations=PackedStringArray("res://assets/translations/translates.en.translation", "res://assets/translations/translates.ru.translation")
+locale/locale_filter_mode=0
 
 [rendering]
 
