@@ -4,7 +4,7 @@ extends VBoxContainer
 
 var _lesson:String
 var _parts:Dictionary
-var _lang:String
+var _lesson_dict:Dictionary
 
 # signal to the symbol editor to display the contents of the part
 signal send_part_clicked(symbols:String)
@@ -20,22 +20,18 @@ func _on_add_pressed():
 		if new_part not in _parts:
 			_parts[new_part] = ""
 			$list.add_item(new_part)
-			TypeEngine.save_lesson(_lesson, make_lesson_dict())
+			_lesson_dict[TypeEngine.key_parts] = _parts
+			TypeEngine.save_lesson(_lesson, _lesson_dict)
 			get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_sel_new_part")
 	else:
 		OS.alert(tr("key_error_empty_part_name"), tr("key_title_error"))
-		
-func make_lesson_dict()->Dictionary:
-	var dict:Dictionary
-	dict[TypeEngine.key_parts] = _parts
-	dict[TypeEngine.key_lang] = _lang
-	return dict
 			
 func _on_remove_pressed():
 	var select_id = $list.get_selected_items() as Array
 	if not select_id.is_empty():
 		_parts.erase($list.get_item_text(select_id.front()))
-		TypeEngine.save_lesson(_lesson, make_lesson_dict())
+		_lesson_dict[TypeEngine.key_parts] = _parts
+		TypeEngine.save_lesson(_lesson, _lesson_dict)
 		add_items_filtered()
 	
 # fill in the list of parts from the lesson data
@@ -43,13 +39,12 @@ func set_parts(lesson:String):
 	if lesson.is_empty():
 		_lesson = lesson
 		_parts.clear()
-		_lang = ""
 		$list.clear()
 		return
 	emit_signal("send_part_clicked", "")
 	_lesson = lesson
-	_parts = TypeEngine.load_lesson(lesson)
-	_lang = TypeEngine.get_lesson_lang(lesson)
+	_lesson_dict = TypeEngine.load_lesson(lesson)
+	_parts = _lesson_dict.get(TypeEngine.key_parts, {})
 	add_items_filtered()
 	
 func add_items_filtered(filter:String = ""):
@@ -67,21 +62,23 @@ func save_part(symbols:String):
 	var select_id = $list.get_selected_items() as Array
 	if not select_id.is_empty() and not _lesson.is_empty():
 		_parts[$list.get_item_text(select_id.front())] = symbols
-		TypeEngine.save_lesson(_lesson, make_lesson_dict())
+		_lesson_dict[TypeEngine.key_parts] = _parts
+		TypeEngine.save_lesson(_lesson, _lesson_dict)
 		OS.alert(tr("key_done_part_saved"), "")
 	else:
 		OS.alert(tr("key_error_not_selected_part"), tr("key_title_error"))
 
 # we start the lesson from the selected part even if we finished earlier on another one
 func _on_list_item_activated(index):
-	if not _lang.is_empty():
+	var lang = _lesson_dict.get(TypeEngine.key_lang, "")
+	if not lang.is_empty():
 		var data = KeyboardDataResource.new()
-		data.lang = _lang
+		data.lang = lang
 		data.lesson = _lesson
 		data.part = $list.get_item_text(index)
 		data.symbols = _parts.get(data.part, "")
 		TypeEngine.scene_mediator[TypeEngine.keyboard_scene] = data
 		get_tree().change_scene_to_file(TypeEngine.keyboard_scene)
 	else:
-		OS.alert(tr("key_error_kb_not_exists").format([_lang]), tr("key_title_error"))
+		OS.alert(tr("key_error_kb_not_exists").format([lang]), tr("key_title_error"))
 
