@@ -19,7 +19,8 @@ func _ready():
 		state(_scene_data.edit_mode)
 		if _scene_data.edit_mode:
 			if not new_kb_tutor.is_empty():
-				help_tutor()
+				if not new_kb_tutor.is_empty() and not TypeEngine.is_tutor_done(new_kb_tutor.get_file().get_basename()):
+					help_tutor()
 		else:
 			if not keyboard_start_tutor.is_empty() and not TypeEngine.is_tutor_done(keyboard_start_tutor.get_file().get_basename()):
 				TypeEngine.add_tutor(keyboard_start_tutor, self)
@@ -27,6 +28,7 @@ func _ready():
 func state(mode:bool):
 	$help.visible = mode
 	$fingers.visible = !mode
+	$results.visible = !mode
 		
 func help_tutor():
 	TypeEngine.add_tutor(new_kb_tutor, self)
