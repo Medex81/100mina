@@ -55,6 +55,7 @@ key_hint_edit_keyboard,Редактор клавиатуры для языка �
 key_hint_add_part,Добавить часть урока,Add a lesson part
 key_hint_remove_part,Удалить выделенную часть урока,Remove the selected lesson part
 key_hint_part_name,Имя добавляемой части урока,Name of the lesson part to be added
+key_hint_part_name_holder,Название части,Part name
 key_hint_save_symbols,Сохранить введенные символы в выделенной части,Save the entered characters in the selected part
 key_hint_rename_user,Изменить имя пользователя,Change User Name
 key_hint_add_user,Добавить пользователя,Add a user
