@@ -30,6 +30,7 @@ func _on_rename_pressed():
 			TypeEngine.set_current_user(new_user_name)
 			update()
 			set_current_user_icon_symbols()
+			emit_signal("send_change_current_user")
 		else:
 			OS.alert(tr("key_error_username"), tr("key_title_error"))
 	else:
