@@ -9,8 +9,6 @@ var specials_button_group:ButtonGroup
 var symbols_button_group:ButtonGroup
 # a set of data on buttons for the keyboard
 var _key_binds:Dictionary
-# current button pressed
-#var _selected_button:KeyButton = null
 # data from the lesson scene transmitted through the data mediator to engine.gd
 var _scene_data:KeyboardDataResource
 # crutch. If the input sent us a symbol before the initialization of the current node, we will save the symbol and process it when ready.
@@ -23,7 +21,6 @@ signal send_select_finger(index:int)
 func _unhandled_input(event):
 	if event is InputEventKey and KEY_SPECIAL & event.keycode:
 		var modif = event.as_text_keycode() if event.is_pressed() else TypeEngine.key_simple
-		#dict_to_buttons(symbols_button_group, modif)
 		for button in symbols_button_group.get_buttons():
 			button.on_send_group(modif)
 	

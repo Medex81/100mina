@@ -16,7 +16,7 @@ func _on_text_changed(new_text):
 		for symb in new_text:
 			if symb not in _values:
 				_values[symb] = _spec_buf
-	# Удалён символ
+	# Removed symbol
 	if new_text.length() < _values.size():
 		for symb in _values:
 			if symb not in new_text:
