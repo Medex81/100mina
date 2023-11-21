@@ -20,7 +20,7 @@ const _lesson_extension = ".lsn"
 const _cfg_extension = ".json"
 const _txt_extension = ".txt"
 
-const app_version = 0.2
+const app_version = 0.3
 const keyboard_version = 1
 const lesson_version = 1
 
