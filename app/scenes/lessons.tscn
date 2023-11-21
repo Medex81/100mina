@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b00pp8ivlmu7k"]
+[gd_scene load_steps=20 format=3 uid="uid://b00pp8ivlmu7k"]
 
 [ext_resource type="Texture2D" uid="uid://dwcfax51auv5q" path="res://assets/textures/plus.png" id="1_fv4n4"]
 [ext_resource type="Script" path="res://app/scenes/mediator.gd" id="1_nh655"]
@@ -15,7 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://bg1fbcwyvq5kx" path="res://assets/textures/export.png" id="10_c3242"]
 [ext_resource type="Texture2D" uid="uid://cgndiv8f0a71j" path="res://assets/textures/import.png" id="11_0t1ba"]
 [ext_resource type="PackedScene" uid="uid://b1whxbip2vb3h" path="res://app/scenes/help.tscn" id="13_p2asw"]
+[ext_resource type="PackedScene" uid="uid://8gfdgse005io" path="res://app/scenes/user_icon.tscn" id="14_23cpy"]
 [ext_resource type="Texture2D" uid="uid://rahcufnvm2pt" path="res://assets/textures/cross.png" id="15_4kbkd"]
+[ext_resource type="PackedScene" uid="uid://cilnf2ou1exce" path="res://app/scenes/users.tscn" id="18_jb8pp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wned2"]
 border_width_left = 2
@@ -214,6 +216,29 @@ texture_normal = ExtResource("11_0t1ba")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="user" type="TextureButton" parent="main/mediator/toolbox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "key_tutor_import_lesson"
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="user_icon" parent="main/mediator/toolbox/user" instance=ExtResource("14_23cpy")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+tooltip_text = "key_hint_users"
+show_gear = false
+metadata/_edit_use_anchors_ = true
+
 [node name="file_export" type="FileDialog" parent="main/mediator/toolbox"]
 title = "Open a Directory"
 initial_position = 2
@@ -318,6 +343,20 @@ create_keyboard = "res://app/scenes/tutor/tutor_create_keyboard.tscn"
 export = "res://app/scenes/tutor/tutor_export.tscn"
 import = "res://app/scenes/tutor/tutor_import.tscn"
 
+[node name="users" parent="." instance=ExtResource("18_jb8pp")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.5
+offset_top = -251.0
+offset_right = 154.5
+offset_bottom = 251.0
+metadata/_edit_use_anchors_ = true
+
 [connection signal="send_lesson_clicked" from="main/mediator/lessons" to="main/mediator" method="_on_lessons_send_lesson_clicked"]
 [connection signal="send_lesson_clicked" from="main/mediator/lessons" to="main/mediator/toolbox" method="_on_lessons_send_lesson_clicked"]
 [connection signal="text_submitted" from="main/mediator/lessons/find" to="main/mediator/lessons" method="_on_find_text_submitted"]
@@ -338,9 +377,11 @@ import = "res://app/scenes/tutor/tutor_import.tscn"
 [connection signal="pressed" from="main/mediator/toolbox/help" to="help" method="_on_help_pressed"]
 [connection signal="pressed" from="main/mediator/toolbox/export" to="main/mediator/toolbox" method="_on_export_pressed"]
 [connection signal="pressed" from="main/mediator/toolbox/import" to="main/mediator/toolbox" method="_on_import_pressed"]
+[connection signal="pressed" from="main/mediator/toolbox/user" to="users" method="set_visibility"]
 [connection signal="dir_selected" from="main/mediator/toolbox/file_export" to="main/mediator/lessons" method="_on_file_export_dir_selected"]
 [connection signal="files_selected" from="main/mediator/toolbox/file_import" to="main/mediator/lessons" method="_on_file_import_files_selected"]
 [connection signal="send_need_update" from="main/lesson_options" to="main/mediator/lessons" method="_on_lesson_options_send_need_update"]
 [connection signal="text_submitted" from="main/lesson_options/margin/VBoxContainer/lang" to="main/lesson_options" method="_on_lang_text_submitted"]
 [connection signal="pressed" from="main/lesson_options/margin/VBoxContainer/HBoxContainer/save" to="main/lesson_options" method="_on_save_pressed"]
 [connection signal="pressed" from="main/lesson_options/margin/VBoxContainer/HBoxContainer/reject" to="main/lesson_options" method="_on_reject_pressed"]
+[connection signal="send_change_current_user" from="users" to="main/mediator/toolbox" method="set_current_user_icon_symbols"]

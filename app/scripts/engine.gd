@@ -10,6 +10,7 @@ const _assets_path = "assets/"
 const _game_path = "app/"
 const _keyboards = "keyboards/"
 const _lessons = "lessons/"
+const icons_path = "icons/"
 const _lang_list_path = "res://app/misc/godot_lang_list.txt"
 const keyboard_scene = "res://app/scenes/types.tscn"
 const lessons_scene = "res://app/scenes/lessons.tscn"
@@ -36,6 +37,11 @@ const key_keyboard_version = "keyboard_version"
 const key_lesson_version = "lesson_version"
 const key_keys = "keys"
 const key_app_version = "app_version"
+const key_users = "users"
+const key_last_user = "last_user"
+const key_defaul_user = "Default User"
+const key_user_icon = "icon"
+
 
 
 # the status of passing lessons is saved between sessions.
@@ -44,27 +50,44 @@ var state:Dictionary
 var scene_mediator:Dictionary
 var _supported_lang_list:PackedStringArray
 
+func get_current_user_data()->Dictionary:
+	var user_name = state.get(key_last_user, key_defaul_user)
+	var users_data = state.get(key_users, {})
+	return users_data.get(user_name, {})
+
 func set_part_to_state(lesson:String, part:String):
-	state[lesson] = {_key_done:part}
-	state[key_curent_lesson] = lesson
+	var user_name = state.get(key_last_user, key_defaul_user)
+	var users_data = state.get(key_users, {})
+	var user_data = users_data.get(user_name, {})
+	user_data[lesson] = {_key_done:part}
+	user_data[key_curent_lesson] = lesson
+	state[key_users][user_name] = user_data
 	save_state()
 	
 func get_part_from_state(lesson:String)->String:
-	var dict = state.get(lesson, {}) as Dictionary
+	var user_data = get_current_user_data()
+	var dict = user_data.get(lesson, {}) as Dictionary
 	return dict.get(_key_done, "")
 	
 func get_curent_lesson_from_state()->String:
+	var user_data = get_current_user_data()
 	return state.get(key_curent_lesson, "")
 
 func set_tutor_done(tutor:String):
-	var tutors_done = state.get(key_tutors_done, []) as Array
+	var user_name = state.get(key_last_user, key_defaul_user)
+	var users_data = state.get(key_users, {})
+	var user_data = users_data.get(user_name, {})
+	
+	var tutors_done = user_data.get(key_tutors_done, []) as Array
 	if tutor not in tutors_done:
 		tutors_done.append(tutor)
-		state[key_tutors_done] = tutors_done
+		user_data[key_tutors_done] = tutors_done
+		state[key_users][user_name] = user_data
 		save_state()
 
 func is_tutor_done(tutor:String)->bool:
-	var tutors_done = state.get(key_tutors_done, []) as Array
+	var user_data = get_current_user_data()
+	var tutors_done = user_data.get(key_tutors_done, []) as Array
 	return tutors_done.has(tutor)
 	
 func add_tutor(tutor_path:String, parent:Node):
@@ -89,6 +112,13 @@ func _ready():
 		copy_res_json_files(get_app_assets_path() + _keyboards, get_assets_path() + _keyboards)
 		copy_res_json_files(get_app_assets_path() + _lessons, get_assets_path() + _lessons)
 		copy_res_txt_file(_res_path + _changelog + _txt_extension, _user_path)
+		
+	if key_last_user not in state:
+		var tutor_array = state.get(key_tutors_done, [])
+		state[key_last_user] = key_defaul_user
+		state[key_users] = {key_defaul_user: {key_tutors_done:tutor_array}}
+		state.erase(key_tutors_done)
+		save_state()
 		
 func export_kb_lesson(lesson:String, to_dir:String):
 	var from = get_assets_path() + _lessons + lesson + _lesson_extension
@@ -127,6 +157,16 @@ func copy_res_txt_file(path:String, to_dir:String):
 	make_dir(to_dir)
 	var text = _load_txt_file(path)
 	_save_txt_file(to_dir + path.get_file(), text)
+
+func save_to_user_dir(file_path:String, assets_dir:String, new_name:String = "")->String:
+	var to = get_assets_path() + assets_dir
+	make_dir(to)
+	var file_name = file_path.get_file() if new_name.is_empty() else new_name + "." + file_path.get_extension()
+	var status = DirAccess.copy_absolute(file_path, to + file_name)
+	if status != OK:
+		OS.alert(tr("key_error_copy_file").format([file_path.get_file(), error_string(status)]), tr("key_title_error"))
+		return ""
+	return to + file_name
 
 func _save_dict_to_cfg_file(path:String, dict:Dictionary):
 	make_dir(path.get_base_dir())
@@ -265,3 +305,102 @@ func get_lesson_lang(lesson:String)->String:
 	
 func get_changelog_path()->String:
 	return OS.get_user_data_dir().path_join(_changelog + _txt_extension)
+	
+func rename_user(old_name:String, new_name:String):
+	var last_user_name = state.get(key_last_user, key_defaul_user)
+	if last_user_name == old_name:
+		state[key_last_user] = new_name
+	var users_data = state.get(key_users, {}) as Dictionary
+	var user_data = users_data.get(last_user_name, {})
+	users_data.erase(last_user_name)
+	state[key_users][new_name] = user_data
+	save_state()
+	
+func remove_user(user_name:String):
+	var users_data = state.get(key_users, {}) as Dictionary
+	if user_name in users_data:
+		users_data.erase(user_name)
+		state[key_users] = users_data
+		set_current_user()
+			
+func get_current_user()->String:
+	return state.get(key_last_user, key_defaul_user)
+	
+func set_current_user(user_name:String = "")->bool:
+	var users_data = state.get(key_users, {}) as Dictionary
+	if user_name.is_empty():
+		if not users_data.is_empty():
+			state[key_last_user] = users_data.keys().front()
+		else:
+			state[key_last_user] = key_defaul_user
+			users_data[key_defaul_user] = {}
+			state[key_users] = users_data
+		save_state()
+		return true
+	if user_name in users_data:
+		state[key_last_user] = user_name
+		save_state()
+		return true
+	return false
+	
+func add_user(user_name:String):
+	var users_data = state.get(key_users, {})
+	users_data[user_name] = {}
+	state[key_users] = users_data
+	save_state()
+	
+func get_user_icon_symbols(user_name:String)->String:
+	var res:String
+	var split_list = user_name.split(" ", false, 2) as Array
+	match split_list.size():
+		1:
+			res = split_list.front().left(2)
+		2:
+			for word in split_list:
+				res += word.left(1)
+		_:
+			# Default user
+			res = "DU"
+	return res.to_upper()
+	
+func get_current_user_icon_symbols()->String:
+	return get_user_icon_symbols(state.get(key_last_user, key_defaul_user))
+
+func get_user_icon(user_name:String)->Texture:
+	var users_data = state.get(key_users, {}) as Dictionary
+	var user_data = users_data.get(user_name, {})
+	if key_user_icon in user_data:
+		var path = get_assets_path() + icons_path
+		if not DirAccess.dir_exists_absolute(path):
+			make_dir(path)
+		var file_list = DirAccess.get_files_at(path)
+		for file in file_list:
+			if user_name in file:
+				path += file
+				return ImageTexture.create_from_image(Image.load_from_file(path))
+	return null
+	
+func get_users_list()->PackedStringArray:
+	var users_data = state.get(key_users, {})
+	return users_data.keys()
+
+func set_user_icon(user_name:String, icon_name:String):
+	var users_data = state.get(key_users, {}) as Dictionary
+	var user_data = users_data.get(user_name, {})
+	if not icon_name.is_empty():
+		user_data[key_user_icon] = icon_name
+	else:
+		user_data.erase(key_user_icon)
+		remove_user_icon(user_name)
+	users_data[user_name] = user_data
+	state[key_users] = users_data
+	save_state()
+	
+func remove_user_icon(user_name:String):
+	var path = get_assets_path() + icons_path
+	var file_list = DirAccess.get_files_at(path)
+	for file in file_list:
+		if user_name in file:
+			path += file
+			DirAccess.remove_absolute(path)
+
