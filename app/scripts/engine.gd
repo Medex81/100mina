@@ -41,8 +41,8 @@ const key_users = "users"
 const key_last_user = "last_user"
 const key_defaul_user = "Default User"
 const key_user_icon = "icon"
-
-
+const key_window_position = "window_position"
+const key_window_size = "window_size"
 
 # the status of passing lessons is saved between sessions.
 var state:Dictionary
@@ -102,8 +102,17 @@ func add_tutor(tutor_path:String, parent:Node):
 			tutor.show()
 			parent.add_child(tutor)
 	
+func _exit_tree():
+	var window = get_window()
+	state[key_window_position] = var_to_str(window.position)
+	state[key_window_size] = var_to_str(window.size)
+	save_state()
+	
 func _ready():
 	state = _load_dict_from_cfg_file(get_state_path())
+	var window = get_window()
+	window.position = str_to_var(state.get(key_window_position, "Vector2i(384, 276)"))
+	window.size = str_to_var(state.get(key_window_size, "Vector2i(1152, 648)"))
 	var version = state.get(key_app_version, 0)
 	if version < app_version:
 		state[key_app_version] = app_version
@@ -210,7 +219,7 @@ func load_keyboard(lang:String)->Dictionary:
 		OS.alert(tr("key_error_keyboard_version").format([lang + _keyboard_extension]), tr("key_title_error"))
 		return {}
 	else:
-		return dict.get(key_keys, {})
+		return dict
 	
 func is_keyboard_exists(lang:String)->bool:
 	return FileAccess.file_exists(get_assets_path() + _keyboards + lang + _keyboard_extension)
@@ -228,7 +237,7 @@ func load_lesson(lesson:String)->Dictionary:
 		OS.alert(tr("key_error_lesson_version").format([lesson + _lesson_extension]), tr("key_title_error"))
 		return {}
 	
-	return dict.get(key_parts, {})
+	return dict
 
 func save_state():
 	_save_dict_to_cfg_file(get_state_path(), state)
@@ -307,12 +316,14 @@ func get_changelog_path()->String:
 	return OS.get_user_data_dir().path_join(_changelog + _txt_extension)
 	
 func rename_user(old_name:String, new_name:String):
+	remove_user_icon(old_name)
 	var last_user_name = state.get(key_last_user, key_defaul_user)
 	if last_user_name == old_name:
 		state[key_last_user] = new_name
 	var users_data = state.get(key_users, {}) as Dictionary
 	var user_data = users_data.get(last_user_name, {})
 	users_data.erase(last_user_name)
+	user_data.erase(key_user_icon)
 	state[key_users][new_name] = user_data
 	save_state()
 	
@@ -403,4 +414,3 @@ func remove_user_icon(user_name:String):
 		if user_name in file:
 			path += file
 			DirAccess.remove_absolute(path)
-
