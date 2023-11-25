@@ -26,3 +26,6 @@ date	: 22.11.2023
 	- Fixed the error of setting an empty value to a virtual button.
 	- Fixed the error of resetting the keyboard file version.
 	- Fixed the error of resetting the version of the lesson file.
+version	: 0.3.0.1
+date	: 25.11.2023
+	- Fixed the error of launching the first part of the lesson.
