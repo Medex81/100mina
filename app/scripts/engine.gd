@@ -20,7 +20,7 @@ const _lesson_extension = ".lsn"
 const _cfg_extension = ".json"
 const _txt_extension = ".txt"
 
-const app_version = 0.31
+const app_version = 0.32
 const keyboard_version = 1
 const lesson_version = 1
 
@@ -71,7 +71,7 @@ func get_part_from_state(lesson:String)->String:
 	
 func get_curent_lesson_from_state()->String:
 	var user_data = get_current_user_data()
-	return state.get(key_curent_lesson, "")
+	return user_data.get(key_curent_lesson, "")
 
 func set_tutor_done(tutor:String):
 	var user_name = state.get(key_last_user, key_defaul_user)

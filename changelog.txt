@@ -29,3 +29,4 @@ date	: 22.11.2023
 version	: 0.3.0.1
 date	: 25.11.2023
 	- Fixed the error of launching the first part of the lesson.
+	- Fixed an error of automatic switching of lesson parts. 
