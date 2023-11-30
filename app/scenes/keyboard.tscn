@@ -99,17 +99,17 @@ finger = 6
 [node name="8" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
 button_group = ExtResource("3_21ast")
-finger = 6
+finger = 7
 
 [node name="9" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
 button_group = ExtResource("3_21ast")
-finger = 7
+finger = 8
 
 [node name="0" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
 button_group = ExtResource("3_21ast")
-finger = 8
+finger = 9
 
 [node name="minus" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
@@ -149,18 +149,19 @@ right_modif = true
 [node name="w" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
 button_group = ExtResource("3_21ast")
+finger = 1
 right_modif = true
 
 [node name="e" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
 button_group = ExtResource("3_21ast")
-finger = 1
+finger = 2
 right_modif = true
 
 [node name="r" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
 button_group = ExtResource("3_21ast")
-finger = 2
+finger = 3
 right_modif = true
 
 [node name="t" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
@@ -172,7 +173,7 @@ right_modif = true
 [node name="y" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
 button_group = ExtResource("3_21ast")
-finger = 3
+finger = 6
 right_modif = true
 
 [node name="u" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
@@ -183,17 +184,17 @@ finger = 6
 [node name="i" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
 button_group = ExtResource("3_21ast")
-finger = 6
+finger = 7
 
 [node name="o" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
 button_group = ExtResource("3_21ast")
-finger = 7
+finger = 8
 
 [node name="p" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
 button_group = ExtResource("3_21ast")
-finger = 8
+finger = 9
 
 [node name="bracketleft" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
@@ -299,18 +300,19 @@ right_modif = true
 [node name="z" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
 button_group = ExtResource("3_21ast")
+finger = 1
 right_modif = true
 
 [node name="x" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
 button_group = ExtResource("3_21ast")
-finger = 1
+finger = 2
 right_modif = true
 
 [node name="c" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
 layout_mode = 2
 button_group = ExtResource("3_21ast")
-finger = 2
+finger = 3
 right_modif = true
 
 [node name="v" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
