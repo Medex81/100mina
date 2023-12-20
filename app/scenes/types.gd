@@ -33,7 +33,7 @@ func state(mode:bool):
 func help_tutor():
 	TypeEngine.add_tutor(new_kb_tutor, self)
 
-func _on_type_area_send_next_symbol(symbol):
+func _on_type_area_send_next_symbol(_symbol):
 	if _last_tick > 0:
 		_delta = Time.get_ticks_msec() - _last_tick
 		_last_tick = Time.get_ticks_msec()

@@ -78,7 +78,7 @@ func start_lesson(lesson:String):
 	data.part = part
 	data.symbols = parts[part]
 	TypeEngine.scene_mediator[TypeEngine.keyboard_scene] = data
-	get_tree().change_scene_to_file(TypeEngine.keyboard_scene)
+	get_tree().call_deferred("change_scene_to_file", TypeEngine.keyboard_scene)
 
 # we start the lesson by double-clicking or pressing enter on the name
 func _on_list_item_activated(index):

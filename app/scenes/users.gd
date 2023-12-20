@@ -36,7 +36,7 @@ func _on_rename_pressed():
 	else:
 		OS.alert(tr("key_error_user_select"), tr("key_title_error"))
 
-func _on_user_list_item_clicked(index, at_position, mouse_button_index):
+func _on_user_list_item_clicked(index, _at_position, _mouse_button_index):
 	_select_user = index
 	var user_name = $MarginContainer/VBoxContainer/user_list.get_item_text(_select_user)
 	TypeEngine.set_current_user(user_name)
@@ -55,7 +55,6 @@ func _on_add_pressed():
 
 func _on_remove_pressed():
 	if _select_user > -1:
-		var user_name = $MarginContainer/VBoxContainer/edit_user/user_name.text
 		TypeEngine.remove_user($MarginContainer/VBoxContainer/user_list.get_item_text(_select_user))
 		update()
 		set_current_user_icon_symbols()
