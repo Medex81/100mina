@@ -78,7 +78,6 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 deselect_on_focus_loss_enabled = false
 flat = true
-caret_mid_grapheme = false
 
 [node name="output" type="Label" parent="type_area/HBoxContainer"]
 layout_mode = 2

@@ -1,5 +1,6 @@
 [gd_resource type="ButtonGroup" format=3 uid="uid://def37f6x6e5fc"]
 
 [resource]
+resource_local_to_scene = false
 resource_name = "specials"
 allow_unpress = true
