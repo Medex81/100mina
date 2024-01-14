@@ -33,3 +33,9 @@ date	: 25.11.2023
 version	: 0.33
 date	: 
 	- Changing the binding of keys to fingers.
+version	: 0.33
+date	: 15.01.2024
+	- Changing the binding of keys to fingers.
+	- Update project to Godot 4.2.1
+	- Added spec for the SPACE button(EN).
+	- The keyboard initialization sequence error has been fixed.
