@@ -11,6 +11,9 @@ var _scene_data:KeyboardDataResource
 # the signal for the selection of a button and a finger
 signal send_next_symbol(symbol:String)
 
+func set_type_focus():
+	$HBoxContainer/accept.grab_focus()
+
 func _ready():
 	_scene_data = TypeEngine.scene_mediator.get(TypeEngine.keyboard_scene, null) as KeyboardDataResource
 	if _scene_data:
@@ -18,7 +21,7 @@ func _ready():
 		emit_signal("send_next_symbol", $HBoxContainer/input.text.left(1))
 		if _scene_data.edit_mode:
 			hide()
-	$HBoxContainer/accept.grab_focus()
+	set_type_focus()
 	
 func _on_accept_text_changed(new_text:String):
 	if new_text.is_empty():

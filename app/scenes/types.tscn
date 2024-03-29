@@ -306,5 +306,6 @@ vertical_alignment = 1
 [connection signal="text_changed" from="type_area/HBoxContainer/accept" to="type_area" method="_on_accept_text_changed"]
 [connection signal="timeout" from="type_area/Timer" to="type_area" method="_on_timer_timeout"]
 [connection signal="send_select_finger" from="keyboards/keyboard" to="fingers" method="_on_keyboard_send_select_finger"]
+[connection signal="send_update_focus" from="keyboards/keyboard" to="type_area" method="set_type_focus"]
 [connection signal="pressed" from="exit" to="type_area" method="_on_exit_pressed"]
 [connection signal="pressed" from="help" to="." method="help_tutor"]

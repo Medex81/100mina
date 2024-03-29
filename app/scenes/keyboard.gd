@@ -16,10 +16,13 @@ var _keyboard_dict:Dictionary
 # the signal to the fingers is highlighted in color
 signal send_select_finger(index:int)
 signal send_init_done()
+signal send_update_focus()
 
 # interception of input - if a special button is pressed on the keyboard, then we will display the values on the buttons with modifiers
 func _unhandled_input(event):
 	if event is InputEventKey and KEY_SPECIAL & event.keycode:
+		if event.keycode == KEY_ESCAPE:
+			emit_signal("send_update_focus")
 		var modif = event.as_text_keycode() if event.is_pressed() else TypeEngine.key_simple
 		for button in symbols_button_group.get_buttons():
 			button.on_send_group(modif)
