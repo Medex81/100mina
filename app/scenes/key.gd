@@ -17,8 +17,6 @@ func set_opt(_key_sets:Dictionary):
 			key_sets = _key_sets
 			var value = key_sets.find_key(TypeEngine.key_simple)
 			text = value if value else ""
-		else:
-			text = ""
 
 # data for a group of symbol buttons
 func on_send_group(data:String, is_right:bool = false)->bool:

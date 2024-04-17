@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bymrmlve5oeyo"]
 
 [ext_resource type="Script" path="res://app/scenes/keyboard.gd" id="1_r5dri"]
-[ext_resource type="ButtonGroup" uid="uid://5qnxf2ay61yh" path="res://app/misc/symbols.tres" id="3_21ast"]
-[ext_resource type="PackedScene" uid="uid://r7qt23g4a2s1" path="res://app/scenes/key.tscn" id="3_n2nyq"]
-[ext_resource type="ButtonGroup" uid="uid://def37f6x6e5fc" path="res://app/misc/specials.tres" id="4_83hjl"]
+[ext_resource type="PackedScene" uid="uid://r7qt23g4a2s1" path="res://app/scenes/key.tscn" id="2_1klnl"]
+[ext_resource type="ButtonGroup" uid="uid://5qnxf2ay61yh" path="res://app/misc/symbols.tres" id="3_jan1f"]
+[ext_resource type="ButtonGroup" uid="uid://def37f6x6e5fc" path="res://app/misc/specials.tres" id="4_47v38"]
 [ext_resource type="Script" path="res://app/scenes/key_value.gd" id="6_8oo2w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7lhn"]
@@ -52,80 +52,93 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="quoteleft" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="quoteleft" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "`"
 right_modif = true
 
-[node name="1" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="1" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "1"
 right_modif = true
 
-[node name="2" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="2" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "2"
 right_modif = true
 
-[node name="3" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="3" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "3"
 finger = 1
 right_modif = true
 
-[node name="4" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="4" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "4"
 finger = 2
 right_modif = true
 
-[node name="5" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="5" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "5"
 finger = 3
 right_modif = true
 
-[node name="6" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="6" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "6"
 finger = 3
 right_modif = true
 
-[node name="7" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="7" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "7"
 finger = 6
 
-[node name="8" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="8" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "8"
 finger = 7
 
-[node name="9" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="9" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "9"
 finger = 8
 
-[node name="0" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="0" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "0"
 finger = 9
 
-[node name="minus" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="minus" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "-"
 finger = 9
 
-[node name="equal" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="equal" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "="
 finger = 9
 
-[node name="backspace" parent="qwerty/rows/digits" instance=ExtResource("3_n2nyq")]
+[node name="backspace" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 custom_minimum_size = Vector2(108, 54)
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
-button_group = ExtResource("4_83hjl")
+button_group = ExtResource("4_47v38")
 text = "Backspace"
 finger = 9
 right_modif = true
@@ -134,159 +147,185 @@ right_modif = true
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="tab" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+[node name="tab" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
 custom_minimum_size = Vector2(85, 54)
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
-button_group = ExtResource("4_83hjl")
+button_group = ExtResource("4_47v38")
 text = "Tab"
 
-[node name="q" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+[node name="q" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "q"
 right_modif = true
 
-[node name="w" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+[node name="w" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "w"
 finger = 1
 right_modif = true
 
-[node name="e" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+[node name="e" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "e"
 finger = 2
 right_modif = true
 
-[node name="r" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+[node name="r" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "r"
 finger = 3
 right_modif = true
 
-[node name="t" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+[node name="t" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "t"
 finger = 3
 right_modif = true
 
-[node name="y" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+[node name="y" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "y"
 finger = 6
 right_modif = true
 
-[node name="u" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+[node name="u" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "u"
 finger = 6
 
-[node name="i" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+[node name="i" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "i"
 finger = 7
 
-[node name="o" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+[node name="o" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "o"
 finger = 8
 
-[node name="p" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+[node name="p" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "p"
 finger = 9
 
-[node name="bracketleft" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+[node name="bracketleft" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "["
 finger = 9
 
-[node name="bracketright" parent="qwerty/rows/qwerty" instance=ExtResource("3_n2nyq")]
+[node name="bracketright" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "]"
+finger = 9
+
+[node name="backslash" parent="qwerty/rows/qwerty" instance=ExtResource("2_1klnl")]
+custom_minimum_size = Vector2(75, 54)
+layout_mode = 2
+button_group = ExtResource("3_jan1f")
+text = "\\"
 finger = 9
 
 [node name="center" type="HBoxContainer" parent="qwerty/rows"]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="capslock" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+[node name="capslock" parent="qwerty/rows/center" instance=ExtResource("2_1klnl")]
 custom_minimum_size = Vector2(105, 54)
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
-button_group = ExtResource("4_83hjl")
+button_group = ExtResource("4_47v38")
 text = "Capslock"
 
-[node name="a" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+[node name="a" parent="qwerty/rows/center" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "a"
 right_modif = true
 
-[node name="s" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+[node name="s" parent="qwerty/rows/center" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "s"
 finger = 1
 right_modif = true
 
-[node name="d" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+[node name="d" parent="qwerty/rows/center" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "d"
 finger = 2
 right_modif = true
 
-[node name="f" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+[node name="f" parent="qwerty/rows/center" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "f"
 finger = 3
 right_modif = true
 
-[node name="g" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+[node name="g" parent="qwerty/rows/center" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "g"
 finger = 3
 right_modif = true
 
-[node name="h" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+[node name="h" parent="qwerty/rows/center" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "h"
 finger = 6
 
-[node name="j" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+[node name="j" parent="qwerty/rows/center" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "j"
 finger = 6
 
-[node name="k" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+[node name="k" parent="qwerty/rows/center" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "k"
 finger = 7
 
-[node name="l" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+[node name="l" parent="qwerty/rows/center" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "l"
 finger = 8
 
-[node name="semicolon" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+[node name="semicolon" parent="qwerty/rows/center" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = ";"
 finger = 9
 
-[node name="apostrophe" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+[node name="apostrophe" parent="qwerty/rows/center" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "'"
 finger = 9
 
-[node name="backslash" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
-layout_mode = 2
-button_group = ExtResource("3_21ast")
-finger = 9
-
-[node name="enter" parent="qwerty/rows/center" instance=ExtResource("3_n2nyq")]
+[node name="enter" parent="qwerty/rows/center" instance=ExtResource("2_1klnl")]
+custom_minimum_size = Vector2(117, 54)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 19
-button_group = ExtResource("4_83hjl")
+button_group = ExtResource("4_47v38")
 text = "Enter"
 finger = 9
 right_modif = true
@@ -295,78 +334,90 @@ right_modif = true
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="shiftleft" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
-custom_minimum_size = Vector2(85, 54)
+[node name="shiftleft" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
+custom_minimum_size = Vector2(130, 54)
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
-button_group = ExtResource("4_83hjl")
+button_group = ExtResource("4_47v38")
 text = "Shift"
 
-[node name="less" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+[node name="less" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
+visible = false
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "<"
 right_modif = true
 
-[node name="z" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+[node name="z" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "z"
 finger = 1
 right_modif = true
 
-[node name="x" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+[node name="x" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "x"
 finger = 2
 right_modif = true
 
-[node name="c" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+[node name="c" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "c"
 finger = 3
 right_modif = true
 
-[node name="v" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+[node name="v" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "v"
 finger = 3
 right_modif = true
 
-[node name="b" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+[node name="b" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "b"
 finger = 3
 right_modif = true
 
-[node name="n" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+[node name="n" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "n"
 finger = 6
 
-[node name="m" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+[node name="m" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "m"
 finger = 6
 
-[node name="comma" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+[node name="comma" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = ","
 finger = 7
 
-[node name="period" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+[node name="period" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "."
 finger = 8
 
-[node name="slash" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
+[node name="slash" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
+text = "/"
 finger = 9
 
-[node name="shiftright" parent="qwerty/rows/shifts" instance=ExtResource("3_n2nyq")]
-custom_minimum_size = Vector2(137, 54)
+[node name="shiftright" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
+custom_minimum_size = Vector2(151, 54)
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
-button_group = ExtResource("4_83hjl")
+button_group = ExtResource("4_47v38")
 text = "Shift"
 finger = 9
 right_modif = true
@@ -375,65 +426,65 @@ right_modif = true
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="ctrlleft" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+[node name="ctrlleft" parent="qwerty/rows/specials" instance=ExtResource("2_1klnl")]
 custom_minimum_size = Vector2(95, 54)
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
-button_group = ExtResource("4_83hjl")
+button_group = ExtResource("4_47v38")
 text = "Ctrl"
 
-[node name="winleft" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+[node name="winleft" parent="qwerty/rows/specials" instance=ExtResource("2_1klnl")]
 custom_minimum_size = Vector2(72, 54)
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
-button_group = ExtResource("4_83hjl")
+button_group = ExtResource("4_47v38")
 text = "Win"
 
-[node name="altleft" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+[node name="altleft" parent="qwerty/rows/specials" instance=ExtResource("2_1klnl")]
 custom_minimum_size = Vector2(72, 54)
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
-button_group = ExtResource("4_83hjl")
+button_group = ExtResource("4_47v38")
 text = "Alt"
 finger = 1
 
-[node name="space" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+[node name="space" parent="qwerty/rows/specials" instance=ExtResource("2_1klnl")]
 custom_minimum_size = Vector2(350, 54)
 layout_mode = 2
-button_group = ExtResource("3_21ast")
+button_group = ExtResource("3_jan1f")
 finger = 4
 
-[node name="altright" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+[node name="altright" parent="qwerty/rows/specials" instance=ExtResource("2_1klnl")]
 custom_minimum_size = Vector2(72, 54)
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
-button_group = ExtResource("4_83hjl")
+button_group = ExtResource("4_47v38")
 text = "Alt"
 finger = 8
 right_modif = true
 
-[node name="winright" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+[node name="winright" parent="qwerty/rows/specials" instance=ExtResource("2_1klnl")]
 custom_minimum_size = Vector2(72, 54)
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
-button_group = ExtResource("4_83hjl")
+button_group = ExtResource("4_47v38")
 text = "Win"
 finger = 9
 right_modif = true
 
-[node name="menu" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+[node name="menu" parent="qwerty/rows/specials" instance=ExtResource("2_1klnl")]
 custom_minimum_size = Vector2(60, 54)
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
-button_group = ExtResource("4_83hjl")
+button_group = ExtResource("4_47v38")
 text = "Menu"
 finger = 9
 right_modif = true
 
-[node name="ctrlright" parent="qwerty/rows/specials" instance=ExtResource("3_n2nyq")]
+[node name="ctrlright" parent="qwerty/rows/specials" instance=ExtResource("2_1klnl")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
-button_group = ExtResource("4_83hjl")
+button_group = ExtResource("4_47v38")
 text = "Ctrl"
 finger = 9
 right_modif = true
@@ -451,11 +502,18 @@ mouse_force_pass_scroll_events = false
 metadata/_edit_use_anchors_ = true
 
 [node name="key_value" type="LineEdit" parent="."]
-layout_mode = 2
-offset_left = 420.0
-offset_top = 303.0
-offset_right = 487.062
-offset_bottom = 334.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -33.5312
+offset_top = 2.0
+offset_right = 33.5312
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 0
 placeholder_text = "aA"
 alignment = 1
 max_length = 4
@@ -464,6 +522,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 deselect_on_focus_loss_enabled = false
 script = ExtResource("6_8oo2w")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="send_key_value_dict" from="key_value" to="." method="_on_key_value_send_key_value_dict"]
 [connection signal="text_changed" from="key_value" to="key_value" method="_on_text_changed"]
