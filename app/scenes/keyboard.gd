@@ -12,6 +12,7 @@ var _key_binds:Dictionary
 # data from the lesson scene transmitted through the data mediator to engine.gd
 var _scene_data:KeyboardDataResource
 var _keyboard_dict:Dictionary
+var _capslock = false
 
 # the signal to the fingers is highlighted in color
 signal send_select_finger(index:int)
@@ -23,6 +24,11 @@ func _unhandled_input(event):
 	if event is InputEventKey and KEY_SPECIAL & event.keycode:
 		if event.keycode == KEY_ESCAPE:
 			emit_signal("send_update_focus")
+			return
+		if event.keycode == KEY_CAPSLOCK && event.is_pressed():
+			_capslock = !_capslock
+			$qwerty/rows/center/capslock.button_pressed = _capslock
+			return
 		var modif = event.as_text_keycode() if event.is_pressed() else TypeEngine.key_simple
 		for button in symbols_button_group.get_buttons():
 			button.on_send_group(modif)
