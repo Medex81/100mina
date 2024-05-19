@@ -44,13 +44,13 @@ func _on_save_pressed():
 	else:
 		title = $margin/VBoxContainer/title.text.to_snake_case()
 		
-	TypeEngine.make_lesson("{0}_{1}".format([author, title]), {TypeEngine.key_lang:lang})
+	TypeEngine.make_lesson("{0}_{1}".format([author, title]), {TypeEngine.c_key_lang:lang})
 		
 	visible = false
 	
 	emit_signal("send_need_update")
-	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_lesson_sel_new")
+	TutorStep.try_run("step_lesson_sel_new")
 
 func _on_add_pressed():
 	visible = true
-	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_find_lang")
+	TutorStep.try_run("step_find_lang")

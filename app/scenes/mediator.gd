@@ -12,8 +12,8 @@ func _unhandled_input(event):
 				_state = !_state
 				edit_state(_state)
 				if _state:
-					get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_lesson_create")
-					get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_select_lesson")
+					TutorStep.try_run("step_lesson_create")
+					TutorStep.try_run("step_select_lesson")
 
 func edit_state(state:bool):
 	$chapter.visible = state

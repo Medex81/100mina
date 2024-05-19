@@ -29,19 +29,19 @@ func _unhandled_input(event):
 			_capslock = !_capslock
 			$qwerty/rows/center/capslock.button_pressed = _capslock
 			return
-		var modif = event.as_text_keycode() if event.is_pressed() else TypeEngine.key_simple
+		var modif = event.as_text_keycode() if event.is_pressed() else TypeEngine.c_key_simple
 		for button in symbols_button_group.get_buttons():
 			button.on_send_group(modif)
 	
 func _ready():
 	# data from the lesson scene
-	_scene_data = TypeEngine.scene_mediator.get(TypeEngine.keyboard_scene, null) as KeyboardDataResource
+	_scene_data = TypeEngine.scene_mediator.get(TypeEngine.c_keyboard_scene, null) as KeyboardDataResource
 	if _scene_data:
 		# start the keyboard in character editing mode
 		$key_value.visible = _scene_data.edit_mode
 		$stop_type.visible = !_scene_data.edit_mode
 		_keyboard_dict = TypeEngine.load_keyboard(_scene_data.lang)
-		_key_binds = _keyboard_dict.get(TypeEngine.key_keys, {})
+		_key_binds = _keyboard_dict.get(TypeEngine.c_key_keys, {})
 		if _key_binds.is_empty():
 			OS.alert(tr("key_error_keyboard_version").format([_scene_data.lang]), tr("key_title_error"))
 	symbols_button_group = ResourceLoader.load(symbols_button_path)
@@ -60,7 +60,7 @@ func on_button_click(button:KeyButton):
 	$key_value.set_values(button.key_sets)
 	if $key_value.visible:
 		$key_value.grab_focus()
-		get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "lineedit")
+		TutorStep.try_run("lineedit")
 
 # select the button by the next character that the user must enter
 func _on_type_area_send_next_symbol(symbol):
@@ -95,7 +95,7 @@ func _on_key_value_send_key_value_dict(dict:Dictionary):
 						return
 	
 		_key_binds[selected_button.name] = dict
-		_keyboard_dict[TypeEngine.key_keys] = _key_binds
+		_keyboard_dict[TypeEngine.c_key_keys] = _key_binds
 		TypeEngine.save_keyboard(_scene_data.lang, _keyboard_dict)
 		selected_button.set_opt(dict)
 	else:

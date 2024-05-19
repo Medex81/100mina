@@ -56,4 +56,5 @@ func hide_step():
 	if is_paused == false:
 		_next_step.show_step(_next_step.name)
 
-
+static func try_run(step_name:String):
+	TypeEngine.get_tree().call_group(group_name, group_method, step_name)
