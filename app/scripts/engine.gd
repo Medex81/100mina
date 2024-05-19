@@ -3,195 +3,177 @@
 extends Node
 
 enum EFingers{l1, l2, l3 , l4, l5, r1, r2, r3, r4, r5}
+const _c_user_path = "user://"
+const c_keyboards = "user://assets/keyboards/"
+const c_lessons = "user://assets/lessons/"
+const c_icons_path = "user://icons/"
+const _c_lang_list_path = "res://app/misc/godot_lang_list.txt"
+const c_keyboard_scene = "res://app/scenes/types.tscn"
+const c_lessons_scene = "res://app/scenes/lessons.tscn"
+const _c_state_path = _c_user_path + "state.json"
+const _c_changelog = "changelog.txt"
+const _c_keyboard_extension = ".kbd"
+const _c_lesson_extension = ".lsn"
+const _c_keyboard_version = 1
+const _c_lesson_version = 1
+const _c_max_string_length = 25
 
-const _res_path = "res://"
-const _user_path = "user://"
-const _assets_path = "assets/"
-const _game_path = "app/"
-const _keyboards = "keyboards/"
-const _lessons = "lessons/"
-const icons_path = "icons/"
-const _lang_list_path = "res://app/misc/godot_lang_list.txt"
-const keyboard_scene = "res://app/scenes/types.tscn"
-const lessons_scene = "res://app/scenes/lessons.tscn"
+const _c_key_done = "done"
+const c_key_simple = "Simple"
+const c_key_lang = "lang"
+const c_key_parts = "parts"
+const _c_key_current_lesson = "curent_lesson"
+const _c_key_tutors_done = "tutors_done"
+const _c_key_keyboard_version = "keyboard_version"
+const _c_key_lesson_version = "lesson_version"
+const c_key_keys = "keys"
+const _c_key_app_version = "app_version"
+const _c_key_users = "users"
+const _c_key_current_user = "last_user"
+const _c_key_defaul_user = "Default User"
+const _c_key_user_icon = "icon"
+const _c_key_window_position = "window_position"
+const _c_key_window_size = "window_size"
+const _c_key_part = "part"
+const _c_key_part_state = "part_state"
 
-const _keyboard_extension = ".kbd"
-const _lesson_extension = ".lsn"
-const _cfg_extension = ".json"
-const _txt_extension = ".txt"
-
-const app_version = 0.33
-const keyboard_version = 1
-const lesson_version = 1
-
-const _state = "state"
-const _changelog = "changelog"
-const _key_done = "done"
-const key_simple = "Simple"
-const key_part_symbols = "part_symbols"
-const key_lang = "lang"
-const key_parts = "parts"
-const key_curent_lesson = "curent_lesson"
-const key_tutors_done = "tutors_done"
-const key_keyboard_version = "keyboard_version"
-const key_lesson_version = "lesson_version"
-const key_keys = "keys"
-const key_app_version = "app_version"
-const key_users = "users"
-const key_last_user = "last_user"
-const key_defaul_user = "Default User"
-const key_user_icon = "icon"
-const key_window_position = "window_position"
-const key_window_size = "window_size"
+const c_app_version = 0.34
 
 # the status of passing lessons is saved between sessions.
-var state:Dictionary
-# mediator for transferring data between scenes, the key is the name of the current scene
-var scene_mediator:Dictionary
+var _state:Dictionary
 var _supported_lang_list:PackedStringArray
 
-func get_current_user_data()->Dictionary:
-	var user_name = state.get(key_last_user, key_defaul_user)
-	var users_data = state.get(key_users, {})
+# mediator for transferring data between scenes, the key is the name of the current scene
+var scene_mediator:Dictionary
+
+func _get_user_data(user_name:String)->Dictionary:
+	var users_data = _state.get(_c_key_users, {})
 	return users_data.get(user_name, {})
 
-func set_part_to_state(lesson:String, part:String):
-	var user_name = state.get(key_last_user, key_defaul_user)
-	var users_data = state.get(key_users, {})
-	var user_data = users_data.get(user_name, {})
-	user_data[lesson] = {_key_done:part}
-	user_data[key_curent_lesson] = lesson
-	state[key_users][user_name] = user_data
-	save_state()
-	
-func get_part_from_state(lesson:String)->String:
-	var user_data = get_current_user_data()
-	var dict = user_data.get(lesson, {}) as Dictionary
-	return dict.get(_key_done, "")
-	
-func get_curent_lesson_from_state()->String:
-	var user_data = get_current_user_data()
-	return user_data.get(key_curent_lesson, "")
+func _get_current_user_data()->Dictionary:
+	return _get_user_data(_state.get(_c_key_current_user, _c_key_defaul_user))
 
-func set_tutor_done(tutor:String):
-	var user_name = state.get(key_last_user, key_defaul_user)
-	var users_data = state.get(key_users, {})
-	var user_data = users_data.get(user_name, {})
+func _set_current_user_data(user_data:Dictionary):
+	var user_name = _state.get(_c_key_current_user, _c_key_defaul_user)
+	var users_data = _state.get(_c_key_users, {})
+	users_data[user_name] = user_data
+	_state[_c_key_users] = users_data
+	_save_state()
+
+func set_part_to_state(lesson:String, part:String, is_done:bool = true)->bool:
+	if not is_string_valid(lesson) or not is_string_valid(part):
+		return false
+	var user_data = _get_current_user_data()
+	var lesson_data = user_data.get(lesson, {})
+	lesson_data[_c_key_part] = part
+	lesson_data[_c_key_part_state] = is_done
+	user_data[lesson] = lesson_data
+	user_data[_c_key_current_lesson] = lesson
+	_set_current_user_data(user_data)
+	return true
+
+func get_part_from_state(lesson:String)->String:
+	var lesson_data = _get_current_user_data().get(lesson, {})
+	return lesson_data.get(_c_key_part, "")
 	
-	var tutors_done = user_data.get(key_tutors_done, []) as Array
+func get_part_state_from_state(lesson:String)->bool:
+	var lesson_data = _get_current_user_data().get(lesson, {})
+	return lesson_data.get(_c_key_part_state, true)
+
+func get_current_lesson_from_state()->String:
+	return _get_current_user_data().get(_c_key_current_lesson, "")
+
+func set_tutor_done(tutor:String)->bool:
+	if not is_string_valid(tutor):
+		return false
+	var user_data = _get_current_user_data()
+	
+	var tutors_done = user_data.get(_c_key_tutors_done, []) as Array
 	if tutor not in tutors_done:
 		tutors_done.append(tutor)
-		user_data[key_tutors_done] = tutors_done
-		state[key_users][user_name] = user_data
-		save_state()
+		user_data[_c_key_tutors_done] = tutors_done
+		_set_current_user_data(user_data)
+	return true
 
 func is_tutor_done(tutor:String)->bool:
-	var user_data = get_current_user_data()
-	var tutors_done = user_data.get(key_tutors_done, []) as Array
+	var user_data = _get_current_user_data()
+	var tutors_done = user_data.get(_c_key_tutors_done, []) as Array
 	return tutors_done.has(tutor)
-	
-func add_tutor(tutor_path:String, parent:Node):
-	if parent:
+
+func add_tutor(tutor_path:String, parent:Node)->bool:
+	if parent and FileAccess.file_exists(tutor_path):
 		var tutor_name = tutor_path.get_file().get_basename()
 		for node in parent.get_children():
 			if node.name == tutor_name:
 				parent.remove_child(node)
 				break
-		var tutor = load(tutor_path).instantiate()
-		if tutor:
-			tutor.show()
-			parent.add_child(tutor)
-	
+		var tutor_res = load(tutor_path)
+		if tutor_res:
+			var tutor = tutor_res.instantiate()
+			if tutor:
+				tutor.show()
+				parent.add_child(tutor)
+				return true
+	return false
+
 func _exit_tree():
 	var window = get_window()
-	state[key_window_position] = var_to_str(window.position)
-	state[key_window_size] = var_to_str(window.size)
-	save_state()
-	
+	_state[_c_key_window_position] = var_to_str(window.position)
+	_state[_c_key_window_size] = var_to_str(window.size)
+	_save_state()
+
 func _ready():
-	state = _load_dict_from_cfg_file(get_state_path())
+	_make_dir(_c_user_path)
+	_state = _load_dict(_c_state_path)
 	var window = get_window()
-	window.position = str_to_var(state.get(key_window_position, "Vector2i(384, 276)"))
-	window.size = str_to_var(state.get(key_window_size, "Vector2i(1152, 648)"))
-	var version = state.get(key_app_version, 0)
-	if version < app_version:
-		state[key_app_version] = app_version
-		save_state()
+	window.position = str_to_var(_state.get(_c_key_window_position, "Vector2i(384, 276)"))
+	window.size = str_to_var(_state.get(_c_key_window_size, "Vector2i(1152, 648)"))
+	_check_app_version(_state.get(_c_key_app_version, 0), c_app_version)
+	if _c_key_current_user not in _state:
+		_state[_c_key_current_user] = _c_key_defaul_user
+		_state[_c_key_users] = {_c_key_defaul_user: {_c_key_tutors_done:[]}}
+	_save_state()
+
+func _check_app_version(state_version:float, app_version:float)->bool:
+	# got app update
+	if state_version < app_version:
+		_state[_c_key_app_version] = app_version
 		# copy the built-in lessons and keyboards to the user's data
-		copy_res_json_files(get_app_assets_path() + _keyboards, get_assets_path() + _keyboards)
-		copy_res_json_files(get_app_assets_path() + _lessons, get_assets_path() + _lessons)
-		copy_res_txt_file(_res_path + _changelog + _txt_extension, _user_path)
-		
-	if key_last_user not in state:
-		var tutor_array = state.get(key_tutors_done, [])
-		state[key_last_user] = key_defaul_user
-		state[key_users] = {key_defaul_user: {key_tutors_done:tutor_array}}
-		state.erase(key_tutors_done)
-		save_state()
-		
-func export_kb_lesson(lesson:String, to_dir:String):
-	var from = get_assets_path() + _lessons + lesson + _lesson_extension
-	var to = to_dir.path_join(lesson) + _lesson_extension
-	var status = DirAccess.copy_absolute(from, to)
-	if status != OK:
-		OS.alert("{0} {1} -> {2}".format([error_string(status), from, to, tr("key_title_error")]))
-	var lang = get_lesson_lang(lesson)
-	from = get_assets_path() + _keyboards + lang + _keyboard_extension
-	to = to_dir.path_join(lang) + _keyboard_extension
-	status = DirAccess.copy_absolute(from, to)
-	if status != OK:
-		OS.alert("{0} {1} -> {2}".format([error_string(status), from, to, tr("key_title_error")]))
-		
-func import_kb_lesson(paths:PackedStringArray):
-	for from in paths:
-		if _keyboard_extension in from:
-			var to = get_assets_path() + _keyboards + from.get_file()
-			var status = DirAccess.copy_absolute(from, to)
-			if status != OK:
-				OS.alert("{0} {1} -> {2}".format([error_string(status), from, to, tr("key_title_error")]))
-		if _lesson_extension in from:
-			var to = get_assets_path() + _lessons + from.get_file()
-			var status = DirAccess.copy_absolute(from, to)
-			if status != OK:
-				OS.alert("{0} {1} -> {2}".format([error_string(status), from, to, tr("key_title_error")]))
-	
-func copy_res_json_files(from_dir:String, to_dir:String):
-	make_dir(to_dir)
-	var file_list = DirAccess.get_files_at(from_dir)
-	for file in file_list:
-		var dict = _load_dict_from_cfg_file(from_dir + file)
-		_save_dict_to_cfg_file(to_dir + file, dict)
-		
-func copy_res_txt_file(path:String, to_dir:String):
-	make_dir(to_dir)
-	var text = _load_txt_file(path)
-	_save_txt_file(to_dir + path.get_file(), text)
+		_copy_resource("res://assets/keyboards/russian.kbd", c_keyboards)
+		_copy_resource("res://assets/keyboards/english.kbd", c_keyboards)
+		_copy_resource("res://assets/lessons/a_kazantsev_ru_base.lsn", c_lessons)
+		_copy_resource("res://assets/lessons/a_kazantsev_en_base.lsn", c_lessons)
+		_copy_resource_text("res://changelog.txt", _c_user_path)
+		_save_state()
+		return true
+	return false
 
-func save_to_user_dir(file_path:String, assets_dir:String, new_name:String = "")->String:
-	var to = get_assets_path() + assets_dir
-	make_dir(to)
-	var file_name = file_path.get_file() if new_name.is_empty() else new_name + "." + file_path.get_extension()
-	var status = DirAccess.copy_absolute(file_path, to + file_name)
+func _copy_storage(from_file_path:String, to_dir:String)->bool:
+	if not _make_dir(to_dir):
+		return false
+	var to = to_dir.path_join(from_file_path.get_file())
+	var status = DirAccess.copy_absolute(from_file_path, to)
 	if status != OK:
-		OS.alert(tr("key_error_copy_file").format([file_path.get_file(), error_string(status)]), tr("key_title_error"))
-		return ""
-	return to + file_name
+		if not OS.is_debug_build():
+			OS.alert("{0} {1} -> {2}".format([error_string(status), from_file_path, to]), tr("key_title_error"))
+		return false
+	return true
 
-func _save_dict_to_cfg_file(path:String, dict:Dictionary):
-	make_dir(path.get_base_dir())
-	var file = FileAccess.open(path, FileAccess.WRITE)
-	if file:
-		file.store_line(JSON.stringify(dict))
-		file.flush()
-		
-func _save_txt_file(path:String, text:String):
-	make_dir(path.get_base_dir())
-	var file = FileAccess.open(path, FileAccess.WRITE)
-	if file:
-		file.store_line(text)
-		file.flush()
-		
-func _load_dict_from_cfg_file(path:String)->Dictionary:
+func _copy_resource(from_file_path:String, to_dir:String)->bool:
+	if not _make_dir(to_dir):
+		return false
+	var dict = _load_dict(from_file_path)
+	var to = to_dir.path_join(from_file_path.get_file())
+	return not dict.is_empty() and _save_data(to, dict)
+
+func _copy_resource_text(from_file_path:String, to_dir:String)->bool:
+	if not _make_dir(to_dir):
+		return false
+	var text = _load_text(from_file_path)
+	var to = to_dir.path_join(from_file_path.get_file())
+	return not text.is_empty() and _save_data(to, text)
+
+func _load_dict(path:String)->Dictionary:
 	if FileAccess.file_exists(path):
 		var file = FileAccess.open(path, FileAccess.READ)
 		if file:
@@ -200,217 +182,198 @@ func _load_dict_from_cfg_file(path:String)->Dictionary:
 			if status == OK:
 				return json.data
 	return {}
-	
-func _load_txt_file(path:String)->String:
+
+func _load_text(path:String)->String:
 	if FileAccess.file_exists(path):
-		var file = FileAccess.open(path, FileAccess.READ)
-		if file:
-			return file.get_as_text(true)
+		return FileAccess.get_file_as_string(path)
 	return ""
-	
+
+func _save_data(path:String, data)->bool:
+	if not _make_dir(path.get_base_dir()):
+		return false
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	if file:
+		match type_string(typeof(data)):
+			"Dictionary":
+				file.store_line(JSON.stringify(data))
+			"String":
+				file.store_line(data)
+			_:
+				file.close()
+				DirAccess.remove_absolute(path)
+				return false
+		file.flush()
+		return true
+	else:
+		if not OS.is_debug_build():
+			OS.alert("{0} -> {1}".format([error_string(FileAccess.get_open_error()), path]), tr("key_title_error"))
+	return false
+
+func export_kb_lesson(lesson:String, to_dir:String)->bool:
+	return  _copy_storage(c_lessons + lesson + _c_lesson_extension, to_dir) \
+	and _copy_storage(c_keyboards + get_lesson_lang(lesson) + _c_keyboard_extension, to_dir)
+
+func import_kb_lesson(paths:PackedStringArray)->int:
+	var count = 0
+	for from in paths:
+		if _c_keyboard_extension in from:
+			_copy_storage(from, c_keyboards)
+			count += 1
+		if _c_lesson_extension in from:
+			_copy_storage(from, c_lessons)
+			count += 1
+	return count
+
 func save_keyboard(lang:String, dict:Dictionary):
-	var path = get_assets_path() + _keyboards + lang + _keyboard_extension
-	_save_dict_to_cfg_file(path, dict)
+	_save_data(c_keyboards + lang + _c_keyboard_extension, dict)
 
 func load_keyboard(lang:String)->Dictionary:
-	var dict = _load_dict_from_cfg_file(get_assets_path() + _keyboards + lang + _keyboard_extension)
-	var version = dict.get(key_keyboard_version, 0)
-	if version != keyboard_version:
-		OS.alert(tr("key_error_keyboard_version").format([lang + _keyboard_extension]), tr("key_title_error"))
-		return {}
-	else:
-		return dict
-	
-func is_keyboard_exists(lang:String)->bool:
-	return FileAccess.file_exists(get_assets_path() + _keyboards + lang + _keyboard_extension)
-
-func save_lesson(lesson:String, dict:Dictionary):
-	var path = get_assets_path() + _lessons + lesson + _lesson_extension
-	_save_dict_to_cfg_file(path, dict)
-
-func load_lesson(lesson:String)->Dictionary:
-	var path = get_assets_path() + _lessons + lesson + _lesson_extension
-	var dict = _load_dict_from_cfg_file(path) as Dictionary
-	
-	var version = dict.get(key_lesson_version, 0)
-	if version != lesson_version:
-		OS.alert(tr("key_error_lesson_version").format([lesson + _lesson_extension]), tr("key_title_error"))
-		return {}
-	
+	var dict = _load_dict(c_keyboards + lang + _c_keyboard_extension)
+	var version = dict.get(_c_key_keyboard_version, 0)
+	if version != _c_keyboard_version:
+		if not OS.is_debug_build():
+			OS.alert(tr("key_error_keyboard_version").format([lang + _c_keyboard_extension]), tr("key_title_error"))
 	return dict
 
-func save_state():
-	_save_dict_to_cfg_file(get_state_path(), state)
+func is_keyboard_exists(lang:String)->bool:
+	return FileAccess.file_exists(c_keyboards + lang + _c_keyboard_extension)
 
-func make_dir(path:String):
-	if !DirAccess.dir_exists_absolute(path):
-		DirAccess.make_dir_recursive_absolute(path)
+func save_lesson(lesson:String, dict:Dictionary)->bool:
+	return _save_data(c_lessons + lesson + _c_lesson_extension, dict)
 
-func get_app_assets_path()->String:
-	var res_dir_path = _res_path + _assets_path
-	make_dir(res_dir_path)
-		
-	if DirAccess.dir_exists_absolute(res_dir_path):
-		return res_dir_path
-	return ""
+func load_lesson(lesson:String)->Dictionary:
+	var dict = _load_dict(c_lessons + lesson + _c_lesson_extension) as Dictionary
+	var version = dict.get(_c_key_lesson_version, 0)
+	if version != _c_lesson_version:
+		if not OS.is_debug_build():
+			OS.alert(tr("key_error_lesson_version").format([lesson + _c_lesson_extension]), tr("key_title_error"))
+	return dict
 
-func get_assets_path()->String:
-	var user_dir_path = _user_path + _assets_path
-	make_dir(user_dir_path)
-	
-	if DirAccess.dir_exists_absolute(user_dir_path):
-		return user_dir_path
+func _make_dir(dir_path:String)->bool:
+	if not DirAccess.dir_exists_absolute(dir_path):
+		var status = DirAccess.make_dir_recursive_absolute(dir_path)
+		if status != OK:
+			if not OS.is_debug_build():
+				OS.alert("{0} -> {1}".format([error_string(status), dir_path]), tr("key_title_error"))
+			return false
+	return true
 
-	return ""
-	
-func get_state_path()->String:
-	make_dir(_user_path)
-	
-	if DirAccess.dir_exists_absolute(_user_path):
-		return _user_path + _state + _cfg_extension
-	return ""
-	
 func get_lessons()->PackedStringArray:
 	var list:PackedStringArray
-	for kb in DirAccess.get_files_at(get_assets_path() + _lessons):
+	for kb in DirAccess.get_files_at(c_lessons):
 		list.append(kb.get_basename())
 	return list
-	
-func get_keyboards()->PackedStringArray:
-	var list:PackedStringArray
-	for kb in DirAccess.get_files_at(get_assets_path() + _keyboards):
-		list.append(kb.get_basename())
-	return list
-	
-func remove_lesson(lesson:String):
-	var path = get_assets_path() + _lessons + lesson + _lesson_extension
-	DirAccess.remove_absolute(path)
-	
-func make_lesson(lesson:String, dict:Dictionary):
-	var path = get_assets_path() + _lessons + lesson + _lesson_extension
-	dict[key_lesson_version] = lesson_version
-	_save_dict_to_cfg_file(path, dict)
-	
-func make_keyboard(lang:String):
-	var path = get_assets_path() + _keyboards + lang + _keyboard_extension
-	var dict:Dictionary
-	dict[key_keyboard_version] = keyboard_version
-	_save_dict_to_cfg_file(path, dict)
 
-func remove_keyboard(lang:String):
-	var path = get_assets_path() + _keyboards + lang + _keyboard_extension
-	DirAccess.remove_absolute(path)
+func remove_lesson(lesson:String)->bool:
+	return true if DirAccess.remove_absolute(c_lessons + lesson + _c_lesson_extension) == OK else false
+
+func make_lesson(lesson:String, dict:Dictionary)->bool:
+	dict[_c_key_lesson_version] = _c_lesson_version
+	return _save_data(c_lessons + lesson + _c_lesson_extension, dict)
+
+func make_keyboard(lang:String)->bool:
+	return _save_data(c_keyboards + lang + _c_keyboard_extension, {_c_key_keyboard_version:_c_keyboard_version})
 
 func get_supported_lang_list()->PackedStringArray:
 	if _supported_lang_list.is_empty():
-		var file = FileAccess.open(_lang_list_path, FileAccess.READ)
-		_supported_lang_list = file.get_as_text().split("\n")
+		var file = FileAccess.open(_c_lang_list_path, FileAccess.READ)
+		if file:
+			_supported_lang_list = file.get_as_text().split("\n")
+		else:
+			if not OS.is_debug_build():
+				OS.alert("{0} -> {1}".format([error_string(FileAccess.get_open_error()), _c_lang_list_path]), tr("key_title_error"))
 	return _supported_lang_list
 
 func get_lesson_lang(lesson:String)->String:
-	var path = get_assets_path() + _lessons + lesson + _lesson_extension
-	var dict = _load_dict_from_cfg_file(path) as Dictionary
-	return dict.get(key_lang, "")
-	
+	var dict = _load_dict(c_lessons + lesson + _c_lesson_extension) as Dictionary
+	return dict.get(c_key_lang, "")
+
 func get_changelog_path()->String:
-	return OS.get_user_data_dir().path_join(_changelog + _txt_extension)
-	
+	return _c_user_path + _c_changelog
+
+func add_user(user_name:String)->bool:
+	if not is_string_valid(user_name):
+		return false
+	_state[_c_key_current_user] = user_name
+	var user_data = _get_current_user_data()
+	if user_data.is_empty():
+		user_data = {_c_key_current_lesson:""}
+	_set_current_user_data(user_data)
+	return true
+
+func remove_user(user_name:String)->bool:
+	if not is_string_valid(user_name):
+		return false
+	var users_data = _state.get(_c_key_users, {}) as Dictionary
+	var user_data = users_data.get(user_name, {})
+	DirAccess.remove_absolute(user_data.get(_c_key_user_icon, ""))
+	users_data.erase(user_name)
+	if _state[_c_key_current_user] == user_name:
+		_state[_c_key_current_user] = _c_key_defaul_user
+	_save_state()
+	return true
+
 func rename_user(old_name:String, new_name:String):
-	remove_user_icon(old_name)
-	var last_user_name = state.get(key_last_user, key_defaul_user)
-	if last_user_name == old_name:
-		state[key_last_user] = new_name
-	var users_data = state.get(key_users, {}) as Dictionary
-	var user_data = users_data.get(last_user_name, {})
-	users_data.erase(last_user_name)
-	user_data.erase(key_user_icon)
-	state[key_users][new_name] = user_data
-	save_state()
-	
-func remove_user(user_name:String):
-	var users_data = state.get(key_users, {}) as Dictionary
-	if user_name in users_data:
-		users_data.erase(user_name)
-		state[key_users] = users_data
-		set_current_user()
-			
+	var users_data = _state.get(_c_key_users, {}) as Dictionary
+	var user_data = users_data.get(old_name, {}) as Dictionary
+	users_data[new_name] = user_data.duplicate(true)
+	_state[_c_key_users] = users_data
+	var is_old_name_current = _state[_c_key_current_user] == old_name
+	remove_user(old_name)
+	if is_old_name_current:
+		_state[_c_key_current_user] = new_name
+
 func get_current_user()->String:
-	return state.get(key_last_user, key_defaul_user)
-	
-func set_current_user(user_name:String = "")->bool:
-	var users_data = state.get(key_users, {}) as Dictionary
-	if user_name.is_empty():
-		if not users_data.is_empty():
-			state[key_last_user] = users_data.keys().front()
-		else:
-			state[key_last_user] = key_defaul_user
-			users_data[key_defaul_user] = {}
-			state[key_users] = users_data
-		save_state()
-		return true
-	if user_name in users_data:
-		state[key_last_user] = user_name
-		save_state()
-		return true
-	return false
-	
-func add_user(user_name:String):
-	var users_data = state.get(key_users, {})
-	users_data[user_name] = {}
-	state[key_users] = users_data
-	save_state()
-	
+	return _state.get(_c_key_current_user, _c_key_defaul_user)
+
+func set_current_user_icon(extern_icon_path:String = ""):
+	var user_data = _get_current_user_data()
+	DirAccess.remove_absolute(user_data.get(_c_key_user_icon, ""))
+	if FileAccess.file_exists(extern_icon_path):
+		_copy_storage(extern_icon_path, c_icons_path)
+		user_data[_c_key_user_icon] = c_icons_path + extern_icon_path.get_file()
+	else:
+		user_data.erase(_c_key_user_icon)
+	_set_current_user_data(user_data)
+
+func _save_state():
+	_save_data(_c_state_path, _state)
+
 func get_user_icon_symbols(user_name:String)->String:
-	var res:String
-	var split_list = user_name.split(" ", false, 2) as Array
+	# Default user
+	var res = "DU"
+	if not is_string_valid(user_name):
+		return res
+	var split_list = user_name.split(" ", false, 1) as Array
 	match split_list.size():
 		1:
 			res = split_list.front().left(2)
 		2:
+			res = ""
 			for word in split_list:
 				res += word.left(1)
-		_:
-			# Default user
-			res = "DU"
-	return res.to_upper()
-	
-func get_current_user_icon_symbols()->String:
-	return get_user_icon_symbols(state.get(key_last_user, key_defaul_user))
 
-func get_user_icon(user_name:String)->Texture:
-	var users_data = state.get(key_users, {}) as Dictionary
-	var user_data = users_data.get(user_name, {})
-	if key_user_icon in user_data:
-		var path = get_assets_path() + icons_path
-		if not DirAccess.dir_exists_absolute(path):
-			make_dir(path)
-		var file_list = DirAccess.get_files_at(path)
-		for file in file_list:
-			if user_name in file:
-				path += file
-				return ImageTexture.create_from_image(Image.load_from_file(path))
-	return null
-	
+	return res.to_upper()
+
+func get_current_user_icon_symbols()->String:
+	return get_user_icon_symbols(_state.get(_c_key_current_user, _c_key_defaul_user))
+
+func get_current_user_icon()->Texture:
+	var user_data = _get_current_user_data()
+	var tex:Texture = null
+	var icon_path = user_data.get(_c_key_user_icon, "")
+	if FileAccess.file_exists(icon_path):
+		tex = ImageTexture.create_from_image(Image.load_from_file(icon_path))
+	return tex
+
 func get_users_list()->PackedStringArray:
-	var users_data = state.get(key_users, {})
+	var users_data = _state.get(_c_key_users, {})
 	return users_data.keys()
 
-func set_user_icon(user_name:String, icon_name:String):
-	var users_data = state.get(key_users, {}) as Dictionary
-	var user_data = users_data.get(user_name, {})
-	if not icon_name.is_empty():
-		user_data[key_user_icon] = icon_name
-	else:
-		user_data.erase(key_user_icon)
-		remove_user_icon(user_name)
-	users_data[user_name] = user_data
-	state[key_users] = users_data
-	save_state()
-	
-func remove_user_icon(user_name:String):
-	var path = get_assets_path() + icons_path
-	var file_list = DirAccess.get_files_at(path)
-	for file in file_list:
-		if user_name in file:
-			path += file
-			DirAccess.remove_absolute(path)
+func is_string_valid(_str:String)->bool:
+	_str = _str.strip_escapes()
+	var splits = _str.split(" ", false)
+	_str = " ".join(splits)
+	if _str.is_empty() or _str.length() > _c_max_string_length:
+		return false
+	return true
