@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://app/scenes/type_area.gd" id="1_16nid"]
 [ext_resource type="Script" path="res://app/scenes/types.gd" id="1_com5d"]
 [ext_resource type="Script" path="res://app/scenes/fingers.gd" id="4_wkajq"]
-[ext_resource type="Texture2D" uid="uid://bndxr7n4buf7q" path="res://assets/textures/arrowLeft.png" id="4_xm4gn"]
-[ext_resource type="Texture2D" uid="uid://bexxkiqlauwl6" path="res://assets/textures/question.png" id="6_qscni"]
+[ext_resource type="Texture2D" uid="uid://cpdbdr3m6xg7l" path="res://assets/textures/arrowLeft.png" id="4_xm4gn"]
+[ext_resource type="Texture2D" uid="uid://g7j6ek2vj7b7" path="res://assets/textures/question.png" id="6_qscni"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vyuw"]
 bg_color = Color(0.862745, 0.862745, 0.862745, 1)
