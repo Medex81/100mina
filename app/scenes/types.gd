@@ -14,7 +14,7 @@ const _delta_max = 3000
 const _msec_in_min = 60000
 
 func _ready():
-	_scene_data = TypeEngine.scene_mediator.get(TypeEngine.keyboard_scene, null) as KeyboardDataResource
+	_scene_data = TypeEngine.scene_mediator.get(TypeEngine.c_keyboard_scene, null) as KeyboardDataResource
 	if _scene_data:
 		state(_scene_data.edit_mode)
 		if _scene_data.edit_mode:

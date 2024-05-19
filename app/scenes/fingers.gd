@@ -4,7 +4,7 @@ extends Control
 
 
 func _ready():
-	var scene_data = TypeEngine.scene_mediator.get(TypeEngine.keyboard_scene, null) as KeyboardDataResource
+	var scene_data = TypeEngine.scene_mediator.get(TypeEngine.c_keyboard_scene, null) as KeyboardDataResource
 	if scene_data:
 		$Control.visible = !scene_data.edit_mode
 

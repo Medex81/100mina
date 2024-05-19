@@ -6,7 +6,7 @@ extends Panel
 @export_file("*.tscn") var import:String
 
 func _ready():
-	$margin/VBoxContainer/version.text = tr("key_title_version").format([TypeEngine.app_version])
+	$margin/VBoxContainer/version.text = tr("key_title_version").format([TypeEngine.c_app_version])
 
 func _on_pressed():
 	hide()

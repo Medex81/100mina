@@ -15,7 +15,7 @@ func set_type_focus():
 	$HBoxContainer/accept.grab_focus()
 
 func _ready():
-	_scene_data = TypeEngine.scene_mediator.get(TypeEngine.keyboard_scene, null) as KeyboardDataResource
+	_scene_data = TypeEngine.scene_mediator.get(TypeEngine.c_keyboard_scene, null) as KeyboardDataResource
 	if _scene_data:
 		$HBoxContainer/input.text = _scene_data.symbols
 		emit_signal("send_next_symbol", $HBoxContainer/input.text.left(1))
@@ -47,13 +47,13 @@ func _on_accept_text_changed(new_text:String):
 func _on_timer_timeout():
 	TypeEngine.set_part_to_state(_scene_data.lesson, _scene_data.part)
 	OS.alert(tr("key_done_part"), tr("key_title_congratulations"))
-	TypeEngine.scene_mediator[TypeEngine.lessons_scene] = true
-	get_tree().change_scene_to_file(TypeEngine.lessons_scene)
+	TypeEngine.scene_mediator[TypeEngine.c_lessons_scene] = true
+	get_tree().change_scene_to_file(TypeEngine.c_lessons_scene)
 
 func play_sound(path:String):
 	$AudioStreamPlayer2D.stream = load(path)
 	$AudioStreamPlayer2D.play()
 
 func _on_exit_pressed():
-	TypeEngine.scene_mediator[TypeEngine.lessons_scene] = false
-	get_tree().change_scene_to_file(TypeEngine.lessons_scene)
+	TypeEngine.scene_mediator[TypeEngine.c_lessons_scene] = false
+	get_tree().change_scene_to_file(TypeEngine.c_lessons_scene)

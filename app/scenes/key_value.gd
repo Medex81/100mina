@@ -1,7 +1,7 @@
 extends LineEdit
 
 var _values:Dictionary
-var _spec_buf:String = TypeEngine.key_simple
+var _spec_buf:String = TypeEngine.c_key_simple
 
 signal send_key_value_dict(dict:Dictionary)
 
@@ -22,7 +22,7 @@ func _on_text_changed(new_text):
 			if symb not in new_text:
 				_values.erase(symb)
 		
-	_spec_buf = TypeEngine.key_simple
+	_spec_buf = TypeEngine.c_key_simple
 	if spell_check(new_text):
 		emit_signal("send_key_value_dict", _values)
 			

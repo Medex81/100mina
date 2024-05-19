@@ -15,7 +15,7 @@ func set_opt(_key_sets:Dictionary):
 	if _special not in button_group.resource_name:
 		if not _key_sets.is_empty():
 			key_sets = _key_sets
-			var value = key_sets.find_key(TypeEngine.key_simple)
+			var value = key_sets.find_key(TypeEngine.c_key_simple)
 			text = value if value else ""
 
 # data for a group of symbol buttons

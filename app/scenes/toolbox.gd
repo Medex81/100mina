@@ -7,7 +7,7 @@ func _ready():
 	
 func set_current_user_icon_symbols():
 	$user/user_icon.set_symbols(TypeEngine.get_current_user_icon_symbols())
-	$user/user_icon.set_texture(TypeEngine.get_user_icon(TypeEngine.get_current_user()))
+	$user/user_icon.set_texture(TypeEngine.get_current_user_icon())
 
 func _on_export_pressed():
 	if not _lesson.is_empty():
