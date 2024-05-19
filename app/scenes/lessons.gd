@@ -13,8 +13,8 @@ signal send_lesson_clicked(lesson:String)
 func _ready():
 	_on_lesson_options_send_need_update()
 	# starting the lesson from the last session
-	var lesson = TypeEngine.get_curent_lesson_from_state()
-	if not lesson.is_empty() and TypeEngine.scene_mediator.get(TypeEngine.lessons_scene, true) == true:
+	var lesson = TypeEngine.get_current_lesson_from_state()
+	if not lesson.is_empty() and TypeEngine.scene_mediator.get(TypeEngine.c_lessons_scene, true) == true:
 		start_lesson(lesson)
 
 # find all lessons with substring
@@ -40,14 +40,14 @@ func add_items_filtered(filter:String = ""):
 func _on_list_item_clicked(index, _at_position, _mouse_button_index):
 	_lang = TypeEngine.get_lesson_lang($list.get_item_text(index))
 	emit_signal("send_lesson_clicked", $list.get_item_text(index))
-	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_lesson_part_list")
-	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_part_name")
-	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_key_kb_edit")
-	get_tree().call_group(TutorStep.group_name, TutorStep.group_method, "step_dialog")
+	TutorStep.try_run("step_lesson_part_list")
+	TutorStep.try_run("step_part_name")
+	TutorStep.try_run("step_key_kb_edit")
+	TutorStep.try_run("step_dialog")
 
 func start_lesson(lesson:String):
 	var lesson_dict = TypeEngine.load_lesson(lesson) as Dictionary
-	var parts = lesson_dict.get(TypeEngine.key_parts, {})
+	var parts = lesson_dict.get(TypeEngine.c_key_parts, {})
 	
 	_lang = TypeEngine.get_lesson_lang(lesson)
 	if not TypeEngine.is_keyboard_exists(_lang):
@@ -57,19 +57,22 @@ func start_lesson(lesson:String):
 		OS.alert(tr("key_error_no_parts_in_lesson").format([lesson]), tr("key_title_error"))
 		return
 	var part = TypeEngine.get_part_from_state(lesson) as String
+	var part_state = TypeEngine.get_part_state_from_state(lesson) as bool
 	if part.is_empty():
 		part = parts.keys().front()
 	else:
-		var ind_part = parts.keys().find(part)
-		if ind_part == -1:
-			OS.alert(tr("key_error_change_in_lesson").format([lesson, part]), tr("key_title_error"))
-			return
-		if ind_part < parts.keys().size() - 1:
-			part = parts.keys()[ind_part + 1]
-		else:
-			OS.alert(tr("key_done_lesson"), tr("key_title_congratulations"))
-			TypeEngine.set_part_to_state(lesson, "")
-			return
+		# last part id done (part_state = true) -> get next part
+		if part_state:
+			var ind_part = parts.keys().find(part)
+			if ind_part == -1:
+				OS.alert(tr("key_error_change_in_lesson").format([lesson, part]), tr("key_title_error"))
+				return
+			if ind_part < parts.keys().size() - 1:
+				part = parts.keys()[ind_part + 1]
+			else:
+				OS.alert(tr("key_done_lesson"), tr("key_title_congratulations"))
+				TypeEngine.set_part_to_state(lesson, "")
+				return
 	
 	# data to the keyboard scene via the scene mediator
 	var data = KeyboardDataResource.new()
@@ -77,8 +80,9 @@ func start_lesson(lesson:String):
 	data.lesson = lesson
 	data.part = part
 	data.symbols = parts[part]
-	TypeEngine.scene_mediator[TypeEngine.keyboard_scene] = data
-	get_tree().call_deferred("change_scene_to_file", TypeEngine.keyboard_scene)
+	TypeEngine.scene_mediator[TypeEngine.c_keyboard_scene] = data
+	TypeEngine.set_part_to_state(lesson, part, false)
+	get_tree().call_deferred("change_scene_to_file", TypeEngine.c_keyboard_scene)
 
 # we start the lesson by double-clicking or pressing enter on the name
 func _on_list_item_activated(index):
@@ -96,8 +100,8 @@ func _on_edit_kb_pressed():
 		var data = KeyboardDataResource.new()
 		data.edit_mode = true
 		data.lang = _lang
-		TypeEngine.scene_mediator[TypeEngine.keyboard_scene] = data
-		get_tree().change_scene_to_file(TypeEngine.keyboard_scene)
+		TypeEngine.scene_mediator[TypeEngine.c_keyboard_scene] = data
+		get_tree().change_scene_to_file(TypeEngine.c_keyboard_scene)
 	else:
 		OS.alert(tr("key_error_select_lesson"), tr("key_title_error"))
 
