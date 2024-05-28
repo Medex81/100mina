@@ -120,7 +120,7 @@ finger = 8
 layout_mode = 2
 button_group = ExtResource("3_jan1f")
 text = "0"
-finger = 9
+finger = 8
 
 [node name="minus" parent="qwerty/rows/digits" instance=ExtResource("2_1klnl")]
 layout_mode = 2
@@ -352,7 +352,6 @@ right_modif = true
 layout_mode = 2
 button_group = ExtResource("3_jan1f")
 text = "z"
-finger = 1
 right_modif = true
 
 [node name="x" parent="qwerty/rows/shifts" instance=ExtResource("2_1klnl")]
