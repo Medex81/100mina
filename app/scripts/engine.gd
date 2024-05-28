@@ -42,6 +42,7 @@ const c_app_version = 0.34
 # the status of passing lessons is saved between sessions.
 var _state:Dictionary
 var _supported_lang_list:PackedStringArray
+var _timer_post_init:Timer = null
 
 # mediator for transferring data between scenes, the key is the name of the current scene
 var scene_mediator:Dictionary
@@ -125,14 +126,21 @@ func _exit_tree():
 func _ready():
 	_make_dir(_c_user_path)
 	_state = _load_dict(_c_state_path)
-	var window = get_window()
-	window.position = str_to_var(_state.get(_c_key_window_position, "Vector2i(384, 276)"))
-	window.size = str_to_var(_state.get(_c_key_window_size, "Vector2i(1152, 648)"))
 	_check_app_version(_state.get(_c_key_app_version, 0), c_app_version)
 	if _c_key_current_user not in _state:
 		_state[_c_key_current_user] = _c_key_defaul_user
 		_state[_c_key_users] = {_c_key_defaul_user: {_c_key_tutors_done:[]}}
 	_save_state()
+	_timer_post_init = Timer.new()
+	add_child(_timer_post_init)
+	_timer_post_init.one_shot = true
+	_timer_post_init.timeout.connect(init_window_position)
+	_timer_post_init.start(0.5)
+	
+func init_window_position():
+	var window = get_window()
+	window.position = str_to_var(_state.get(_c_key_window_position, "Vector2i(384, 276)"))
+	window.size = str_to_var(_state.get(_c_key_window_size, "Vector2i(1152, 648)"))
 
 func _check_app_version(state_version:float, app_version:float)->bool:
 	# got app update
