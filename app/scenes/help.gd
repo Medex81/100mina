@@ -37,4 +37,4 @@ func _on_help_pressed():
 
 func _on_changelog_pressed():
 	_on_pressed()
-	OS.shell_open(TypeEngine.get_changelog_path())
+	OS.shell_open(ProjectSettings.globalize_path(TypeEngine.get_changelog_path()))
