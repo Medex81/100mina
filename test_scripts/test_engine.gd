@@ -10,6 +10,14 @@ extends BaseTest
 # init and load testing script
 func _init():
 	load_test_script("res://app/scripts/engine.gd")
+	if test_script:
+		for prop in test_script.get_property_list():
+			# no modal dialogs
+			if prop.get("name", "") == "is_notif":
+				test_script.is_notif = false
+			# set a test path for state file
+			if prop.get("name", "") == "state_path":
+				test_script.state_path = test_dir + "state.json"
 
 # ====================== TESTS ========================
 
@@ -32,8 +40,8 @@ func test_is_string_valid():
 func test_get_part_from_state():
 	testing("empty string", "", test_script.get_part_from_state(""))
 	testing("a_kazantsev_en_base", "", test_script.get_part_from_state("a_kazantsev_en_base"))
-	test_script.set_part_to_state("a_kazantsev_en_base", "01_df_jk")
-	testing("a_kazantsev_en_base", "01_df_jk", test_script.get_part_from_state("a_kazantsev_en_base"))
+	test_script.set_part_to_state("a_kazantsev_en_base", "001_df_jk")
+	testing("a_kazantsev_en_base", "001_df_jk", test_script.get_part_from_state("a_kazantsev_en_base"))
 
 func test_get_current_lesson_from_state():
 	# test data was added in the test_get_part_from_state
@@ -50,30 +58,27 @@ func test_add_tutor():
 	testing("res://app/scenes/key.tscn, Node.new()", true, test_script.add_tutor("res://app/scenes/key.tscn", Node.new()))
 
 func test__check_app_version():
-	DirAccess.remove_absolute(test_script.c_keyboards + "russian.kbd")
-	DirAccess.remove_absolute(test_script.c_keyboards + "english.kbd")
-	DirAccess.remove_absolute(test_script.c_lessons + "a_kazantsev_ru_base.lsn")
-	DirAccess.remove_absolute(test_script.c_lessons + "a_kazantsev_en_base.lsn")
-	DirAccess.remove_absolute(test_script._c_user_path + test_script._c_changelog)
-	testing("check file exists", false, FileAccess.file_exists(test_script.c_keyboards + "russian.kbd"))
-	testing("state = 1.1, app = 0.3", false, test_script._check_app_version(1.1, 0.3))
-	testing("check file exists", false, FileAccess.file_exists(test_script.c_keyboards + "russian.kbd"))
+	DirAccess.remove_absolute(test_script.c_keyboards + "russian.json")
+	testing("check file exists 1", false, FileAccess.file_exists(test_script.c_keyboards + "russian.json"))
+	testing("state = 1.1, app = 0.3", true, test_script._check_app_version(1.1, 0.3))
+	testing("check file exists 2", true, FileAccess.file_exists(test_script.c_keyboards + "russian.json"))
+	DirAccess.remove_absolute(test_script.c_keyboards + "russian.json")
 	testing("state = 0, app = 0", false, test_script._check_app_version(0, 0))
-	testing("check file exists", false, FileAccess.file_exists(test_script.c_keyboards + "russian.kbd"))
+	testing("check file exists 3", false, FileAccess.file_exists(test_script.c_keyboards + "russian.json"))
 	testing("state = 0.3, app = 1.1", true, test_script._check_app_version(0.3, 1.1))
-	testing("check file exists", true, FileAccess.file_exists(test_script.c_keyboards + "russian.kbd"))
+	testing("check file exists 4", true, FileAccess.file_exists(test_script.c_keyboards + "russian.json"))
 
 func test__copy_storage():
-	DirAccess.remove_absolute(test_dir + "russian.kbd")
-	testing("check file exists->russian.kbd", false, FileAccess.file_exists(test_dir + "russian.kbd"))
-	testing("russian.kbd->user://assets/test", true, test_script._copy_storage("user://assets/keyboards/russian.kbd", test_dir))
-	testing("check file exists->russian.kbd", true, FileAccess.file_exists(test_dir + "russian.kbd"))
+	DirAccess.remove_absolute(test_dir + "russian.json")
+	testing("check file exists->russian.json", false, FileAccess.file_exists(test_dir + "russian.json"))
+	testing("russian.kbd->user://assets/tmp", true, test_script._copy_storage("user://assets/keyboards/russian.json", test_dir))
+	testing("check file exists->russian.json", true, FileAccess.file_exists(test_dir + "russian.json"))
 
 func test__copy_resource():
-	DirAccess.remove_absolute(test_dir + "russian.kbd")
-	testing("check file exists->russian.kbd", false, FileAccess.file_exists(test_dir + "russian.kbd"))
-	testing("russian.kbd->test_dir", true, test_script._copy_resource("res://assets/keyboards/russian.kbd", test_dir))
-	testing("check file exists->russian.kbd", true, FileAccess.file_exists(test_dir + "russian.kbd"))
+	DirAccess.remove_absolute(test_dir + "russian.json")
+	testing("check file exists->russian.json", false, FileAccess.file_exists(test_dir + "russian.json"))
+	testing("russian.kbd->test_dir", true, test_script._copy_resource("res://assets/keyboards/russian.json", test_dir))
+	testing("check file exists->russian.json", true, FileAccess.file_exists(test_dir + "russian.json"))
 
 func test__copy_resource_text():
 	DirAccess.remove_absolute(test_dir + test_script._c_changelog)
@@ -82,8 +87,8 @@ func test__copy_resource_text():
 	testing("check file exists->changelog.txt", true, FileAccess.file_exists(test_dir + test_script._c_changelog))
 
 func test__load_dict():
-	testing("load dict->res://russian.kbd", false, test_script._load_dict(test_script.c_keyboards + "russian.kbd").is_empty())
-	testing("load dict->user://russian.kbd", false, test_script._load_dict(test_script.c_keyboards + "russian.kbd").is_empty())
+	testing("load dict->res://russian.json", false, test_script._load_dict(test_script.c_keyboards + "russian.json").is_empty())
+	testing("load dict->user://russian.json", false, test_script._load_dict(test_script.c_keyboards + "russian.json").is_empty())
 	testing("load dict->user://changelog.txt", true, test_script._load_dict(test_script._c_user_path + test_script._c_changelog).is_empty())
 
 func test__save_data():

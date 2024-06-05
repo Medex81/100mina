@@ -33,6 +33,7 @@ func load_test_script(path:String)->bool:
 	
 func start_tests()->Dictionary:
 	if test_script:
+		@warning_ignore("unassigned_variable")
 		var methods_dict:Dictionary
 		for dict in get_method_list():
 			var _name = dict.get(test_name_key, "")

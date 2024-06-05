@@ -25,3 +25,5 @@ func start_tests(tests_dir:String):
 				for test in methods_dict[method]:
 					if test.get(BaseTest.test_state_key, "") == BaseTest.test_error:
 						printerr("test script [{0}], script [{1}], method [{2}], error [{3}]".format([test_script_name, result[test_script_name].get(BaseTest.test_block_key, "none"), method, test]))
+		else:
+			print("All tests done!")
