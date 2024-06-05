@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cilnf2ou1exce"]
+[gd_scene load_steps=8 format=3 uid="uid://cilnf2ou1exce"]
 
 [ext_resource type="Script" path="res://app/scenes/users.gd" id="1_a0kuf"]
 [ext_resource type="PackedScene" uid="uid://8gfdgse005io" path="res://app/scenes/user_icon.tscn" id="1_ty2er"]
-[ext_resource type="Texture2D" uid="uid://dwcfax51auv5q" path="res://assets/textures/plus.png" id="3_e3fci"]
-[ext_resource type="Texture2D" uid="uid://bxcyu8a6ibnrt" path="res://assets/textures/minus.png" id="4_cbhsx"]
-[ext_resource type="Texture2D" uid="uid://cwnar86vfyao4" path="res://assets/textures/return.png" id="5_cpubj"]
+[ext_resource type="Texture2D" uid="uid://21utx1fndnnu" path="res://assets/textures/plus.png" id="3_e3fci"]
+[ext_resource type="Texture2D" uid="uid://bdub1lpdb5ci1" path="res://assets/textures/minus.png" id="4_cbhsx"]
+[ext_resource type="Texture2D" uid="uid://cdi4urktq6pna" path="res://assets/textures/return.png" id="5_cpubj"]
+[ext_resource type="Texture2D" uid="uid://rsregqlutnqh" path="res://assets/textures/cross.png" id="6_mjlex"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdeuy"]
 border_width_left = 2
@@ -92,8 +93,24 @@ texture_normal = ExtResource("5_cpubj")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="close" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.905
+anchor_top = 0.056
+anchor_right = 0.905
+anchor_bottom = 0.056
+offset_left = -20.645
+offset_top = -19.112
+offset_right = 21.355
+offset_bottom = 22.888
+icon = ExtResource("6_mjlex")
+expand_icon = true
+
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="send_change_icon" from="MarginContainer/VBoxContainer/icon" to="." method="_on_icon_send_change_icon"]
 [connection signal="item_clicked" from="MarginContainer/VBoxContainer/user_list" to="." method="_on_user_list_item_clicked"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/edit_user/add" to="." method="_on_add_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/edit_user/remove" to="." method="_on_remove_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/edit_user/rename" to="." method="_on_rename_pressed"]
+[connection signal="pressed" from="close" to="." method="_on_button_pressed"]

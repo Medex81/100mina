@@ -18,7 +18,7 @@ func update():
 	
 func set_current_user_icon_symbols():
 	$MarginContainer/VBoxContainer/icon.set_symbols(TypeEngine.get_current_user_icon_symbols())
-	$MarginContainer/VBoxContainer/icon.set_texture(TypeEngine.get_user_icon(TypeEngine.get_current_user()))
+	$MarginContainer/VBoxContainer/icon.set_texture(TypeEngine.get_current_user_icon())
 	$MarginContainer/VBoxContainer/user_name.text = TypeEngine.get_current_user()
 
 func _on_rename_pressed():
@@ -27,7 +27,7 @@ func _on_rename_pressed():
 		var old_user_name = $MarginContainer/VBoxContainer/user_list.get_item_text(_select_user)
 		if new_user_name.is_valid_filename():
 			TypeEngine.rename_user(old_user_name, new_user_name)
-			TypeEngine.set_current_user(new_user_name)
+			TypeEngine.add_user(new_user_name)
 			update()
 			set_current_user_icon_symbols()
 			emit_signal("send_change_current_user")
@@ -39,7 +39,7 @@ func _on_rename_pressed():
 func _on_user_list_item_clicked(index, _at_position, _mouse_button_index):
 	_select_user = index
 	var user_name = $MarginContainer/VBoxContainer/user_list.get_item_text(_select_user)
-	TypeEngine.set_current_user(user_name)
+	TypeEngine.add_user(user_name)
 	set_current_user_icon_symbols()
 	emit_signal("send_change_current_user")
 
@@ -47,7 +47,6 @@ func _on_add_pressed():
 	var new_user_name = $MarginContainer/VBoxContainer/edit_user/user_name.text
 	if new_user_name.is_valid_filename():
 		TypeEngine.add_user(new_user_name)
-		TypeEngine.set_current_user(new_user_name)
 		update()
 		set_current_user_icon_symbols()
 	else:
@@ -62,3 +61,7 @@ func _on_remove_pressed():
 
 func _on_icon_send_change_icon():
 	emit_signal("send_change_current_user")
+
+
+func _on_button_pressed():
+	visible = false
