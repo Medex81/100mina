@@ -254,7 +254,7 @@ size = Vector2i(565, 300)
 ok_button_text = "Open"
 file_mode = 1
 access = 2
-filters = PackedStringArray("*.lsn", "*.kbd")
+filters = PackedStringArray("*.json")
 
 [node name="lesson_options" type="Panel" parent="main"]
 visible = false

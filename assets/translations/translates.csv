@@ -41,6 +41,7 @@ key_error_lesson_version,Версия файла урока {0} отличает
 key_error_username,В имени пользователя старайтесь использовать только буквы и цифры.,Try to use only letters and numbers in the username.
 key_error_user_select,Сначала выберите пользователя.,First select the user.
 key_error_copy_file,Ошибка копирования файла {0} {1}.,Error copying file {0} {1}.
+key_error_file_not_found,Файл {0} отсутствует на диске., File {0} is not exist.
 
 key_done_lesson,Вы прошли урок!,You have passed the lesson!
 key_done_part,Вы прошли часть!,You have passed the part!

@@ -10,10 +10,8 @@ const c_icons_path = "user://icons/"
 const _c_lang_list_path = "res://app/misc/godot_lang_list.txt"
 const c_keyboard_scene = "res://app/scenes/types.tscn"
 const c_lessons_scene = "res://app/scenes/lessons.tscn"
-const _c_state_path = _c_user_path + "state.json"
 const _c_changelog = "changelog.txt"
-const _c_keyboard_extension = ".kbd"
-const _c_lesson_extension = ".lsn"
+const _c_json_extension = ".json"
 const _c_keyboard_version = 1
 const _c_lesson_version = 1
 const _c_max_string_length = 25
@@ -43,6 +41,8 @@ const c_app_version = 0.34
 var _state:Dictionary
 var _supported_lang_list:PackedStringArray
 var _timer_post_init:Timer = null
+var is_notif = true
+var state_path = _c_user_path + "state.json"
 
 # mediator for transferring data between scenes, the key is the name of the current scene
 var scene_mediator:Dictionary
@@ -125,7 +125,8 @@ func _exit_tree():
 
 func _ready():
 	_make_dir(_c_user_path)
-	_state = _load_dict(_c_state_path)
+	if _state.is_empty():
+		_state = _load_dict(state_path)
 	_check_app_version(_state.get(_c_key_app_version, 0), c_app_version)
 	if _c_key_current_user not in _state:
 		_state[_c_key_current_user] = _c_key_defaul_user
@@ -144,13 +145,13 @@ func init_window_position():
 
 func _check_app_version(state_version:float, app_version:float)->bool:
 	# got app update
-	if state_version < app_version:
+	if state_version != app_version:
 		_state[_c_key_app_version] = app_version
 		# copy the built-in lessons and keyboards to the user's data
-		_copy_resource("res://assets/keyboards/russian.kbd", c_keyboards)
-		_copy_resource("res://assets/keyboards/english.kbd", c_keyboards)
-		_copy_resource("res://assets/lessons/a_kazantsev_ru_base.lsn", c_lessons)
-		_copy_resource("res://assets/lessons/a_kazantsev_en_base.lsn", c_lessons)
+		_copy_resource("res://assets/keyboards/russian.json", c_keyboards)
+		_copy_resource("res://assets/keyboards/english.json", c_keyboards)
+		_copy_resource("res://assets/lessons/a_kazantsev_ru_base.json", c_lessons)
+		_copy_resource("res://assets/lessons/a_kazantsev_en_base.json", c_lessons)
 		_copy_resource_text("res://changelog.txt", _c_user_path)
 		_save_state()
 		return true
@@ -162,7 +163,7 @@ func _copy_storage(from_file_path:String, to_dir:String)->bool:
 	var to = to_dir.path_join(from_file_path.get_file())
 	var status = DirAccess.copy_absolute(from_file_path, to)
 	if status != OK:
-		if not OS.is_debug_build():
+		if is_notif:
 			OS.alert("{0} {1} -> {2}".format([error_string(status), from_file_path, to]), tr("key_title_error"))
 		return false
 	return true
@@ -213,74 +214,88 @@ func _save_data(path:String, data)->bool:
 		file.flush()
 		return true
 	else:
-		if not OS.is_debug_build():
+		if is_notif:
 			OS.alert("{0} -> {1}".format([error_string(FileAccess.get_open_error()), path]), tr("key_title_error"))
 	return false
 
+func _get_user_kb_path(kb_name:String)->String:
+	return c_keyboards + kb_name + _c_json_extension
+	
+func _get_user_lesson_path(lesson_name:String)->String:
+	return c_lessons + lesson_name + _c_json_extension
+
 func export_kb_lesson(lesson:String, to_dir:String)->bool:
-	return  _copy_storage(c_lessons + lesson + _c_lesson_extension, to_dir) \
-	and _copy_storage(c_keyboards + get_lesson_lang(lesson) + _c_keyboard_extension, to_dir)
+	return  _copy_storage(_get_user_lesson_path(lesson), to_dir) \
+	and _copy_storage(_get_user_kb_path(get_lesson_lang(lesson)), to_dir)
 
 func import_kb_lesson(paths:PackedStringArray)->int:
 	var count = 0
 	for from in paths:
-		if _c_keyboard_extension in from:
+		var text = _load_text(from)
+		if _c_key_keyboard_version in text:
 			_copy_storage(from, c_keyboards)
 			count += 1
-		if _c_lesson_extension in from:
+		if _c_key_lesson_version in text:
 			_copy_storage(from, c_lessons)
 			count += 1
 	return count
 
 func save_keyboard(lang:String, dict:Dictionary):
-	_save_data(c_keyboards + lang + _c_keyboard_extension, dict)
+	_save_data(_get_user_kb_path(lang), dict)
 
 func load_keyboard(lang:String)->Dictionary:
-	var dict = _load_dict(c_keyboards + lang + _c_keyboard_extension)
+	var dict = _load_dict(_get_user_kb_path(lang))
+	if is_notif and not FileAccess.file_exists(_get_user_kb_path(lang)):
+		OS.alert(tr("key_error_file_not_found").format([_get_user_kb_path(lang)]), tr("key_title_error"))
+		return dict
 	var version = dict.get(_c_key_keyboard_version, 0)
 	if version != _c_keyboard_version:
-		if not OS.is_debug_build():
-			OS.alert(tr("key_error_keyboard_version").format([lang + _c_keyboard_extension]), tr("key_title_error"))
+		if is_notif:
+			OS.alert(tr("key_error_keyboard_version").format([_get_user_kb_path(lang)]), tr("key_title_error"))
 	return dict
 
 func is_keyboard_exists(lang:String)->bool:
-	return FileAccess.file_exists(c_keyboards + lang + _c_keyboard_extension)
+	return FileAccess.file_exists(_get_user_kb_path(lang))
 
 func save_lesson(lesson:String, dict:Dictionary)->bool:
-	return _save_data(c_lessons + lesson + _c_lesson_extension, dict)
+	return _save_data(_get_user_lesson_path(lesson), dict)
 
 func load_lesson(lesson:String)->Dictionary:
-	var dict = _load_dict(c_lessons + lesson + _c_lesson_extension) as Dictionary
+	var dict = _load_dict(_get_user_lesson_path(lesson)) as Dictionary
+	if is_notif and not FileAccess.file_exists(_get_user_lesson_path(lesson)):
+		OS.alert(tr("key_error_file_not_found").format([_get_user_lesson_path(lesson)]), tr("key_title_error"))
+		return dict
 	var version = dict.get(_c_key_lesson_version, 0)
 	if version != _c_lesson_version:
-		if not OS.is_debug_build():
-			OS.alert(tr("key_error_lesson_version").format([lesson + _c_lesson_extension]), tr("key_title_error"))
+		if is_notif:
+			OS.alert(tr("key_error_lesson_version").format([_get_user_lesson_path(lesson)]), tr("key_title_error"))
 	return dict
 
 func _make_dir(dir_path:String)->bool:
 	if not DirAccess.dir_exists_absolute(dir_path):
 		var status = DirAccess.make_dir_recursive_absolute(dir_path)
 		if status != OK:
-			if not OS.is_debug_build():
+			if is_notif:
 				OS.alert("{0} -> {1}".format([error_string(status), dir_path]), tr("key_title_error"))
 			return false
 	return true
 
 func get_lessons()->PackedStringArray:
+	@warning_ignore("unassigned_variable")
 	var list:PackedStringArray
 	for kb in DirAccess.get_files_at(c_lessons):
 		list.append(kb.get_basename())
 	return list
 
 func remove_lesson(lesson:String)->bool:
-	return true if DirAccess.remove_absolute(c_lessons + lesson + _c_lesson_extension) == OK else false
+	return true if DirAccess.remove_absolute(_get_user_lesson_path(lesson)) == OK else false
 
 func make_lesson(lesson:String, dict:Dictionary)->bool:
 	dict[_c_key_lesson_version] = _c_lesson_version
-	return _save_data(c_lessons + lesson + _c_lesson_extension, dict)
+	return _save_data(_get_user_lesson_path(lesson), dict)
 
 func make_keyboard(lang:String)->bool:
-	return _save_data(c_keyboards + lang + _c_keyboard_extension, {_c_key_keyboard_version:_c_keyboard_version})
+	return _save_data(_get_user_kb_path(lang), {_c_key_keyboard_version:_c_keyboard_version})
 
 func get_supported_lang_list()->PackedStringArray:
 	if _supported_lang_list.is_empty():
@@ -288,12 +303,12 @@ func get_supported_lang_list()->PackedStringArray:
 		if file:
 			_supported_lang_list = file.get_as_text().split("\n")
 		else:
-			if not OS.is_debug_build():
+			if is_notif:
 				OS.alert("{0} -> {1}".format([error_string(FileAccess.get_open_error()), _c_lang_list_path]), tr("key_title_error"))
 	return _supported_lang_list
 
 func get_lesson_lang(lesson:String)->String:
-	var dict = _load_dict(c_lessons + lesson + _c_lesson_extension) as Dictionary
+	var dict = _load_dict(_get_user_lesson_path(lesson)) as Dictionary
 	return dict.get(c_key_lang, "")
 
 func get_changelog_path()->String:
@@ -345,7 +360,7 @@ func set_current_user_icon(extern_icon_path:String = ""):
 	_set_current_user_data(user_data)
 
 func _save_state():
-	_save_data(_c_state_path, _state)
+	_save_data(state_path, _state)
 
 func get_user_icon_symbols(user_name:String)->String:
 	# Default user

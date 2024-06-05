@@ -47,6 +47,8 @@ func _on_list_item_clicked(index, _at_position, _mouse_button_index):
 
 func start_lesson(lesson:String):
 	var lesson_dict = TypeEngine.load_lesson(lesson) as Dictionary
+	if lesson_dict.is_empty():
+		return
 	var parts = lesson_dict.get(TypeEngine.c_key_parts, {})
 	
 	_lang = TypeEngine.get_lesson_lang(lesson)
