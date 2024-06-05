@@ -40,6 +40,7 @@ func _on_user_list_item_clicked(index, _at_position, _mouse_button_index):
 	_select_user = index
 	var user_name = $MarginContainer/VBoxContainer/user_list.get_item_text(_select_user)
 	TypeEngine.add_user(user_name)
+	$MarginContainer/VBoxContainer/edit_user/user_name.text = user_name
 	set_current_user_icon_symbols()
 	emit_signal("send_change_current_user")
 
@@ -65,3 +66,7 @@ func _on_icon_send_change_icon():
 
 func _on_button_pressed():
 	visible = false
+
+
+func _on_user_name_text_submitted(new_text):
+	_on_rename_pressed()
