@@ -42,8 +42,10 @@ func _on_type_area_send_next_symbol(_symbol):
 			_svg_accum_session += _delta
 			_svg_counter += 1
 			_svg_counter_session += 1
+			@warning_ignore("integer_division")
 			$results/sp_session.text = tr("key_hint_type_speed_session").format([_msec_in_min / (_svg_accum_session / _svg_counter_session)])
 			if _svg_counter == _svg_max:
+				@warning_ignore("integer_division")
 				$results/spm.text = tr("key_hint_type_speed").format([_msec_in_min / (_svg_accum / _svg_max)])
 				_svg_counter = 0
 				_svg_accum = 0
