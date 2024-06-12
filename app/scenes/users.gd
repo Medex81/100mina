@@ -68,5 +68,5 @@ func _on_button_pressed():
 	visible = false
 
 
-func _on_user_name_text_submitted(new_text):
+func _on_user_name_text_submitted(_new_text):
 	_on_rename_pressed()

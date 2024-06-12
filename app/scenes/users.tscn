@@ -107,7 +107,6 @@ offset_bottom = 22.888
 icon = ExtResource("6_mjlex")
 expand_icon = true
 
-[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="send_change_icon" from="MarginContainer/VBoxContainer/icon" to="." method="_on_icon_send_change_icon"]
 [connection signal="item_clicked" from="MarginContainer/VBoxContainer/user_list" to="." method="_on_user_list_item_clicked"]
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/edit_user/user_name" to="." method="_on_user_name_text_submitted"]
