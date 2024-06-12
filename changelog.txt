@@ -36,3 +36,20 @@ date	: 15.01.2024
 	- Update project to Godot 4.2.1
 	- Added spec for the SPACE button(EN).
 	- The keyboard initialization sequence error has been fixed.
+version	: 0.34
+date	: 12.06.2024
+	- Fixed focus out when Esc button clicked.
+	- Change Enter button to common.
+	- Added default values for buttons. Not need clear buttons.
+	- Checking if capslock is pressed.
+	- Check if part is not done -> run this part.
+	- Add unit tests to code engine.
+	- Fixed save and set main window start position.
+	- Change finger binding for Z,0.
+	- Change keyboard and lesson files extension to unify JSON.
+	- Add close button to the user dialog.
+	- Add circle shader for a user icon.
+	- Rename user if pressed Enter button in user dialog.
+	- Change icon for windows build.
+
+
