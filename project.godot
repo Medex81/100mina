@@ -14,7 +14,6 @@ config/name="100mina"
 config/description="The program is designed to master the ten-finger blind method of typing characters on the keyboard. It has a built-in keyboard lessons editor. Allows you to export and import keyboard and lesson files that can be distributed"
 config/version="0.34"
 run/main_scene="res://app/scenes/lessons.tscn"
-config/use_hidden_project_data_directory=false
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/max_fps=60
 boot_splash/show_image=false
@@ -22,7 +21,7 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://assets/textures/app_icons/icon.svg"
 config/macos_native_icon="res://assets/textures/app_icons/icon.icns"
-config/windows_native_icon="res://assets/textures/app_icons/icon.ico"
+config/windows_native_icon="res://assets/textures/app_icons/icon_win.ico"
 
 [autoload]
 
